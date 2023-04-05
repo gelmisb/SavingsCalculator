@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.savingscalculator.calculatesavings.CalcSavingsActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     Button calcSavingsBtn;

@@ -5,4 +5,26 @@
     <string name="check_goals">Check goals</string>
     <string name="set_goals">Set goals</string>
     <string name="tempimg">TempImg</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="todo">TODO</string>
+    <string name="step_1_of_15">Step 1 of 15</string>
+    <string name="wages_social_welfare">Wages / Social Welfare</string>
+    <string name="value_for_wages">Value for wages</string>
+    <string name="selection_for_time">Select period</string>
+    <string name="selection_for_time2">Select period</string>
+    <string name="selection_for_time3">Select period</string>
+    <string name="selection_for_time4">Select period</string>
+    <string name="selection_for_time5">Select period</string>
+    <string name="title_activity_savings_calc_income">Savings Calc income</string>
+    <string name="partner_s_wages_social_welfare">Partner\'s wages / social welfare</string>
+    <string name="cbp">Child benefit payment</string>
+    <string name="other_income">Other Income</string>
+    <string name="income_maintenance">Maintenance </string>
 </resources>
