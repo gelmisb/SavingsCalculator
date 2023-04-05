@@ -9,19 +9,38 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button mClickButton1;
+    Button calcSavingsBtn;
+    Button checkSavingsBtn;
+    Button setGoalBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mClickButton1 = (Button)findViewById(R.id.calc_savings_activity_btn);
+        calcSavingsBtn = (Button)findViewById(R.id.calc_savings_activity_btn);
+        checkSavingsBtn = (Button)findViewById(R.id.check_goals_activity_btn);
+        setGoalBtn = (Button)findViewById(R.id.set_goals_activity_btn);
 
-        mClickButton1.setOnClickListener(new View.OnClickListener() {
+        calcSavingsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent myIntent = new Intent(MainActivity.this, CalcSavingsActivity.class);
-//                myIntent.putExtra("key", value); //Optional parameters
+                MainActivity.this.startActivity(myIntent);
+            }
+        });
+
+        checkSavingsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(MainActivity.this, CheckGoalsActivity.class);
+                MainActivity.this.startActivity(myIntent);
+            }
+        });
+
+        setGoalBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(MainActivity.this, SetGoalsActivity.class);
                 MainActivity.this.startActivity(myIntent);
             }
         });
