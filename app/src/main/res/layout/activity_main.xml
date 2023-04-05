@@ -12,6 +12,7 @@
         android:layout_height="165dp"
         android:layout_marginTop="100dp"
         android:layout_marginBottom="466dp"
+        android:contentDescription="@string/main_app_logo_for_greeting"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -38,19 +39,19 @@
             android:id="@+id/calc_savings_activity_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Calculate Savings" />
+            android:text="@string/calculate_savings" />
 
         <Button
             android:id="@+id/check_goals_activity_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Check goals" />
+            android:text="@string/check_goals" />
 
         <Button
             android:id="@+id/set_goals_activity_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Set goals" />
+            android:text="@string/set_goals" />
 
     </LinearLayout>
 

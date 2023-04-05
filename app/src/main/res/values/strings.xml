@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SavingsCalculator</string>
+    <string name="main_app_logo_for_greeting">Main app logo for greeting</string>
+    <string name="calculate_savings">Calculate Savings</string>
+    <string name="check_goals">Check goals</string>
+    <string name="set_goals">Set goals</string>
 </resources>
