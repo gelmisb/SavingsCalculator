@@ -1,6 +1,7 @@
 package com.example.savingscalculator.calculatesavings;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,12 +11,13 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.savingscalculator.R;
-//import com.example.savingscalculator.calculatesavings.databinding.FragmentFirst2Binding;
-import com.example.savingscalculator.databinding.FragmentFirst2Binding;
+import com.example.savingscalculator.databinding.FragmentSecondBinding;
 
-public class First2Fragment extends Fragment {
+//import com.example.savingscalculator.calculatesavings.databinding.FragmentSecondBinding;
 
-    private FragmentFirst2Binding binding;
+public class SecondFragment extends Fragment {
+
+    private FragmentSecondBinding binding;
 
     @Override
     public View onCreateView(
@@ -23,19 +25,23 @@ public class First2Fragment extends Fragment {
             Bundle savedInstanceState
     ) {
 
-        binding = FragmentFirst2Binding.inflate(inflater, container, false);
+        binding = FragmentSecondBinding.inflate(inflater, container, false);
         return binding.getRoot();
 
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        float totalIncome = ((Income) getActivity().getApplicationContext()).getTotalIncome();
 
-        binding.buttonFirst.setOnClickListener(new View.OnClickListener() {
+        Log.i("Total income: ", String.valueOf(totalIncome));
+
+
+        binding.buttonSecond.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(First2Fragment.this)
-                        .navigate(R.id.action_First2Fragment_to_Second2Fragment);
+                NavHostFragment.findNavController(SecondFragment.this)
+                        .navigate(R.id.action_SecondFragment_to_FirstFragment);
             }
         });
     }

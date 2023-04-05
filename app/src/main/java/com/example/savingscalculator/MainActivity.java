@@ -7,7 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.savingscalculator.calculatesavings.CalcSavingsActivity;
+import com.example.savingscalculator.calculatesavings.A1_CalcSavings_Income_Activity;
+import com.example.savingscalculator.calculatesavings.ExpensesActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         calcSavingsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myIntent = new Intent(MainActivity.this, CalcSavingsActivity.class);
+                Intent myIntent = new Intent(MainActivity.this, ExpensesActivity.class);
                 MainActivity.this.startActivity(myIntent);
             }
         });

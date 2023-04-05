@@ -2,13 +2,20 @@ package com.example.savingscalculator.calculatesavings;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
+import com.example.savingscalculator.CheckGoalsActivity;
+import com.example.savingscalculator.MainActivity;
 import com.example.savingscalculator.R;
 
-public class CalcSavingsActivity extends AppCompatActivity {
+public class A1_CalcSavings_Income_Activity extends AppCompatActivity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,5 +47,15 @@ public class CalcSavingsActivity extends AppCompatActivity {
         spinner3.setAdapter(adapter);
         spinner4.setAdapter(adapter);
         spinner5.setAdapter(adapter);
+
+//        next = (Button)findViewById(R.id.nextBtn);
+//        next.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent myIntent = new Intent(A1_CalcSavings_Income_Activity.this, ExpensesActivity.class);
+//                A1_CalcSavings_Income_Activity.this.startActivity(myIntent);
+//            }
+//        });
+
     }
 }
