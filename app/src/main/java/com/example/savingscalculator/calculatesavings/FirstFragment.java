@@ -13,9 +13,15 @@ import android.widget.Spinner;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
+import androidx.room.Room;
 
 import com.example.savingscalculator.R;
 import com.example.savingscalculator.databinding.FragmentFirstBinding;
+import com.example.savingscalculator.user.AppDatabase;
+import com.example.savingscalculator.user.User;
+import com.example.savingscalculator.user.UserDao;
+
+import java.util.List;
 
 //import com.example.savingscalculator.calculatesavings.databinding.FragmentFirstBinding;
 
@@ -39,6 +45,16 @@ public class FirstFragment extends Fragment {
         binding.nextBtn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+//                ---------------- Database config for later use ---------------------------
+//                AppDatabase db = Room.databaseBuilder(getActivity().getApplicationContext(),
+//                        AppDatabase.class, "database-name").build();
+//
+//                UserDao userDao = db.userDao();
+//                List<User> users = userDao.getAll();
+
+
+
                 ((Income) getActivity().getApplicationContext()).setWages((binding.editWagesNumber.getText().toString().equals("")) ? "0" : binding.editWagesNumber.getText().toString());
                 ((Income) getActivity().getApplicationContext()).setpWages((binding.editPWages.getText().toString().equals("")) ? "0" : binding.editPWages.getText().toString());
                 ((Income) getActivity().getApplicationContext()).setCbp((binding.editCBP.getText().toString().equals("")) ? "0" : binding.editCBP.getText().toString());
@@ -56,12 +72,4 @@ public class FirstFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
-//    @Override
-//    public void onSaveInstanceState(@NonNull Bundle outState) {
-//        super.onSaveInstanceState(outState);
-//        outState.putBoolean(IS_EDITING_KEY, isEditing);
-//        outState.putString(RANDOM_GOOD_DEED_KEY, randomGoodDeed);
-//    }
-
 }
