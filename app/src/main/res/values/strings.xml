@@ -28,4 +28,16 @@
     <string name="other_income">Other Income</string>
     <string name="income_maintenance">Maintenance </string>
     <string name="title_activity_expenses">ExpensesActivity</string>
+    <string name="expenses">Expenses</string>
+    <string name="loans">Loans</string>
+    <string name="step_2_of_15">Step 2 of 15</string>
+    <string name="holiday_loan">Holiday loan</string>
+    <string name="education_tuition_loan">Education / Tuition loan</string>
+    <string name="Euro">€</string>
+    <string name="home_loan">Home loan</string>
+    <string name="personal_loan">Personal loan</string>
+    <string name="business_loan">Business loan</string>
+    <string name="car_motorbike_loan">Car / motorbike loan</string>
+    <string name="credit_card_loan">Credit card loan</string>
+    <string name="income">Income</string>
 </resources>

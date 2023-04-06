@@ -55,11 +55,16 @@ public class FirstFragment extends Fragment {
 
 
 
-                ((Income) getActivity().getApplicationContext()).setWages((binding.editWagesNumber.getText().toString().equals("")) ? "0" : binding.editWagesNumber.getText().toString());
-                ((Income) getActivity().getApplicationContext()).setpWages((binding.editPWages.getText().toString().equals("")) ? "0" : binding.editPWages.getText().toString());
-                ((Income) getActivity().getApplicationContext()).setCbp((binding.editCBP.getText().toString().equals("")) ? "0" : binding.editCBP.getText().toString());
-                ((Income) getActivity().getApplicationContext()).setMaintenance((binding.editMaintenance.getText().toString().equals("")) ? "0" : binding.editMaintenance.getText().toString());
-                ((Income) getActivity().getApplicationContext()).setOtherIncome((binding.editotherIncome.getText().toString().equals("")) ? "0" : binding.editotherIncome.getText().toString());
+                ((Income) getActivity().getApplicationContext()).setWages(
+                        (binding.editWagesNumber.getText().toString().equals("")) ? "0" : binding.editWagesNumber.getText().toString());
+                ((Income) getActivity().getApplicationContext()).setpWages(
+                        (binding.editPWages.getText().toString().equals("")) ? "0" : binding.editPWages.getText().toString());
+                ((Income) getActivity().getApplicationContext()).setCbp(
+                        (binding.editCBP.getText().toString().equals("")) ? "0" : binding.editCBP.getText().toString());
+                ((Income) getActivity().getApplicationContext()).setMaintenance(
+                        (binding.editMaintenance.getText().toString().equals("")) ? "0" : binding.editMaintenance.getText().toString());
+                ((Income) getActivity().getApplicationContext()).setOtherIncome(
+                        (binding.editotherIncome.getText().toString().equals("")) ? "0" : binding.editotherIncome.getText().toString());
                 ((Income) getActivity().getApplicationContext()).setTotalIncome();
 
                 NavHostFragment.findNavController(FirstFragment.this)
