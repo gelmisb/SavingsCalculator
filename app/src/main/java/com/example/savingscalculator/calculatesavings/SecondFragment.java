@@ -36,22 +36,22 @@ public class SecondFragment extends Fragment {
 
         Log.i("Total income: ", String.valueOf(totalIncome));
 
-        ((Income) getActivity().getApplicationContext()).setWages(
-                (binding.carLoanEdit.getText().toString().equals("")) ? "0" : binding.carLoanEdit.getText().toString());
-        ((Income) getActivity().getApplicationContext()).setpWages(
-                (binding.educationEdit.getText().toString().equals("")) ? "0" : binding.educationEdit.getText().toString());
-        ((Income) getActivity().getApplicationContext()).setCbp(
-                (binding.homeLoanEdit.getText().toString().equals("")) ? "0" : binding.homeLoanEdit.getText().toString());
-        ((Income) getActivity().getApplicationContext()).setMaintenance(
-                (binding.personalLoanEdit.getText().toString().equals("")) ? "0" : binding.personalLoanEdit.getText().toString());
-        ((Income) getActivity().getApplicationContext()).setOtherIncome(
-                (binding.businessLoanEdit.getText().toString().equals("")) ? "0" : binding.businessLoanEdit.getText().toString());
-        ((Income) getActivity().getApplicationContext()).setOtherIncome(
-                (binding.holidayLoanEdit.getText().toString().equals("")) ? "0" : binding.holidayLoanEdit.getText().toString());
-        ((Income) getActivity().getApplicationContext()).setOtherIncome(
-                (binding.creditCardLoanEdit.getText().toString().equals("")) ? "0" : binding.creditCardLoanEdit.getText().toString());
-
-        ((Income) getActivity().getApplicationContext()).setTotalIncome();
+//        ((Income) getActivity().getApplicationContext()).setWages(
+//                (binding.carLoanEdit.getText().toString().equals("")) ? "0" : binding.carLoanEdit.getText().toString());
+//        ((Income) getActivity().getApplicationContext()).setpWages(
+//                (binding.educationEdit.getText().toString().equals("")) ? "0" : binding.educationEdit.getText().toString());
+//        ((Income) getActivity().getApplicationContext()).setCbp(
+//                (binding.homeLoanEdit.getText().toString().equals("")) ? "0" : binding.homeLoanEdit.getText().toString());
+//        ((Income) getActivity().getApplicationContext()).setMaintenance(
+//                (binding.personalLoanEdit.getText().toString().equals("")) ? "0" : binding.personalLoanEdit.getText().toString());
+//        ((Income) getActivity().getApplicationContext()).setOtherIncome(
+//                (binding.businessLoanEdit.getText().toString().equals("")) ? "0" : binding.businessLoanEdit.getText().toString());
+//        ((Income) getActivity().getApplicationContext()).setOtherIncome(
+//                (binding.holidayLoanEdit.getText().toString().equals("")) ? "0" : binding.holidayLoanEdit.getText().toString());
+//        ((Income) getActivity().getApplicationContext()).setOtherIncome(
+//                (binding.creditCardLoanEdit.getText().toString().equals("")) ? "0" : binding.creditCardLoanEdit.getText().toString());
+//
+//        ((Income) getActivity().getApplicationContext()).setTotalIncome();
 
 
 //        binding.buttonSecond.setOnClickListener(new View.OnClickListener() {

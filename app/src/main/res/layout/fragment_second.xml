@@ -104,7 +104,7 @@
                 </LinearLayout>
 
                 <Spinner
-                    android:id="@+id/timeframe"
+                    android:id="@+id/spinner_expense_step2_1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/selection_for_time" />
@@ -155,7 +155,7 @@
                 </LinearLayout>
 
                 <Spinner
-                    android:id="@+id/timeframe2"
+                    android:id="@+id/spinner_expense_step2_2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/selection_for_time2" />
@@ -206,7 +206,7 @@
                 </LinearLayout>
 
                 <Spinner
-                    android:id="@+id/timeframe3"
+                    android:id="@+id/spinner_expense_step2_3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/selection_for_time3" />
@@ -256,7 +256,7 @@
                 </LinearLayout>
 
                 <Spinner
-                    android:id="@+id/timeframe4"
+                    android:id="@+id/spinner_expense_step2_4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/selection_for_time4" />
@@ -306,7 +306,7 @@
                 </LinearLayout>
 
                 <Spinner
-                    android:id="@+id/timeframe5"
+                    android:id="@+id/spinner_expense_step2_5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/selection_for_time5" />
@@ -357,7 +357,7 @@
                 </LinearLayout>
 
                 <Spinner
-                    android:id="@+id/timeframe6"
+                    android:id="@+id/spinner_expense_step2_6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/selection_for_time5" />
@@ -408,7 +408,7 @@
                 </LinearLayout>
 
                 <Spinner
-                    android:id="@+id/timeframe7"
+                    android:id="@+id/spinner_expense_step2_7"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/selection_for_time5" />
@@ -427,17 +427,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
-        <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
-        <!--            android:id="@+id/constraintLayout"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="663dp"-->
-        <!--            tools:context=".calculatesavings.A1_CalcSavings_Income_Activity"-->
-        <!--            tools:layout_editor_absoluteY="1dp">-->
-
-        <!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
-        <!--    </ScrollView>-->
-
     </LinearLayout>
 
 </ScrollView>

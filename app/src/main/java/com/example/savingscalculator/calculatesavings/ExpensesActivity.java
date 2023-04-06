@@ -54,6 +54,17 @@ public class ExpensesActivity extends AppCompatActivity {
         Spinner spinner4 = (Spinner) findViewById(R.id.timeframe4);
         Spinner spinner5 = (Spinner) findViewById(R.id.timeframe5);
 
+
+
+//        Spinner spinner_expense_step2_1 = (Spinner) findViewById(R.id.spinner_expense_step2_1);
+//        Spinner spinner_expense_step2_2 = (Spinner) findViewById(R.id.spinner_expense_step2_2);
+//        Spinner spinner_expense_step2_3 = (Spinner) findViewById(R.id.spinner_expense_step2_3);
+//        Spinner spinner_expense_step2_4 = (Spinner) findViewById(R.id.spinner_expense_step2_4);
+//        Spinner spinner_expense_step2_5 = (Spinner) findViewById(R.id.spinner_expense_step2_5);
+//        Spinner spinner_expense_step2_6 = (Spinner) findViewById(R.id.spinner_expense_step2_6);
+//        Spinner spinner_expense_step2_7 = (Spinner) findViewById(R.id.spinner_expense_step2_7);
+
+
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.timeframe_array, android.R.layout.simple_spinner_item);
@@ -67,17 +78,33 @@ public class ExpensesActivity extends AppCompatActivity {
         spinner4.setSelection(adapter.getPosition("Weekly"));
         spinner5.setSelection(adapter.getPosition("Weekly"));
 
+
+//        spinner_expense_step2_1.setSelection(adapter.getPosition("Weekly"));
+//        spinner_expense_step2_2.setSelection(adapter.getPosition("Weekly"));
+//        spinner_expense_step2_3.setSelection(adapter.getPosition("Weekly"));
+//        spinner_expense_step2_4.setSelection(adapter.getPosition("Weekly"));
+//        spinner_expense_step2_5.setSelection(adapter.getPosition("Weekly"));
+//        spinner_expense_step2_6.setSelection(adapter.getPosition("Weekly"));
+//        spinner_expense_step2_7.setSelection(adapter.getPosition("Weekly"));
+
+
         spinner.setAdapter(adapter);
         spinner2.setAdapter(adapter);
         spinner3.setAdapter(adapter);
         spinner4.setAdapter(adapter);
         spinner5.setAdapter(adapter);
+
+
+//        spinner_expense_step2_1.setAdapter(adapter);
+//        spinner_expense_step2_2.setAdapter(adapter);
+//        spinner_expense_step2_3.setAdapter(adapter);
+//        spinner_expense_step2_4.setAdapter(adapter);
+//        spinner_expense_step2_5.setAdapter(adapter);
+//        spinner_expense_step2_6.setAdapter(adapter);
+//        spinner_expense_step2_7.setAdapter(adapter);
+
+
     }
-
-    // set
-    // get
-//    String s = ((Income) this.getApplication()).getSomeVariable();
-
 
     @Override
     public boolean onSupportNavigateUp() {
