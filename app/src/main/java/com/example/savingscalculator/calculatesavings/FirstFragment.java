@@ -57,11 +57,11 @@ public class FirstFragment extends Fragment {
         binding = null;
     }
 
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putBoolean(IS_EDITING_KEY, isEditing);
-        outState.putString(RANDOM_GOOD_DEED_KEY, randomGoodDeed);
-    }
+//    @Override
+//    public void onSaveInstanceState(@NonNull Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//        outState.putBoolean(IS_EDITING_KEY, isEditing);
+//        outState.putString(RANDOM_GOOD_DEED_KEY, randomGoodDeed);
+//    }
 
 }
