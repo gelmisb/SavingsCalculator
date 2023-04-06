@@ -41,6 +41,24 @@ public class FirstFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity().getApplicationContext(),
+                R.array.timeframe_array, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        binding.timeframe.setSelection(adapter.getPosition("Weekly"));
+        binding.timeframe2.setSelection(adapter.getPosition("Weekly"));
+        binding.timeframe3.setSelection(adapter.getPosition("Weekly"));
+        binding.timeframe4.setSelection(adapter.getPosition("Weekly"));
+        binding.timeframe5.setSelection(adapter.getPosition("Weekly"));
+
+        binding.timeframe.setAdapter(adapter);
+        binding.timeframe2.setAdapter(adapter);
+        binding.timeframe3.setAdapter(adapter);
+        binding.timeframe4.setAdapter(adapter);
+        binding.timeframe5.setAdapter(adapter);
+
 
         binding.nextBtn2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,8 +70,6 @@ public class FirstFragment extends Fragment {
 //
 //                UserDao userDao = db.userDao();
 //                List<User> users = userDao.getAll();
-
-
 
                 ((Income) getActivity().getApplicationContext()).setWages(
                         (binding.editWagesNumber.getText().toString().equals("")) ? "0" : binding.editWagesNumber.getText().toString());
