@@ -16,7 +16,7 @@ import com.example.savingscalculator.databinding.FragmentFirstBinding;
 
 //import com.example.savingscalculator.calculatesavings.databinding.FragmentFirstBinding;
 
-public class FirstFragment extends Fragment {
+public class a1_IncomeFragment extends Fragment {
 
     private FragmentFirstBinding binding;
 
@@ -74,7 +74,7 @@ public class FirstFragment extends Fragment {
                         (binding.editotherIncome.getText().toString().equals("")) ? "0" : binding.editotherIncome.getText().toString());
                 ((Income) getActivity().getApplicationContext()).setTotalIncome();
 
-                NavHostFragment.findNavController(FirstFragment.this)
+                NavHostFragment.findNavController(a1_IncomeFragment.this)
                         .navigate(R.id.action_FirstFragment_to_SecondFragment);
             }
         });

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.example.savingscalculator.calculatesavings.fragments.FirstFragment"
+        android:name="com.example.savingscalculator.calculatesavings.fragments.a1_IncomeFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_first">
 
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.example.savingscalculator.calculatesavings.fragments.SecondFragment"
+        android:name="com.example.savingscalculator.calculatesavings.fragments.a2_Expenses_LoanFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_second">
 
@@ -34,7 +34,7 @@
 
     <fragment
         android:id="@+id/ThirdFragment"
-        android:name="com.example.savingscalculator.calculatesavings.fragments.ThirdFragment"
+        android:name="com.example.savingscalculator.calculatesavings.fragments.a3_Expenses_WorkFragment"
         android:label="@string/third_fragment_label"
         tools:layout="@layout/fragment_third">
 
@@ -53,7 +53,7 @@
 
     <fragment
         android:id="@+id/FourthFragment"
-        android:name="com.example.savingscalculator.calculatesavings.fragments.FourthFragment"
+        android:name="com.example.savingscalculator.calculatesavings.fragments.a4_Expenses_HomeFragment"
         android:label="@string/fourth_fragment_label"
         tools:layout="@layout/fragment_fourth">
 

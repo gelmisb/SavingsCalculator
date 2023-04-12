@@ -4,7 +4,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,10 +14,9 @@ import android.widget.ArrayAdapter;
 import com.example.savingscalculator.R;
 import com.example.savingscalculator.calculatesavings.Income;
 import com.example.savingscalculator.databinding.FragmentFourthBinding;
-import com.example.savingscalculator.databinding.FragmentThirdBinding;
 
 
-public class FourthFragment extends Fragment {
+public class a4_Expenses_HomeFragment extends Fragment {
 
     private FragmentFourthBinding binding;
 

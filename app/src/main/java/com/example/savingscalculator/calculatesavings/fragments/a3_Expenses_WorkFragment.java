@@ -14,11 +14,10 @@ import android.widget.ArrayAdapter;
 
 import com.example.savingscalculator.R;
 import com.example.savingscalculator.calculatesavings.Income;
-import com.example.savingscalculator.databinding.FragmentSecondBinding;
 import com.example.savingscalculator.databinding.FragmentThirdBinding;
 
 
-public class ThirdFragment extends Fragment {
+public class a3_Expenses_WorkFragment extends Fragment {
 
     private FragmentThirdBinding binding;
 
@@ -57,7 +56,7 @@ public class ThirdFragment extends Fragment {
         binding.nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavHostFragment.findNavController(ThirdFragment.this)
+                NavHostFragment.findNavController(a3_Expenses_WorkFragment.this)
                         .navigate(R.id.action_ThirdFragment_to_FourthFragment);
             }
         });
