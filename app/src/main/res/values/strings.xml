@@ -8,6 +8,7 @@
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
+    <string name="third_fragment_label">Third Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
@@ -40,4 +41,12 @@
     <string name="car_motorbike_loan">Car / motorbike loan</string>
     <string name="credit_card_loan">Credit card loan</string>
     <string name="income">Income</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="work_college_day">Work / College day</string>
+    <string name="step_3_of_15">Step 3 of 15</string>
+    <string name="lunch">Lunch</string>
+    <string name="snacks">Snacks</string>
+    <string name="transport">Transport</string>
+    <string name="other_daily_expenses">Other daily expenses</string>
 </resources>

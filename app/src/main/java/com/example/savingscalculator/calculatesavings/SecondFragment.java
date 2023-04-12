@@ -60,6 +60,34 @@ public class SecondFragment extends Fragment {
         binding.spinnerExpenseStep26.setAdapter(adapter);
         binding.spinnerExpenseStep27.setAdapter(adapter);
 
+        binding.nextBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+//                ---------------- Database config for later use ---------------------------
+//                AppDatabase db = Room.databaseBuilder(getActivity().getApplicationContext(),
+//                        AppDatabase.class, "database-name").build();
+//
+//                UserDao userDao = db.userDao();
+//                List<User> users = userDao.getAll();
+
+//                ((Income) getActivity().getApplicationContext()).setWages(
+//                        (binding.editWagesNumber.getText().toString().equals("")) ? "0" : binding.editWagesNumber.getText().toString());
+//                ((Income) getActivity().getApplicationContext()).setpWages(
+//                        (binding.editPWages.getText().toString().equals("")) ? "0" : binding.editPWages.getText().toString());
+//                ((Income) getActivity().getApplicationContext()).setCbp(
+//                        (binding.editCBP.getText().toString().equals("")) ? "0" : binding.editCBP.getText().toString());
+//                ((Income) getActivity().getApplicationContext()).setMaintenance(
+//                        (binding.editMaintenance.getText().toString().equals("")) ? "0" : binding.editMaintenance.getText().toString());
+//                ((Income) getActivity().getApplicationContext()).setOtherIncome(
+//                        (binding.editotherIncome.getText().toString().equals("")) ? "0" : binding.editotherIncome.getText().toString());
+//                ((Income) getActivity().getApplicationContext()).setTotalIncome();
+
+                NavHostFragment.findNavController(SecondFragment.this)
+                        .navigate(R.id.action_SecondFragment_to_ThirdFragment);
+            }
+        });
+
 //        ((Income) getActivity().getApplicationContext()).setWages(
 //                (binding.carLoanEdit.getText().toString().equals("")) ? "0" : binding.carLoanEdit.getText().toString());
 //        ((Income) getActivity().getApplicationContext()).setpWages(
