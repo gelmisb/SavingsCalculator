@@ -1,14 +1,381 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".calculatesavings.fragments.a12_Expenses_SubsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="0dp"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/expenses"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="60sp" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:gravity="center"
+            android:layout_marginEnd="0dp"
+            android:maxLines="1"
+            android:text="@string/car_costs"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="28sp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="0dp"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/step_5_of_15"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+        <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="0dp"
+            android:padding="30dp">
+
+            <!--`````````````` Wages ``````````````-->
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/car_petrol_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@+id/car_petrol_edit"
+                    android:text="@string/car_petrol"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textSize="16sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/currency"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Euro"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/car_petrol_edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="e.g. €1,800"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:minHeight="48dp"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <Spinner
+                    android:id="@+id/spinner_expense_step5_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/selection_for_time" />
+            </TableRow>
+
+
+            <!--`````````````` Partner's social welfare ``````````````-->
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/car_tax_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@+id/car_tax_edit"
+                    android:text="@string/car_tax"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textSize="16sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/currency2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Euro"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/car_tax_edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="e.g. €1,800"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:minHeight="48dp"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <Spinner
+                    android:id="@+id/spinner_expense_step5_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/selection_for_time2" />
+            </TableRow>
+
+
+            <!--`````````````` CBP ``````````````-->
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/car_maintenance_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@+id/car_maintenance_edit"
+                    android:text="@string/car_maintenance"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textSize="16sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/currency3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Euro"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/car_maintenance_edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="e.g. €1,800"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:minHeight="48dp"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <Spinner
+                    android:id="@+id/spinner_expense_step5_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/selection_for_time3" />
+            </TableRow>
+
+            <!--`````````````` Maintenance ``````````````-->
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/car_service_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@+id/car_service_edit"
+                    android:text="@string/car_service"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textSize="16sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/currency4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Euro"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/car_service_edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="e.g. €1,800"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:minHeight="48dp"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <Spinner
+                    android:id="@+id/spinner_expense_step5_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/selection_for_time4" />
+            </TableRow>
+
+            <!--`````````````` Maintenance ``````````````-->
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/car_parking_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@+id/car_parking_edit"
+                    android:text="@string/car_parking"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textSize="16sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/currency5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Euro"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/car_parking_edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="e.g. €1,800"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:minHeight="48dp"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <Spinner
+                    android:id="@+id/spinner_expense_step5_5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/selection_for_time4" />
+            </TableRow>
+
+
+            <!--`````````````` Maintenance ``````````````-->
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/car_nct_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@+id/car_nct_edit"
+                    android:text="@string/car_nct"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textSize="16sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/currency6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Euro"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/car_nct_edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="e.g. €1,800"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:minHeight="48dp"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <Spinner
+                    android:id="@+id/spinner_expense_step5_6"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/selection_for_time4" />
+            </TableRow>
+
+        </TableLayout>
+
+        <Button
+            android:id="@+id/nextBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
+            android:layout_marginBottom="0dp"
+            android:text="@string/next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </LinearLayout>
+
+</ScrollView>
