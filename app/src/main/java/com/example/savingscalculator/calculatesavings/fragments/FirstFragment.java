@@ -1,27 +1,18 @@
-package com.example.savingscalculator.calculatesavings;
+package com.example.savingscalculator.calculatesavings.fragments;
 
 import android.os.Bundle;
-import android.text.Editable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.room.Room;
 
 import com.example.savingscalculator.R;
+import com.example.savingscalculator.calculatesavings.Income;
 import com.example.savingscalculator.databinding.FragmentFirstBinding;
-import com.example.savingscalculator.user.AppDatabase;
-import com.example.savingscalculator.user.User;
-import com.example.savingscalculator.user.UserDao;
-
-import java.util.List;
 
 //import com.example.savingscalculator.calculatesavings.databinding.FragmentFirstBinding;
 

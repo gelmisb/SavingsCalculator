@@ -9,6 +9,9 @@
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="third_fragment_label">Third Fragment</string>
+    <string name="fourth_fragment_label">Fourth Fragment</string>
+    <string name="fifth_fragment_label">Fifth Fragment</string>
+    <string name="sixth_fragment_label">Sixth Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
@@ -49,4 +52,19 @@
     <string name="snacks">Snacks</string>
     <string name="transport">Transport</string>
     <string name="other_daily_expenses">Other daily expenses</string>
+
+    <string name="bills_amp_home_expenses"><![CDATA[Bills & Home expenses]]></string>
+    <string name="step_4_of_15">Step 4 of 15</string>
+    <string name="broadband">Broadband</string>
+    <string name="rent">Rent/mortgage payments</string>
+    <string name="electricity">Electricity</string>
+    <string name="food">Groceries</string>
+    <string name="gas">Gas / Oil</string>
+    <string name="house">House maintenance</string>
+    <string name="management">Management fees</string>
+    <string name="oil">Oil</string>
+    <string name="pets">Pets (food/care/insurance)</string>
+    <string name="tv_license">TV licence</string>
+    <string name="waste">Waste charges</string>
+    <string name="property">Property tax</string>
 </resources>
