@@ -311,7 +311,7 @@
                     android:layout_height="match_parent"
                     android:contentDescription="@string/selection_for_time4" />
             </TableRow>
-            
+
         </TableLayout>
 
         <Button
