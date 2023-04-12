@@ -35,7 +35,7 @@
             android:gravity="center"
             android:layout_marginEnd="0dp"
             android:maxLines="1"
-            android:text="@string/car_costs"
+            android:text="@string/leisure_costs"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="28sp" />
 
@@ -66,11 +66,11 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/car_petrol_tv"
+                    android:id="@+id/leisure_member_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:labelFor="@+id/car_petrol_edit"
-                    android:text="@string/car_petrol"
+                    android:labelFor="@+id/leisure_member_edit"
+                    android:text="@string/leisure_member"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                     android:textSize="16sp" />
             </TableRow>
@@ -93,7 +93,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/car_petrol_edit"
+                        android:id="@+id/leisure_member_edit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:autofillHints="e.g. €1,800"
@@ -104,7 +104,7 @@
                 </LinearLayout>
 
                 <Spinner
-                    android:id="@+id/spinner_expense_step5_1"
+                    android:id="@+id/spinner_expense_step10_1"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/selection_for_time" />
@@ -117,11 +117,11 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/car_tax_tv"
+                    android:id="@+id/leisure_out_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:labelFor="@+id/car_tax_edit"
-                    android:text="@string/car_tax"
+                    android:labelFor="@+id/leisure_out_edit"
+                    android:text="@string/leisure_out"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                     android:textSize="16sp" />
             </TableRow>
@@ -144,7 +144,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/car_tax_edit"
+                        android:id="@+id/leisure_out_edit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:autofillHints="e.g. €1,800"
@@ -155,7 +155,7 @@
                 </LinearLayout>
 
                 <Spinner
-                    android:id="@+id/spinner_expense_step5_2"
+                    android:id="@+id/spinner_expense_step10_2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/selection_for_time2" />
@@ -168,11 +168,11 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/car_maintenance_tv"
+                    android:id="@+id/leisure_cinema_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:labelFor="@+id/car_maintenance_edit"
-                    android:text="@string/car_maintenance"
+                    android:labelFor="@+id/leisure_cinema_edit"
+                    android:text="@string/leisure_cinema"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                     android:textSize="16sp" />
             </TableRow>
@@ -195,7 +195,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/car_maintenance_edit"
+                        android:id="@+id/leisure_cinema_edit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:autofillHints="e.g. €1,800"
@@ -206,7 +206,7 @@
                 </LinearLayout>
 
                 <Spinner
-                    android:id="@+id/spinner_expense_step5_3"
+                    android:id="@+id/spinner_expense_step10_3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/selection_for_time3" />
@@ -218,11 +218,11 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/car_service_tv"
+                    android:id="@+id/leisure_festival_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:labelFor="@+id/car_service_edit"
-                    android:text="@string/car_service"
+                    android:labelFor="@+id/leisure_festival_edit"
+                    android:text="@string/leisure_festival"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                     android:textSize="16sp" />
             </TableRow>
@@ -245,7 +245,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/car_service_edit"
+                        android:id="@+id/leisure_festival_edit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:autofillHints="e.g. €1,800"
@@ -256,7 +256,7 @@
                 </LinearLayout>
 
                 <Spinner
-                    android:id="@+id/spinner_expense_step5_4"
+                    android:id="@+id/spinner_expense_step10_4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/selection_for_time4" />
@@ -268,11 +268,11 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/car_parking_tv"
+                    android:id="@+id/leisure_enter_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:labelFor="@+id/car_parking_edit"
-                    android:text="@string/car_parking"
+                    android:labelFor="@+id/leisure_enter_edit"
+                    android:text="@string/leisure_enter"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                     android:textSize="16sp" />
             </TableRow>
@@ -295,7 +295,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/car_parking_edit"
+                        android:id="@+id/leisure_enter_edit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:autofillHints="e.g. €1,800"
@@ -306,7 +306,7 @@
                 </LinearLayout>
 
                 <Spinner
-                    android:id="@+id/spinner_expense_step5_5"
+                    android:id="@+id/spinner_expense_step10_5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/selection_for_time4" />
@@ -319,11 +319,11 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/car_nct_tv"
+                    android:id="@+id/leisure_alcohol_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:labelFor="@+id/car_nct_edit"
-                    android:text="@string/car_nct"
+                    android:labelFor="@+id/leisure_alcohol_edit"
+                    android:text="@string/leisure_alcohol"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                     android:textSize="16sp" />
             </TableRow>
@@ -346,7 +346,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/car_nct_edit"
+                        android:id="@+id/leisure_alcohol_edit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:autofillHints="e.g. €1,800"
@@ -357,7 +357,58 @@
                 </LinearLayout>
 
                 <Spinner
-                    android:id="@+id/spinner_expense_step5_6"
+                    android:id="@+id/spinner_expense_step10_6"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/selection_for_time4" />
+            </TableRow>
+
+
+            <!--`````````````` Maintenance ``````````````-->
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/leisure_cigs_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:labelFor="@+id/leisure_cigs_edit"
+                    android:text="@string/leisure_cigs"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textSize="16sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/currency7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Euro"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/leisure_cigs_edit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="e.g. €1,800"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:minHeight="48dp"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <Spinner
+                    android:id="@+id/spinner_expense_step10_7"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/selection_for_time4" />

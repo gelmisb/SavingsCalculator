@@ -143,7 +143,7 @@
     <string name="leisure_cigs">Clothes</string>
 
     <!-- a11 frag-->
-    <string name="event_costs">Leisure Expenses</string>
+    <string name="event_costs">Event / Occasional Expenses</string>
     <string name="event_birth">Birthdays</string>
     <string name="event_hol">Holidays</string>
     <string name="event_house">Household supplies</string>
