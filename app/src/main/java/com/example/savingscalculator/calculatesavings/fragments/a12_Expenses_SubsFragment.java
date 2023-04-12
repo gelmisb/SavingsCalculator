@@ -14,24 +14,20 @@ import android.widget.ArrayAdapter;
 
 import com.example.savingscalculator.R;
 import com.example.savingscalculator.calculatesavings.Income;
-import com.example.savingscalculator.databinding.FragmentA10ExpensesLeisureBinding;
-import com.example.savingscalculator.databinding.FragmentFourthBinding;
+import com.example.savingscalculator.databinding.FragmentA11ExpensesEventBinding;
+import com.example.savingscalculator.databinding.FragmentA12ExpensesSubsBinding;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link a10_Expenses_LeisureFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class a10_Expenses_LeisureFragment extends Fragment {
 
-    private FragmentA10ExpensesLeisureBinding binding;
+public class a12_Expenses_SubsFragment extends Fragment {
+
+    private FragmentA12ExpensesSubsBinding binding;
 
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
-        binding = FragmentA10ExpensesLeisureBinding.inflate(inflater, container, false);
+        binding = FragmentA12ExpensesSubsBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -70,13 +66,13 @@ public class a10_Expenses_LeisureFragment extends Fragment {
 //        binding.spinnerExpenseStep49.setAdapter(adapter);
 //        binding.spinnerExpenseStep410.setAdapter(adapter);
 
-        binding.nextBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(a10_Expenses_LeisureFragment.this)
-                        .navigate(R.id.action_a10_to_a11);
-            }
-        });
+//        binding.nextBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                NavHostFragment.findNavController(FourthFragment.this)
+//                        .navigate(R.id.action_FourthFragment_to_FifthFragment);
+//            }
+//        });
 
     }
 

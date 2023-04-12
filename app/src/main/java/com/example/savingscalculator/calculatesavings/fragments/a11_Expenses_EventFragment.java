@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -65,13 +66,13 @@ public class a11_Expenses_EventFragment extends Fragment {
 //        binding.spinnerExpenseStep49.setAdapter(adapter);
 //        binding.spinnerExpenseStep410.setAdapter(adapter);
 
-//        binding.nextBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                NavHostFragment.findNavController(FourthFragment.this)
-//                        .navigate(R.id.action_FourthFragment_to_FifthFragment);
-//            }
-//        });
+        binding.nextBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(a11_Expenses_EventFragment.this)
+                        .navigate(R.id.action_a11_to_a12);
+            }
+        });
 
     }
 

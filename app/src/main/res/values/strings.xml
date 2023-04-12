@@ -17,6 +17,7 @@
     <string name="a9_EducationFragment">Education Fragment</string>
     <string name="a10_LeisureFragment">Leisure Fragment</string>
     <string name="a11_EventFragment">Event Fragment</string>
+    <string name="a12_SubsFragment">Subs Fragment</string>
 
     <string name="next">Next</string>
     <string name="previous">Previous</string>
@@ -24,7 +25,7 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="todo">TODO</string>
-    <string name="step_1_of_15">Step 1 of 15</string>
+
     <string name="wages_social_welfare">Wages / Social Welfare</string>
     <string name="value_for_wages">Value for wages</string>
     <string name="selection_for_time">Select period</string>
@@ -40,7 +41,8 @@
     <string name="title_activity_expenses">ExpensesActivity</string>
     <string name="expenses">Expenses</string>
     <string name="loans">Loans</string>
-    <string name="step_2_of_15">Step 2 of 15</string>
+
+
     <string name="holiday_loan">Holiday loan</string>
     <string name="education_tuition_loan">Education / Tuition loan</string>
     <string name="Euro">€</string>
@@ -53,14 +55,12 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="work_college_day">Work / College day</string>
-    <string name="step_3_of_15">Step 3 of 15</string>
     <string name="lunch">Lunch</string>
     <string name="snacks">Snacks</string>
     <string name="transport">Transport</string>
     <string name="other_daily_expenses">Other daily expenses</string>
 
     <string name="bills_amp_home_expenses"><![CDATA[Bills & Home expenses]]></string>
-    <string name="step_4_of_15">Step 4 of 15</string>
     <string name="broadband">Broadband</string>
     <string name="rent">Rent/mortgage payments</string>
     <string name="electricity">Electricity</string>
@@ -73,4 +73,101 @@
     <string name="tv_license">TV licence</string>
     <string name="waste">Waste charges</string>
     <string name="property">Property tax</string>
+
+
+    <string name="step_1_of_15">Step 1 of 15</string>
+    <string name="step_2_of_15">Step 2 of 15</string>
+    <string name="step_3_of_15">Step 3 of 15</string>
+    <string name="step_4_of_15">Step 4 of 15</string>
+    <string name="step_5_of_15">Step 5 of 15</string>
+    <string name="step_6_of_15">Step 6 of 15</string>
+    <string name="step_7_of_15">Step 7 of 15</string>
+    <string name="step_8_of_15">Step 8 of 15</string>
+    <string name="step_9_of_15">Step 9 of 15</string>
+    <string name="step_10_of_15">Step 10 of 15</string>
+    <string name="step_11_of_15">Step 11 of 15</string>
+
+    <!-- a5 frag-->
+    <string name="car_costs">Car Costs</string>
+    <string name="car_petrol">Petrol / Diesel </string>
+    <string name="car_tax">Tax</string>
+    <string name="car_maintenance">Maintenance</string>
+    <string name="car_service">Service</string>
+    <string name="car_parking">Parking</string>
+    <string name="car_nct">NCT</string>
+
+    <!-- a6 frag-->
+    <string name="moto_costs">Motorbike Costs</string>
+    <string name="moto_petrol">Petrol</string>
+    <string name="moto_tax">Tax</string>
+    <string name="moto_maintenance">Maintenance</string>
+    <string name="moto_parts">New parts</string>
+    <string name="moto_gear">Motorbike gear</string>
+
+    <!-- a7 frag-->
+    <string name="travel_costs">Travel Expenses</string>
+    <string name="travel_ticket">Bus ticket</string>
+    <string name="travel_taxi">Taxi</string>
+    <string name="travel_bike">Bicycle rent</string>
+    <string name="travel_bike_main">Bicycle maintenance</string>
+    <string name="travel_other">Other travel costs</string>
+
+    <!-- a8 frag-->
+    <string name="insurance_costs">Insurance Expenses</string>
+    <string name="insurance_car1">Car 1 insurance</string>
+    <string name="insurance_car2">Car 2 insurance</string>
+    <string name="insurance_motorbike1">Motorbike 1 insurance</string>
+    <string name="insurance_motorbike2">Motorbike 2 insurance</string>
+    <string name="insurance_health">Health insurance</string>
+    <string name="insurance_travel">Travel insurance</string>
+    <string name="insurance_home">Home insurance</string>
+    <string name="insurance_life">Life insurance</string>
+    <string name="insurance_mortgage">Mortgage insurance</string>
+
+    <!-- a9 frag-->
+    <string name="edu_costs">Education Costs</string>
+    <string name="edu_tuition">Tuition</string>
+    <string name="edu_fees">Fees</string>
+    <string name="edu_books">Books</string>
+    <string name="edu_equip">Equipment</string>
+    <string name="edu_clothes">Clothes</string>
+
+    <!-- a10 frag-->
+    <string name="leisure_costs">Leisure Expenses</string>
+    <string name="leisure_member">Tuition</string>
+    <string name="leisure_out">Fees</string>
+    <string name="leisure_cinema">Books</string>
+    <string name="leisure_festival">Equipment</string>
+    <string name="leisure_enter">Clothes</string>
+    <string name="leisure_alcohol">Clothes</string>
+    <string name="leisure_cigs">Clothes</string>
+
+    <!-- a11 frag-->
+    <string name="event_costs">Leisure Expenses</string>
+    <string name="event_birth">Birthdays</string>
+    <string name="event_hol">Holidays</string>
+    <string name="event_house">Household supplies</string>
+    <string name="event_fur">Furniture</string>
+    <string name="event_med">Medical</string>
+    <string name="event_wed">Weddings</string>
+    <string name="event_clothes">Clothes</string>
+    <string name="event_hair">Hairdressers</string>
+
+
+    <!-- a12 frag-->
+    <string name="subs_costs">Subscriptions and Services</string>
+    <string name="subs_spot">Spotify</string>
+    <string name="subs_net">Netflix</string>
+    <string name="subs_hulu">Hulu</string>
+    <string name="subs_prime">Amazon Prime</string>
+    <string name="subs_disney">Disney+</string>
+    <string name="subs_amazon">Amazon Music Unlimited</string>
+    <string name="subs_apple">Apple Music</string>
+    <string name="subs_pea">Peacock</string>
+    <string name="subs_crunch">Crunchyroll</string>
+    <string name="subs_chew">Chewy</string>
+    <string name="subs_espn">ESPN+</string>
+    <string name="subs_hbo">HBO Max</string>
+    <string name="subs_other">Other</string>
+
 </resources>

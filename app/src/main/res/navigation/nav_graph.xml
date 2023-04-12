@@ -213,10 +213,30 @@
             android:id="@+id/action_a11_to_a10"
             app:destination="@id/a10_LeisureFragment" />
 
-<!--        &lt;!&ndash; Next &ndash;&gt;-->
-<!--        <action-->
-<!--            android:id="@+id/action_a11_to_a"-->
-<!--            app:destination="@id/a9_EducationFragment" />-->
+        <!-- Next -->
+        <action
+            android:id="@+id/action_a11_to_a12"
+            app:destination="@id/a12_SubsFragment" />
+
+    </fragment>
+
+
+    <!-- Twelfth -->
+    <fragment
+        android:id="@+id/a12_SubsFragment"
+        android:name="com.example.savingscalculator.calculatesavings.fragments.a12_Expenses_SubsFragment"
+        android:label="@string/a12_SubsFragment"
+        tools:layout="@layout/fragment_a12__expenses__subs">
+
+        <!-- Back -->
+        <action
+            android:id="@+id/action_a12_to_a11"
+            app:destination="@id/action_a12_to_a11" />
+
+        <!--        &lt;!&ndash; Next &ndash;&gt;-->
+        <!--        <action-->
+        <!--            android:id="@+id/action_a11_to_a"-->
+        <!--            app:destination="@id/a9_EducationFragment" />-->
 
     </fragment>
 
