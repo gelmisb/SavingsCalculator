@@ -1,5 +1,8 @@
 package com.example.savingscalculator.calculatesavings.fragments;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,17 +65,30 @@ public class a1_IncomeFragment extends Fragment {
 //                UserDao userDao = db.userDao();
 //                List<User> users = userDao.getAll();
 
-                ((Income) getActivity().getApplicationContext()).setWages(
-                        (binding.editWagesNumber.getText().toString().equals("")) ? "0" : binding.editWagesNumber.getText().toString());
-                ((Income) getActivity().getApplicationContext()).setpWages(
-                        (binding.editPWages.getText().toString().equals("")) ? "0" : binding.editPWages.getText().toString());
-                ((Income) getActivity().getApplicationContext()).setCbp(
-                        (binding.editCBP.getText().toString().equals("")) ? "0" : binding.editCBP.getText().toString());
-                ((Income) getActivity().getApplicationContext()).setMaintenance(
-                        (binding.editMaintenance.getText().toString().equals("")) ? "0" : binding.editMaintenance.getText().toString());
-                ((Income) getActivity().getApplicationContext()).setOtherIncome(
-                        (binding.editotherIncome.getText().toString().equals("")) ? "0" : binding.editotherIncome.getText().toString());
-                ((Income) getActivity().getApplicationContext()).setTotalIncome();
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserIncome", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+//                editor.putString("wages", (binding.editWagesNumber.getText().toString().equals("")) ? "0" : binding.editWagesNumber.getText().toString());
+
+                editor.putString("temp1", "value");
+                editor.putInt("temp2", 1);
+//                editor.putString("partnerWages", (binding.editPWages.getText().toString().equals("")) ? "0" : binding.editPWages.getText().toString());
+//                editor.putString("cbp", (binding.editCBP.getText().toString().equals("")) ? "0" : binding.editCBP.getText().toString());
+//                editor.putString("maintenance", (binding.editMaintenance.getText().toString().equals("")) ? "0" : binding.editMaintenance.getText().toString());
+//                editor.putString("otherIncome", (binding.editotherIncome.getText().toString().equals("")) ? "0" : binding.editotherIncome.getText().toString());
+                editor.apply();
+
+//
+//                ((Income) getActivity().getApplicationContext()).setWages(
+//                        (binding.editWagesNumber.getText().toString().equals("")) ? "0" : binding.editWagesNumber.getText().toString());
+//                ((Income) getActivity().getApplicationContext()).setpWages(
+//                        (binding.editPWages.getText().toString().equals("")) ? "0" : binding.editPWages.getText().toString());
+//                ((Income) getActivity().getApplicationContext()).setCbp(
+//                        (binding.editCBP.getText().toString().equals("")) ? "0" : binding.editCBP.getText().toString());
+//                ((Income) getActivity().getApplicationContext()).setMaintenance(
+//                        (binding.editMaintenance.getText().toString().equals("")) ? "0" : binding.editMaintenance.getText().toString());
+//                ((Income) getActivity().getApplicationContext()).setOtherIncome(
+//                        (binding.editotherIncome.getText().toString().equals("")) ? "0" : binding.editotherIncome.getText().toString());
+//                ((Income) getActivity().getApplicationContext()).setTotalIncome();
 
                 NavHostFragment.findNavController(a1_IncomeFragment.this)
                         .navigate(R.id.action_FirstFragment_to_SecondFragment);

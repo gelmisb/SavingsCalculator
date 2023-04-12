@@ -1,5 +1,8 @@
 package com.example.savingscalculator.calculatesavings.fragments;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -52,6 +55,14 @@ public class a3_Expenses_WorkFragment extends Fragment {
         binding.spinnerExpenseStep32.setAdapter(adapter);
         binding.spinnerExpenseStep33.setAdapter(adapter);
         binding.spinnerExpenseStep34.setAdapter(adapter);
+
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserIncome", MODE_PRIVATE);
+        String temp = getResources().getString("temp1", "a");
+        int defaultValue = getResources().getInteger(R.integer.saved_high_score_default_key);
+
+        Log.i("Income", temp);
+
+
 
         binding.nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override

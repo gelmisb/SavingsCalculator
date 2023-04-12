@@ -1,5 +1,8 @@
 package com.example.savingscalculator.calculatesavings.fragments;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -64,25 +67,16 @@ public class a2_Expenses_LoanFragment extends Fragment {
         binding.nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-//                ---------------- Database config for later use ---------------------------
-//                AppDatabase db = Room.databaseBuilder(getActivity().getApplicationContext(),
-//                        AppDatabase.class, "database-name").build();
-//
-//                UserDao userDao = db.userDao();
-//                List<User> users = userDao.getAll();
-
-//                ((Income) getActivity().getApplicationContext()).setWages(
-//                        (binding.editWagesNumber.getText().toString().equals("")) ? "0" : binding.editWagesNumber.getText().toString());
-//                ((Income) getActivity().getApplicationContext()).setpWages(
-//                        (binding.editPWages.getText().toString().equals("")) ? "0" : binding.editPWages.getText().toString());
-//                ((Income) getActivity().getApplicationContext()).setCbp(
-//                        (binding.editCBP.getText().toString().equals("")) ? "0" : binding.editCBP.getText().toString());
-//                ((Income) getActivity().getApplicationContext()).setMaintenance(
-//                        (binding.editMaintenance.getText().toString().equals("")) ? "0" : binding.editMaintenance.getText().toString());
-//                ((Income) getActivity().getApplicationContext()).setOtherIncome(
-//                        (binding.editotherIncome.getText().toString().equals("")) ? "0" : binding.editotherIncome.getText().toString());
-//                ((Income) getActivity().getApplicationContext()).setTotalIncome();
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserIncome", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("wages", (binding.carLoanEdit.getText().toString().equals("")) ? "0" : binding.carLoanEdit.getText().toString());
+                editor.putString("partnerWages", (binding.educationEdit.getText().toString().equals("")) ? "0" : binding.educationEdit.getText().toString());
+                editor.putString("cbp", (binding.homeLoanEdit.getText().toString().equals("")) ? "0" : binding.homeLoanEdit.getText().toString());
+                editor.putString("maintenance", (binding.personalLoanEdit.getText().toString().equals("")) ? "0" : binding.personalLoanEdit.getText().toString());
+                editor.putString("otherIncome", (binding.businessLoanEdit.getText().toString().equals("")) ? "0" : binding.businessLoanEdit.getText().toString());
+                editor.putString("otherIncome", (binding.holidayLoanEdit.getText().toString().equals("")) ? "0" : binding.holidayLoanEdit.getText().toString());
+                editor.putString("otherIncome", (binding.creditCardLoanEdit.getText().toString().equals("")) ? "0" : binding.creditCardLoanEdit.getText().toString());
+                editor.apply();
 
                 NavHostFragment.findNavController(a2_Expenses_LoanFragment.this)
                         .navigate(R.id.action_SecondFragment_to_ThirdFragment);

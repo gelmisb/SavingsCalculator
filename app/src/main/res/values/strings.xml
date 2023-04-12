@@ -46,7 +46,7 @@
     <string name="holiday_loan">Holiday loan</string>
     <string name="education_tuition_loan">Education / Tuition loan</string>
     <string name="Euro">€</string>
-    <string name="home_loan">Home loan</string>
+    <string name="home_loan">Mortgage</string>
     <string name="personal_loan">Personal loan</string>
     <string name="business_loan">Business loan</string>
     <string name="car_motorbike_loan">Car / motorbike loan</string>
@@ -135,13 +135,13 @@
 
     <!-- a10 frag-->
     <string name="leisure_costs">Leisure Expenses</string>
-    <string name="leisure_member">Tuition</string>
-    <string name="leisure_out">Fees</string>
-    <string name="leisure_cinema">Books</string>
-    <string name="leisure_festival">Equipment</string>
-    <string name="leisure_enter">Clothes</string>
-    <string name="leisure_alcohol">Clothes</string>
-    <string name="leisure_cigs">Clothes</string>
+    <string name="leisure_member">Membership</string>
+    <string name="leisure_out">Nights out</string>
+    <string name="leisure_cinema">Cinema</string>
+    <string name="leisure_festival">Festivals</string>
+    <string name="leisure_enter">Entertainment</string>
+    <string name="leisure_alcohol">Alcohol</string>
+    <string name="leisure_cigs">Cigarettes / Vapes</string>
 
     <!-- a11 frag-->
     <string name="event_costs">Event / Occasional Expenses</string>
