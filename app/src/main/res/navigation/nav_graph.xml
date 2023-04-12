@@ -5,44 +5,54 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/FirstFragment">
 
+
+    <!-- First - Income -->
     <fragment
         android:id="@+id/FirstFragment"
         android:name="com.example.savingscalculator.calculatesavings.fragments.a1_IncomeFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_first">
 
+        <!-- Next -->
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
 
 
     </fragment>
+
+    <!-- Second -->
     <fragment
         android:id="@+id/SecondFragment"
         android:name="com.example.savingscalculator.calculatesavings.fragments.a2_Expenses_LoanFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_second">
 
+        <!-- Back -->
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
 
+        <!-- Next -->
         <action
             android:id="@+id/action_SecondFragment_to_ThirdFragment"
             app:destination="@id/ThirdFragment" />
+
     </fragment>
 
+    <!-- Three -->
     <fragment
         android:id="@+id/ThirdFragment"
         android:name="com.example.savingscalculator.calculatesavings.fragments.a3_Expenses_WorkFragment"
         android:label="@string/third_fragment_label"
         tools:layout="@layout/fragment_third">
 
-
+        <!-- Back -->
         <action
             android:id="@+id/action_ThirdFragment_to_SecondFragment"
             app:destination="@id/SecondFragment" />
 
+        <!-- Next -->
         <action
             android:id="@+id/action_ThirdFragment_to_FourthFragment"
             app:destination="@id/FourthFragment" />
@@ -50,23 +60,165 @@
 
     </fragment>
 
-
+    <!-- Fourth -->
     <fragment
         android:id="@+id/FourthFragment"
         android:name="com.example.savingscalculator.calculatesavings.fragments.a4_Expenses_HomeFragment"
         android:label="@string/fourth_fragment_label"
         tools:layout="@layout/fragment_fourth">
 
-
+        <!-- Back -->
         <action
             android:id="@+id/action_FourthFragment_to_ThirdFragment"
             app:destination="@id/ThirdFragment" />
 
-<!--        <action-->
-<!--            android:id="@+id/action_FourthFragment_to_FifthFragment"-->
-<!--            app:destination="@id/FifthFragment" />-->
+        <!-- Next -->
+        <action
+            android:id="@+id/action_FourthFragment_to_a5"
+            app:destination="@id/a5_CarFragment" />
+
+    </fragment>
+
+
+
+    <!-- Fifth -->
+    <fragment
+        android:id="@+id/a5_CarFragment"
+        android:name="com.example.savingscalculator.calculatesavings.fragments.a5_Expenses_CarFragment"
+        android:label="@string/a5_CarFragment"
+        tools:layout="@layout/fragment_a5__expenses__car">
+
+        <!-- Back -->
+        <action
+            android:id="@+id/action_a5_to_FourthFragment"
+            app:destination="@id/FourthFragment" />
+
+        <!-- Next -->
+        <action
+            android:id="@+id/action_a5_to_a6"
+            app:destination="@id/a6_MotorbikeFragment" />
+
+    </fragment>
+
+    <!-- Sixth -->
+    <fragment
+        android:id="@+id/a6_MotorbikeFragment"
+        android:name="com.example.savingscalculator.calculatesavings.fragments.a6_Expenses_MotorbikeFragment"
+        android:label="@string/a6_MotorbikeFragment"
+        tools:layout="@layout/fragment_a6__expenses__motorbike">
+
+        <!-- Back -->
+        <action
+            android:id="@+id/action_a6_to_a5"
+            app:destination="@id/a5_CarFragment" />
+
+        <!-- Next -->
+        <action
+            android:id="@+id/action_a6_to_a7"
+            app:destination="@id/a7_TravelFragment" />
+
+    </fragment>
+
+
+    <!-- Seventh -->
+    <fragment
+        android:id="@+id/a7_TravelFragment"
+        android:name="com.example.savingscalculator.calculatesavings.fragments.a7_Expenses_TravelFragment"
+        android:label="@string/a7_TravelFragment"
+        tools:layout="@layout/fragment_a7__expenses__travel">
+
+        <!-- Back -->
+        <action
+            android:id="@+id/action_a7_to_a6"
+            app:destination="@id/a6_MotorbikeFragment" />
+
+        <!-- Next -->
+        <action
+            android:id="@+id/action_a7_to_a8"
+            app:destination="@id/a8_InsuranceFragment" />
+
+    </fragment>
+
+
+    <!-- Eighth -->
+    <fragment
+        android:id="@+id/a8_InsuranceFragment"
+        android:name="com.example.savingscalculator.calculatesavings.fragments.a8_Expenses_InsuranceFragment"
+        android:label="@string/a8_InsuranceFragment"
+        tools:layout="@layout/fragment_a8__expenses__insurance">
+
+        <!-- Back -->
+        <action
+            android:id="@+id/action_a8_to_a7"
+            app:destination="@id/a7_TravelFragment" />
+
+        <!-- Next -->
+        <action
+            android:id="@+id/action_a8_to_a9"
+            app:destination="@id/a9_EducationFragment" />
 
 
     </fragment>
+
+
+    <!-- Ninth -->
+    <fragment
+        android:id="@+id/a9_EducationFragment"
+        android:name="com.example.savingscalculator.calculatesavings.fragments.a9_Expenses_EducationFragment"
+        android:label="@string/a9_EducationFragment"
+        tools:layout="@layout/fragment_a9__expenses__education">
+
+        <!-- Back -->
+        <action
+            android:id="@+id/action_a9_to_a8"
+            app:destination="@id/a8_InsuranceFragment" />
+
+        <!-- Next -->
+        <action
+            android:id="@+id/action_a9_to_a10"
+            app:destination="@id/a10_LeisureFragment" />
+
+    </fragment>
+
+
+    <!-- Tenth -->
+    <fragment
+        android:id="@+id/a10_LeisureFragment"
+        android:name="com.example.savingscalculator.calculatesavings.fragments.a10_Expenses_LeisureFragment"
+        android:label="@string/a10_LeisureFragment"
+        tools:layout="@layout/fragment_a10__expenses__leisure">
+
+        <!-- Back -->
+        <action
+            android:id="@+id/action_a10_to_a9"
+            app:destination="@id/a9_EducationFragment" />
+
+        <!-- Next -->
+        <action
+            android:id="@+id/action_a10_to_a11"
+            app:destination="@id/a11_EventFragment" />
+
+    </fragment>
+
+
+    <!-- Eleventh -->
+    <fragment
+        android:id="@+id/a11_EventFragment"
+        android:name="com.example.savingscalculator.calculatesavings.fragments.a11_Expenses_EventFragment"
+        android:label="@string/a11_EventFragment"
+        tools:layout="@layout/fragment_a11__expenses__event">
+
+        <!-- Back -->
+        <action
+            android:id="@+id/action_a11_to_a10"
+            app:destination="@id/a10_LeisureFragment" />
+
+<!--        &lt;!&ndash; Next &ndash;&gt;-->
+<!--        <action-->
+<!--            android:id="@+id/action_a11_to_a"-->
+<!--            app:destination="@id/a9_EducationFragment" />-->
+
+    </fragment>
+
 
 </navigation>

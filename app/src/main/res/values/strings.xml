@@ -10,8 +10,14 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="third_fragment_label">Third Fragment</string>
     <string name="fourth_fragment_label">Fourth Fragment</string>
-    <string name="fifth_fragment_label">Fifth Fragment</string>
-    <string name="sixth_fragment_label">Sixth Fragment</string>
+    <string name="a5_CarFragment">Car Fragment</string>
+    <string name="a6_MotorbikeFragment">Motorbike Fragment</string>
+    <string name="a7_TravelFragment">Travel Fragment</string>
+    <string name="a8_InsuranceFragment">Insurance Fragment</string>
+    <string name="a9_EducationFragment">Education Fragment</string>
+    <string name="a10_LeisureFragment">Leisure Fragment</string>
+    <string name="a11_EventFragment">Event Fragment</string>
+
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
