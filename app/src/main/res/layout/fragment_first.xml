@@ -161,7 +161,7 @@
                     android:id="@+id/timeframe2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:contentDescription="@string/selection_for_time2" />
+                    android:contentDescription="@string/selection_for_time" />
             </TableRow>
 
 
@@ -212,7 +212,7 @@
                     android:id="@+id/timeframe3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:contentDescription="@string/selection_for_time3" />
+                    android:contentDescription="@string/selection_for_time" />
             </TableRow>
 
             <!--`````````````` Maintenance ``````````````-->
@@ -262,7 +262,7 @@
                     android:id="@+id/timeframe4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:contentDescription="@string/selection_for_time4" />
+                    android:contentDescription="@string/selection_for_time" />
             </TableRow>
 
             <!--`````````````` Other Income ``````````````-->
@@ -312,7 +312,7 @@
                     android:id="@+id/timeframe5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:contentDescription="@string/selection_for_time5" />
+                    android:contentDescription="@string/selection_for_time" />
             </TableRow>
         </TableLayout>
 

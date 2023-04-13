@@ -158,7 +158,7 @@
                     android:id="@+id/spinner_expense_step12_2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:contentDescription="@string/selection_for_time2" />
+                    android:contentDescription="@string/selection_for_time" />
             </TableRow>
 
 
@@ -209,7 +209,7 @@
                     android:id="@+id/spinner_expense_step12_3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:contentDescription="@string/selection_for_time3" />
+                    android:contentDescription="@string/selection_for_time" />
             </TableRow>
 
             <!--`````````````` Maintenance ``````````````-->
@@ -259,7 +259,7 @@
                     android:id="@+id/spinner_expense_step12_4"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:contentDescription="@string/selection_for_time4" />
+                    android:contentDescription="@string/selection_for_time" />
             </TableRow>
 
             <!--`````````````` Maintenance ``````````````-->
@@ -309,7 +309,7 @@
                     android:id="@+id/spinner_expense_step12_5"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:contentDescription="@string/selection_for_time4" />
+                    android:contentDescription="@string/selection_for_time" />
             </TableRow>
 
 
@@ -360,7 +360,7 @@
                     android:id="@+id/spinner_expense_step12_6"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:contentDescription="@string/selection_for_time4" />
+                    android:contentDescription="@string/selection_for_time" />
             </TableRow>
 
 
@@ -411,7 +411,7 @@
                     android:id="@+id/spinner_expense_step12_7"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:contentDescription="@string/selection_for_time4" />
+                    android:contentDescription="@string/selection_for_time" />
             </TableRow>
 
 
@@ -463,7 +463,7 @@
                     android:id="@+id/spinner_expense_step12_8"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:contentDescription="@string/selection_for_time4" />
+                    android:contentDescription="@string/selection_for_time" />
             </TableRow>
 
 
@@ -514,7 +514,7 @@
                     android:id="@+id/spinner_expense_step12_9"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:contentDescription="@string/selection_for_time4" />
+                    android:contentDescription="@string/selection_for_time" />
             </TableRow>
 
 
@@ -565,7 +565,7 @@
                     android:id="@+id/spinner_expense_step12_10"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:contentDescription="@string/selection_for_time4" />
+                    android:contentDescription="@string/selection_for_time" />
             </TableRow>
 
 
@@ -616,7 +616,7 @@
                     android:id="@+id/spinner_expense_step12_11"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:contentDescription="@string/selection_for_time4" />
+                    android:contentDescription="@string/selection_for_time" />
             </TableRow>
 
 
@@ -667,7 +667,7 @@
                     android:id="@+id/spinner_expense_step12_12"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:contentDescription="@string/selection_for_time4" />
+                    android:contentDescription="@string/selection_for_time" />
             </TableRow>
 
 
@@ -720,7 +720,7 @@
                     android:id="@+id/spinner_expense_step12_13"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:contentDescription="@string/selection_for_time4" />
+                    android:contentDescription="@string/selection_for_time" />
             </TableRow>
         </TableLayout>
 
