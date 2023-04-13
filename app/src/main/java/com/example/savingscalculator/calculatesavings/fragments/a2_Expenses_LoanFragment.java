@@ -35,25 +35,24 @@ public class a2_Expenses_LoanFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        setSpinners();
+
+        binding.nextBtn.setOnClickListener(view1 -> {
+
+            cacheSelected();
+
+            NavHostFragment.findNavController(a2_Expenses_LoanFragment.this)
+                    .navigate(R.id.action_SecondFragment_to_ThirdFragment);
+        });
+    }
+
+    public void setSpinners (){
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity().getApplicationContext(),
                 R.array.timeframe_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         ArrayList<Spinner> spinners = new ArrayList<>();
-        setSpinners(spinners, adapter);
 
-        binding.nextBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cacheSelected();
-
-                NavHostFragment.findNavController(a2_Expenses_LoanFragment.this)
-                        .navigate(R.id.action_SecondFragment_to_ThirdFragment);
-            }
-        });
-    }
-
-    public void setSpinners (ArrayList<Spinner> spinners, ArrayAdapter<CharSequence> adapter){
         spinners.add(binding.spinnerExpenseStep21);
         spinners.add(binding.spinnerExpenseStep22);
         spinners.add(binding.spinnerExpenseStep23);
@@ -74,12 +73,12 @@ public class a2_Expenses_LoanFragment extends Fragment {
         Resources res = getResources();
 
         String carSpin = binding.spinnerExpenseStep21.getSelectedItem().toString();
-        String educationSpin = binding.spinnerExpenseStep22.getSelectedItem().toString();
-        String mortgageSpin = binding.spinnerExpenseStep23.getSelectedItem().toString();
-        String personalSpin = binding.spinnerExpenseStep24.getSelectedItem().toString();
-        String businessSpin = binding.spinnerExpenseStep25.getSelectedItem().toString();
-        String holidaySpin = binding.spinnerExpenseStep26.getSelectedItem().toString();
-        String creditSpin = binding.spinnerExpenseStep27.getSelectedItem().toString();
+        String eduSpin = binding.spinnerExpenseStep22.getSelectedItem().toString();
+        String morSpin = binding.spinnerExpenseStep23.getSelectedItem().toString();
+        String perSpin = binding.spinnerExpenseStep24.getSelectedItem().toString();
+        String busSpin = binding.spinnerExpenseStep25.getSelectedItem().toString();
+        String holSpin = binding.spinnerExpenseStep26.getSelectedItem().toString();
+        String creSpin = binding.spinnerExpenseStep27.getSelectedItem().toString();
 
         String carStr = res.getString(R.string.car_motorbike_loan);
         String eduStr = res.getString(R.string.education_tuition_loan);
@@ -92,17 +91,17 @@ public class a2_Expenses_LoanFragment extends Fragment {
         editor.putString(carStr, ((binding.carLoanEdit.getText().toString().equals(""))
                 ? "0" : binding.carLoanEdit.getText().toString()) + " " + carSpin);
         editor.putString(eduStr, ((binding.educationEdit.getText().toString().equals(""))
-                ? "0" : binding.educationEdit.getText().toString()) + " " + educationSpin);
+                ? "0" : binding.educationEdit.getText().toString()) + " " + eduSpin);
         editor.putString(morStr, ((binding.homeLoanEdit.getText().toString().equals(""))
-                ? "0" : binding.homeLoanEdit.getText().toString()) + " " + mortgageSpin);
+                ? "0" : binding.homeLoanEdit.getText().toString()) + " " + morSpin);
         editor.putString(perStr, ((binding.personalLoanEdit.getText().toString().equals(""))
-                ? "0" : binding.personalLoanEdit.getText().toString()) + " " + personalSpin);
+                ? "0" : binding.personalLoanEdit.getText().toString()) + " " + perSpin);
         editor.putString(busStr, ((binding.businessLoanEdit.getText().toString().equals(""))
-                ? "0" : binding.businessLoanEdit.getText().toString()) + " " + businessSpin);
+                ? "0" : binding.businessLoanEdit.getText().toString()) + " " + busSpin);
         editor.putString(holStr, ((binding.holidayLoanEdit.getText().toString().equals(""))
-                ? "0" : binding.holidayLoanEdit.getText().toString()) + " " + holidaySpin);
+                ? "0" : binding.holidayLoanEdit.getText().toString()) + " " + holSpin);
         editor.putString(creStr, ((binding.creditCardLoanEdit.getText().toString().equals(""))
-                ? "0" : binding.creditCardLoanEdit.getText().toString()) + " " + creditSpin);
+                ? "0" : binding.creditCardLoanEdit.getText().toString()) + " " + creSpin);
 
         editor.apply();
     }

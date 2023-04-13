@@ -34,34 +34,31 @@ public class a1_IncomeFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setSpinners();
 
+        binding.nextBtn2.setOnClickListener(view1 -> {
+            cacheSelected();
+            NavHostFragment.findNavController(a1_IncomeFragment.this)
+                    .navigate(R.id.action_FirstFragment_to_SecondFragment);
+        });
+    }
+
+    public void setSpinners(){
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity().getApplicationContext(),
                 R.array.timeframe_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         ArrayList<Spinner> spinners = new ArrayList<>();
-        setSpinners(spinners, adapter);
 
-        binding.nextBtn2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cacheSelected();
-                NavHostFragment.findNavController(a1_IncomeFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
-            }
-        });
-    }
+        spinners.add(binding.timeframe);
+        spinners.add(binding.timeframe2);
+        spinners.add(binding.timeframe3);
+        spinners.add(binding.timeframe4);
+        spinners.add(binding.timeframe5);
 
-    public void setSpinners(ArrayList<Spinner> spinList, ArrayAdapter<CharSequence> adapter){
-        spinList.add(binding.timeframe);
-        spinList.add(binding.timeframe2);
-        spinList.add(binding.timeframe3);
-        spinList.add(binding.timeframe4);
-        spinList.add(binding.timeframe5);
-
-        for (int i = 0; i < spinList.size(); i++) {
-            spinList.get(i).setSelection(adapter.getPosition(getResources().getString(R.string.weekly)));
-            spinList.get(i).setAdapter(adapter);
+        for (int i = 0; i < spinners.size(); i++) {
+            spinners.get(i).setSelection(adapter.getPosition(getResources().getString(R.string.weekly)));
+            spinners.get(i).setAdapter(adapter);
         }
     }
 

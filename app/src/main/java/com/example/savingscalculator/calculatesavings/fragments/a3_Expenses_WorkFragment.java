@@ -15,10 +15,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.example.savingscalculator.R;
 import com.example.savingscalculator.calculatesavings.Income;
 import com.example.savingscalculator.databinding.FragmentThirdBinding;
+
+import java.util.ArrayList;
 
 
 public class a3_Expenses_WorkFragment extends Fragment {
@@ -37,39 +40,61 @@ public class a3_Expenses_WorkFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        float totalIncome = ((Income) getActivity().getApplicationContext()).getTotalIncome();
 
-        Log.i("Total income: ", String.valueOf(totalIncome));
+        setSpinners();
 
-        // Create an ArrayAdapter using the string array and a default spinner layout
+        binding.nextBtn.setOnClickListener(view1 -> {
+
+            cacheSelected();
+
+            NavHostFragment.findNavController(a3_Expenses_WorkFragment.this)
+                    .navigate(R.id.action_ThirdFragment_to_FourthFragment);
+        });
+    }
+
+    public void setSpinners(){
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity().getApplicationContext(),
                 R.array.timeframe_array, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        binding.spinnerExpenseStep31.setSelection(adapter.getPosition("Weekly"));
-        binding.spinnerExpenseStep32.setSelection(adapter.getPosition("Weekly"));
-        binding.spinnerExpenseStep33.setSelection(adapter.getPosition("Weekly"));
-        binding.spinnerExpenseStep34.setSelection(adapter.getPosition("Weekly"));
+        ArrayList<Spinner> spinners = new ArrayList<>();
 
-        binding.spinnerExpenseStep31.setAdapter(adapter);
-        binding.spinnerExpenseStep32.setAdapter(adapter);
-        binding.spinnerExpenseStep33.setAdapter(adapter);
-        binding.spinnerExpenseStep34.setAdapter(adapter);
+        spinners.add(binding.spinnerExpenseStep31);
+        spinners.add(binding.spinnerExpenseStep32);
+        spinners.add(binding.spinnerExpenseStep33);
+        spinners.add(binding.spinnerExpenseStep34);
 
+        for (int i = 0; i < spinners.size(); i++) {
+            spinners.get(i).setSelection(adapter.getPosition(getResources().getString(R.string.weekly)));
+            spinners.get(i).setAdapter(adapter);
+        }
+    }
+
+    public void cacheSelected(){
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserIncome", MODE_PRIVATE);
-        String defaultValue = getResources().getString(R.string.wages_social_welfare);
-        String highScore = sharedPreferences.getString(getString(R.string.wages_social_welfare), defaultValue);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Resources res = getResources();
 
-        Log.i("Check: - ", highScore);
+        String lunSpin = binding.spinnerExpenseStep31.getSelectedItem().toString();
+        String snaSpin = binding.spinnerExpenseStep32.getSelectedItem().toString();
+        String traSpin = binding.spinnerExpenseStep33.getSelectedItem().toString();
+        String othSpin = binding.spinnerExpenseStep34.getSelectedItem().toString();
 
-        binding.nextBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(a3_Expenses_WorkFragment.this)
-                        .navigate(R.id.action_ThirdFragment_to_FourthFragment);
-            }
-        });
+        String lunStr = res.getString(R.string.lunch);
+        String snaStr = res.getString(R.string.snacks);
+        String traStr = res.getString(R.string.transport);
+        String othStr = res.getString(R.string.other_daily_expenses);
+
+        editor.putString(lunStr, ((binding.lunchEdit.getText().toString().equals(""))
+                ? "0" : binding.lunchEdit.getText().toString()) + " " + lunSpin);
+        editor.putString(snaStr, ((binding.snacksEdit.getText().toString().equals(""))
+                ? "0" : binding.snacksEdit.getText().toString()) + " " + snaSpin);
+        editor.putString(traStr, ((binding.transportEdit.getText().toString().equals(""))
+                ? "0" : binding.transportEdit.getText().toString()) + " " + traSpin);
+        editor.putString(othStr, ((binding.otherEdit.getText().toString().equals(""))
+                ? "0" : binding.otherEdit.getText().toString()) + " " + othSpin);
+
+        editor.apply();
     }
 
     @Override
