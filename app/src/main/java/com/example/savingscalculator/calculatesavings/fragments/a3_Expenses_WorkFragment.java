@@ -3,6 +3,7 @@ package com.example.savingscalculator.calculatesavings.fragments;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -57,12 +58,10 @@ public class a3_Expenses_WorkFragment extends Fragment {
         binding.spinnerExpenseStep34.setAdapter(adapter);
 
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserIncome", MODE_PRIVATE);
-        String temp = getResources().getString("temp1", "a");
-        int defaultValue = getResources().getInteger(R.integer.saved_high_score_default_key);
+        String defaultValue = getResources().getString(R.string.wages_social_welfare);
+        String highScore = sharedPreferences.getString(getString(R.string.wages_social_welfare), defaultValue);
 
-        Log.i("Income", temp);
-
-
+        Log.i("Check: - ", highScore);
 
         binding.nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override

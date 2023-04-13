@@ -29,10 +29,6 @@
     <string name="wages_social_welfare">Wages / Social Welfare</string>
     <string name="value_for_wages">Value for wages</string>
     <string name="selection_for_time">Select period</string>
-    <string name="selection_for_time2">Select period</string>
-    <string name="selection_for_time3">Select period</string>
-    <string name="selection_for_time4">Select period</string>
-    <string name="selection_for_time5">Select period</string>
     <string name="title_activity_savings_calc_income">Savings Calc income</string>
     <string name="partner_s_wages_social_welfare">Partner\'s wages / social welfare</string>
     <string name="cbp">Child benefit payment</string>
