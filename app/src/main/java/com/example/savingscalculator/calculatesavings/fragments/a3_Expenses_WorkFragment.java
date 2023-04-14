@@ -10,24 +10,22 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.example.savingscalculator.R;
-import com.example.savingscalculator.calculatesavings.Income;
 import com.example.savingscalculator.databinding.FragmentThirdBinding;
 
 import java.util.ArrayList;
 
-
 public class a3_Expenses_WorkFragment extends Fragment {
 
     private FragmentThirdBinding binding;
-
 
     @Override
     public View onCreateView(
@@ -40,24 +38,24 @@ public class a3_Expenses_WorkFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        ArrayList<Spinner> spinners = new ArrayList<>();
+        ArrayList<String> expensesEdits = new ArrayList<>();
 
-        setSpinners();
+        setSpinners(spinners);
 
         binding.nextBtn.setOnClickListener(view1 -> {
-
-            cacheSelected();
+            getExpensesFromEdit(expensesEdits);
+            cacheSelected(spinners, expensesEdits);
 
             NavHostFragment.findNavController(a3_Expenses_WorkFragment.this)
                     .navigate(R.id.action_ThirdFragment_to_FourthFragment);
         });
     }
 
-    public void setSpinners(){
+    public void setSpinners(ArrayList<Spinner> spinners){
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity().getApplicationContext(),
                 R.array.timeframe_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        ArrayList<Spinner> spinners = new ArrayList<>();
 
         spinners.add(binding.spinnerExpenseStep31);
         spinners.add(binding.spinnerExpenseStep32);
@@ -70,30 +68,44 @@ public class a3_Expenses_WorkFragment extends Fragment {
         }
     }
 
-    public void cacheSelected(){
+    public void getExpensesFromEdit(ArrayList<String> expensesEdits) {
+        ViewGroup group = (ViewGroup) getActivity().findViewById(R.id.tableLayout);
+        for (int i = 0, count = group.getChildCount(); i < count; ++i) {
+            ViewGroup another = (ViewGroup) group.getChildAt(i);
+            for (int j = 0, countJ = another.getChildCount(); j < countJ; ++j) {
+                View lew = another.getChildAt(j);
+                if(lew instanceof LinearLayout) {
+                    if(((EditText)((LinearLayout) lew).getChildAt(1)).getText().toString().equals("")) {
+                        expensesEdits.add("0");
+                    } else {
+                        expensesEdits.add(((EditText)((LinearLayout) lew).getChildAt(1)).getText().toString());
+                    }
+                }
+            }
+        }
+    }
+
+    public void cacheSelected(ArrayList<Spinner> spinners, ArrayList<String> expensesEdits){
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserIncome", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Resources res = getResources();
 
-        String lunSpin = binding.spinnerExpenseStep31.getSelectedItem().toString();
-        String snaSpin = binding.spinnerExpenseStep32.getSelectedItem().toString();
-        String traSpin = binding.spinnerExpenseStep33.getSelectedItem().toString();
-        String othSpin = binding.spinnerExpenseStep34.getSelectedItem().toString();
+        ArrayList<String> selected = new ArrayList<>();
 
-        String lunStr = res.getString(R.string.lunch);
-        String snaStr = res.getString(R.string.snacks);
-        String traStr = res.getString(R.string.transport);
-        String othStr = res.getString(R.string.other_daily_expenses);
+        for (int i = 0; i < spinners.size(); i++) {
+            String temp = spinners.get(i).getSelectedItem().toString();
+            selected.add(temp);
+        }
 
-        editor.putString(lunStr, ((binding.lunchEdit.getText().toString().equals(""))
-                ? "0" : binding.lunchEdit.getText().toString()) + " " + lunSpin);
-        editor.putString(snaStr, ((binding.snacksEdit.getText().toString().equals(""))
-                ? "0" : binding.snacksEdit.getText().toString()) + " " + snaSpin);
-        editor.putString(traStr, ((binding.transportEdit.getText().toString().equals(""))
-                ? "0" : binding.transportEdit.getText().toString()) + " " + traSpin);
-        editor.putString(othStr, ((binding.otherEdit.getText().toString().equals(""))
-                ? "0" : binding.otherEdit.getText().toString()) + " " + othSpin);
+        ArrayList<String> keyStrings = new ArrayList<>();
+        keyStrings.add(res.getString(R.string.lunch));
+        keyStrings.add(res.getString(R.string.snacks));
+        keyStrings.add(res.getString(R.string.transport));
+        keyStrings.add(res.getString(R.string.other_daily_expenses));
 
+        for (int i = 0; i < expensesEdits.size(); i++) {
+            editor.putString(keyStrings.get(i), expensesEdits.get(i) + " " + selected.get(i));
+        }
         editor.apply();
     }
 

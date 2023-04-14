@@ -4,6 +4,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,11 +16,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
 
 import com.example.savingscalculator.R;
 import com.example.savingscalculator.calculatesavings.Income;
 import com.example.savingscalculator.databinding.FragmentA5ExpensesCarBinding;
 import com.example.savingscalculator.databinding.FragmentFourthBinding;
+
+import java.util.ArrayList;
 
 public class a5_Expenses_CarFragment extends Fragment {
 
@@ -37,52 +43,83 @@ public class a5_Expenses_CarFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        float totalIncome = ((Income) getActivity().getApplicationContext()).getTotalIncome();
+        ArrayList<Spinner> spinners = new ArrayList<>();
+        ArrayList<String> expensesEdits = new ArrayList<>();
 
-        Log.i("Total income: ", String.valueOf(totalIncome));
-
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity().getApplicationContext(),
-                R.array.timeframe_array, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserIncome", MODE_PRIVATE);
-        String highScore = sharedPreferences.getString(getString(R.string.rent), "");
-
-
-
-//        binding.spinnerExpenseStep41.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep42.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep43.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep44.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep45.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep46.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep47.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep48.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep49.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep410.setSelection(adapter.getPosition("Weekly"));
-//
-//        binding.spinnerExpenseStep41.setAdapter(adapter);
-//        binding.spinnerExpenseStep42.setAdapter(adapter);
-//        binding.spinnerExpenseStep43.setAdapter(adapter);
-//        binding.spinnerExpenseStep44.setAdapter(adapter);
-//        binding.spinnerExpenseStep45.setAdapter(adapter);
-//        binding.spinnerExpenseStep46.setAdapter(adapter);
-//        binding.spinnerExpenseStep47.setAdapter(adapter);
-//        binding.spinnerExpenseStep48.setAdapter(adapter);
-//        binding.spinnerExpenseStep49.setAdapter(adapter);
-//        binding.spinnerExpenseStep410.setAdapter(adapter);
+        setSpinners(spinners);
 
         binding.nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                getExpensesFromEdit(expensesEdits);
+                cacheSelected(spinners, expensesEdits);
                 NavHostFragment.findNavController(a5_Expenses_CarFragment.this)
                         .navigate(R.id.action_a5_to_a6);
             }
         });
-
     }
+
+
+    public void setSpinners(ArrayList<Spinner> spinners){
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity().getApplicationContext(),
+                R.array.timeframe_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinners.add(binding.spinnerExpenseStep51);
+        spinners.add(binding.spinnerExpenseStep52);
+        spinners.add(binding.spinnerExpenseStep53);
+        spinners.add(binding.spinnerExpenseStep54);
+        spinners.add(binding.spinnerExpenseStep55);
+        spinners.add(binding.spinnerExpenseStep56);
+
+        for (int i = 0; i < spinners.size(); i++) {
+            spinners.get(i).setSelection(adapter.getPosition(getResources().getString(R.string.weekly)));
+            spinners.get(i).setAdapter(adapter);
+        }
+    }
+
+    public void getExpensesFromEdit(ArrayList<String> expensesEdits) {
+        ViewGroup group = (ViewGroup) getActivity().findViewById(R.id.tableLayout);
+        for (int i = 0, count = group.getChildCount(); i < count; ++i) {
+            ViewGroup another = (ViewGroup) group.getChildAt(i);
+            for (int j = 0, countJ = another.getChildCount(); j < countJ; ++j) {
+                View lew = another.getChildAt(j);
+                if(lew instanceof LinearLayout) {
+                    if(((EditText)((LinearLayout) lew).getChildAt(1)).getText().toString().equals("")) {
+                        expensesEdits.add("0");
+                    } else {
+                        expensesEdits.add(((EditText)((LinearLayout) lew).getChildAt(1)).getText().toString());
+                    }
+                }
+            }
+        }
+    }
+
+    public void cacheSelected(ArrayList<Spinner> spinners, ArrayList<String> expensesEdits){
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserIncome", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Resources res = getResources();
+
+        ArrayList<String> selected = new ArrayList<>();
+
+        for (int i = 0; i < spinners.size(); i++) {
+            String temp = spinners.get(i).getSelectedItem().toString();
+            selected.add(temp);
+        }
+
+        ArrayList<String> keyStrings = new ArrayList<>();
+        keyStrings.add(res.getString(R.string.lunch));
+        keyStrings.add(res.getString(R.string.snacks));
+        keyStrings.add(res.getString(R.string.transport));
+        keyStrings.add(res.getString(R.string.other_daily_expenses));
+
+        for (int i = 0; i < expensesEdits.size(); i++) {
+            editor.putString(keyStrings.get(i), expensesEdits.get(i) + " " + selected.get(i));
+        }
+        editor.apply();
+    }
+
+
 
     @Override
     public void onDestroyView() {

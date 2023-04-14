@@ -82,7 +82,7 @@ public class a4_Expenses_HomeFragment extends Fragment {
     public void getExpensesFromEdit(ArrayList<String> expensesEdits) {
         ViewGroup group = (ViewGroup) getActivity().findViewById(R.id.tableLayout);
         for (int i = 0, count = group.getChildCount(); i < count; ++i) {
-            ViewGroup another = (ViewGroup) getActivity().findViewById(group.getChildAt(i).getId());
+            ViewGroup another = (ViewGroup) group.getChildAt(i);
             for (int j = 0, countJ = another.getChildCount(); j < countJ; ++j) {
                 View lew = another.getChildAt(j);
                 if(lew instanceof LinearLayout) {
@@ -122,12 +122,8 @@ public class a4_Expenses_HomeFragment extends Fragment {
 
         for (int i = 0; i < expensesEdits.size(); i++) {
             editor.putString(keyStrings.get(i), expensesEdits.get(i) + " " + selected.get(i));
-
-            Log.i("Key ", keyStrings.get(i));
-            Log.i("Expenses value ", expensesEdits.get(i));
-            Log.i("Selected ", selected.get(i));
-            Log.d("     ", "\n");
         }
+
         editor.apply();
     }
 

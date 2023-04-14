@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -34,24 +36,24 @@ public class a2_Expenses_LoanFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        ArrayList<Spinner> spinners = new ArrayList<>();
+        ArrayList<String> expensesEdits = new ArrayList<>();
 
-        setSpinners();
+        setSpinners(spinners);
 
         binding.nextBtn.setOnClickListener(view1 -> {
-
-            cacheSelected();
+            getExpensesFromEdit(expensesEdits);
+            cacheSelected(spinners, expensesEdits);
 
             NavHostFragment.findNavController(a2_Expenses_LoanFragment.this)
                     .navigate(R.id.action_SecondFragment_to_ThirdFragment);
         });
     }
 
-    public void setSpinners (){
+    public void setSpinners(ArrayList<Spinner> spinners){
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity().getApplicationContext(),
                 R.array.timeframe_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        ArrayList<Spinner> spinners = new ArrayList<>();
 
         spinners.add(binding.spinnerExpenseStep21);
         spinners.add(binding.spinnerExpenseStep22);
@@ -67,42 +69,47 @@ public class a2_Expenses_LoanFragment extends Fragment {
         }
     }
 
-    public void cacheSelected(){
+    public void getExpensesFromEdit(ArrayList<String> expensesEdits) {
+        ViewGroup group = (ViewGroup) getActivity().findViewById(R.id.tableLayout);
+        for (int i = 0, count = group.getChildCount(); i < count; ++i) {
+            ViewGroup another = (ViewGroup) group.getChildAt(i);
+            for (int j = 0, countJ = another.getChildCount(); j < countJ; ++j) {
+                View lew = another.getChildAt(j);
+                if(lew instanceof LinearLayout) {
+                    if(((EditText)((LinearLayout) lew).getChildAt(1)).getText().toString().equals("")) {
+                        expensesEdits.add("0");
+                    } else {
+                        expensesEdits.add(((EditText)((LinearLayout) lew).getChildAt(1)).getText().toString());
+                    }
+                }
+            }
+        }
+    }
+
+    public void cacheSelected(ArrayList<Spinner> spinners, ArrayList<String> expensesEdits){
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserIncome", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Resources res = getResources();
 
-        String carSpin = binding.spinnerExpenseStep21.getSelectedItem().toString();
-        String eduSpin = binding.spinnerExpenseStep22.getSelectedItem().toString();
-        String morSpin = binding.spinnerExpenseStep23.getSelectedItem().toString();
-        String perSpin = binding.spinnerExpenseStep24.getSelectedItem().toString();
-        String busSpin = binding.spinnerExpenseStep25.getSelectedItem().toString();
-        String holSpin = binding.spinnerExpenseStep26.getSelectedItem().toString();
-        String creSpin = binding.spinnerExpenseStep27.getSelectedItem().toString();
+        ArrayList<String> selected = new ArrayList<>();
 
-        String carStr = res.getString(R.string.car_motorbike_loan);
-        String eduStr = res.getString(R.string.education_tuition_loan);
-        String morStr = res.getString(R.string.home_loan);
-        String perStr = res.getString(R.string.personal_loan);
-        String busStr = res.getString(R.string.business_loan);
-        String holStr = res.getString(R.string.holiday_loan);
-        String creStr = res.getString(R.string.credit_card_loan);
+        for (int i = 0; i < spinners.size(); i++) {
+            String temp = spinners.get(i).getSelectedItem().toString();
+            selected.add(temp);
+        }
 
-        editor.putString(carStr, ((binding.carLoanEdit.getText().toString().equals(""))
-                ? "0" : binding.carLoanEdit.getText().toString()) + " " + carSpin);
-        editor.putString(eduStr, ((binding.educationEdit.getText().toString().equals(""))
-                ? "0" : binding.educationEdit.getText().toString()) + " " + eduSpin);
-        editor.putString(morStr, ((binding.homeLoanEdit.getText().toString().equals(""))
-                ? "0" : binding.homeLoanEdit.getText().toString()) + " " + morSpin);
-        editor.putString(perStr, ((binding.personalLoanEdit.getText().toString().equals(""))
-                ? "0" : binding.personalLoanEdit.getText().toString()) + " " + perSpin);
-        editor.putString(busStr, ((binding.businessLoanEdit.getText().toString().equals(""))
-                ? "0" : binding.businessLoanEdit.getText().toString()) + " " + busSpin);
-        editor.putString(holStr, ((binding.holidayLoanEdit.getText().toString().equals(""))
-                ? "0" : binding.holidayLoanEdit.getText().toString()) + " " + holSpin);
-        editor.putString(creStr, ((binding.creditCardLoanEdit.getText().toString().equals(""))
-                ? "0" : binding.creditCardLoanEdit.getText().toString()) + " " + creSpin);
+        ArrayList<String> keyStrings = new ArrayList<>();
+        keyStrings.add(res.getString(R.string.car_motorbike_loan));
+        keyStrings.add(res.getString(R.string.education_tuition_loan));
+        keyStrings.add(res.getString(R.string.home_loan));
+        keyStrings.add(res.getString(R.string.personal_loan));
+        keyStrings.add(res.getString(R.string.business_loan));
+        keyStrings.add(res.getString(R.string.holiday_loan));
+        keyStrings.add(res.getString(R.string.credit_card_loan));
 
+        for (int i = 0; i < expensesEdits.size(); i++) {
+            editor.putString(keyStrings.get(i), expensesEdits.get(i) + " " + selected.get(i));
+        }
         editor.apply();
     }
 

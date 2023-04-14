@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FirstFragment">
+    tools:context=".calculatesavings.fragments.a1_IncomeFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:context=".calculatesavings.A1_CalcSavings_Income_Activity">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/textView3"
@@ -25,47 +21,36 @@
             android:layout_marginTop="30dp"
             android:layout_marginEnd="0dp"
             android:gravity="center"
+            android:maxLines="1"
             android:text="@string/income"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textSize="60sp"
-            app:layout_constraintBottom_toTopOf="@+id/textView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            android:textSize="60sp" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
             android:layout_marginStart="0dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="0dp"
             android:gravity="center"
+            android:maxLines="1"
             android:text="@string/step_1_of_15"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.514"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
 
         <TableLayout
             android:id="@+id/tableLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="0dp"
             android:layout_marginTop="10dp"
-            android:padding="30dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:layout_constraintVertical_bias="0.16000003">
+            android:layout_marginEnd="0dp"
+            android:padding="30dp">
 
             <!--`````````````` Wages ``````````````-->
             <TableRow
                 android:layout_width="match_parent"
+                android:id="@+id/tableRow1"
                 android:layout_height="match_parent">
 
                 <TextView
@@ -80,9 +65,11 @@
 
             <TableRow
                 android:layout_width="match_parent"
+                android:id="@+id/tableRow2"
                 android:layout_height="match_parent">
 
-                <LinearLayout
+
+            <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
@@ -117,6 +104,7 @@
             <!--`````````````` Partner's social welfare ``````````````-->
             <TableRow
                 android:layout_width="match_parent"
+                android:id="@+id/tableRow3"
                 android:layout_height="match_parent">
 
                 <TextView
@@ -131,6 +119,7 @@
 
             <TableRow
                 android:layout_width="match_parent"
+                android:id="@+id/tableRow4"
                 android:layout_height="match_parent">
 
                 <LinearLayout
@@ -168,9 +157,11 @@
             <!--`````````````` CBP ``````````````-->
             <TableRow
                 android:layout_width="match_parent"
+                android:id="@+id/tableRow5"
                 android:layout_height="match_parent">
 
-                <TextView
+
+            <TextView
                     android:id="@+id/textViewForCBP"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -182,6 +173,7 @@
 
             <TableRow
                 android:layout_width="match_parent"
+                android:id="@+id/tableRow6"
                 android:layout_height="match_parent">
 
                 <LinearLayout
@@ -218,6 +210,7 @@
             <!--`````````````` Maintenance ``````````````-->
             <TableRow
                 android:layout_width="match_parent"
+                android:id="@+id/tableRow7"
                 android:layout_height="match_parent">
 
                 <TextView
@@ -232,6 +225,7 @@
 
             <TableRow
                 android:layout_width="match_parent"
+                android:id="@+id/tableRow8"
                 android:layout_height="match_parent">
 
                 <LinearLayout
@@ -268,6 +262,7 @@
             <!--`````````````` Other Income ``````````````-->
             <TableRow
                 android:layout_width="match_parent"
+                android:id="@+id/tableRow9"
                 android:layout_height="match_parent">
 
                 <TextView
@@ -282,6 +277,7 @@
 
             <TableRow
                 android:layout_width="match_parent"
+                android:id="@+id/tableRow10"
                 android:layout_height="match_parent">
 
                 <LinearLayout
@@ -316,17 +312,18 @@
             </TableRow>
         </TableLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/nextBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginEnd="35dp"
+            android:layout_marginBottom="0dp"
+            android:text="@string/next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/nextBtn2"
-        android:layout_width="310dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="158dp"
-        android:layout_marginEnd="159dp"
-        android:layout_marginBottom="42dp"
-        android:text="@string/next"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+</ScrollView>
