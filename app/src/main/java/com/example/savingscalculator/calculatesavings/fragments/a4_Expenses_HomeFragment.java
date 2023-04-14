@@ -49,8 +49,7 @@ public class a4_Expenses_HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 getExpensesFromEdit(expensesEdits);
-                Log.i("List: ", expensesEdits.toString());
-                cacheSelected(spinners);
+                cacheSelected(spinners, expensesEdits);
 
                 NavHostFragment.findNavController(a4_Expenses_HomeFragment.this)
                         .navigate(R.id.action_FourthFragment_to_a5);
@@ -97,7 +96,7 @@ public class a4_Expenses_HomeFragment extends Fragment {
         }
     }
 
-    public void cacheSelected(ArrayList<Spinner> spinners){
+    public void cacheSelected(ArrayList<Spinner> spinners, ArrayList<String> expensesEdits){
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserIncome", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         Resources res = getResources();
@@ -109,53 +108,27 @@ public class a4_Expenses_HomeFragment extends Fragment {
             selected.add(temp);
         }
 
-        Log.i("Trial: ", selected.toString());
+        ArrayList<String> keyStrings = new ArrayList<>();
+        keyStrings.add(res.getString(R.string.rent));
+        keyStrings.add(res.getString(R.string.electricity));
+        keyStrings.add(res.getString(R.string.gas));
+        keyStrings.add(res.getString(R.string.house));
+        keyStrings.add(res.getString(R.string.broadband));
+        keyStrings.add(res.getString(R.string.tv_license));
+        keyStrings.add(res.getString(R.string.waste));
+        keyStrings.add(res.getString(R.string.food));
+        keyStrings.add(res.getString(R.string.pets));
+        keyStrings.add(res.getString(R.string.property));
 
-//        String renSpin = binding.spinnerExpenseStep41.getSelectedItem().toString();
-//        String eleSpin = binding.spinnerExpenseStep42.getSelectedItem().toString();
-//        String gasSpin = binding.spinnerExpenseStep43.getSelectedItem().toString();
-//        String houSpin = binding.spinnerExpenseStep44.getSelectedItem().toString();
-//        String broSpin = binding.spinnerExpenseStep45.getSelectedItem().toString();
-//        String tvLSpin = binding.spinnerExpenseStep46.getSelectedItem().toString();
-//        String wasSpin = binding.spinnerExpenseStep47.getSelectedItem().toString();
-//        String groSpin = binding.spinnerExpenseStep48.getSelectedItem().toString();
-//        String petSpin = binding.spinnerExpenseStep49.getSelectedItem().toString();
-//        String proSpin = binding.spinnerExpenseStep410.getSelectedItem().toString();
+        for (int i = 0; i < expensesEdits.size(); i++) {
+            editor.putString(keyStrings.get(i), expensesEdits.get(i) + " " + selected.get(i));
 
-        String renStr = res.getString(R.string.rent);
-        String eleStr = res.getString(R.string.electricity);
-        String gasStr = res.getString(R.string.gas);
-        String houStr = res.getString(R.string.house);
-        String broStr = res.getString(R.string.broadband);
-        String tvLStr = res.getString(R.string.tv_license);
-        String wasStr = res.getString(R.string.waste);
-        String groStr = res.getString(R.string.food);
-        String petStr = res.getString(R.string.pets);
-        String proStr = res.getString(R.string.property);
-//
-//        editor.putString(renStr, ((binding.rentEdit.getText().toString().equals("")) ? "0" : binding.rentEdit.getText().toString()) + " " + renSpin);
-//
-//        editor.putString(renStr, ((binding.rentEdit.getText().toString().equals(""))
-//                ? "0" : binding.rentEdit.getText().toString()) + " " + renSpin);
-//        editor.putString(eleStr, ((binding.electricityEdit.getText().toString().equals(""))
-//                ? "0" : binding.electricityEdit.getText().toString()) + " " + eleSpin);
-//        editor.putString(gasStr, ((binding.gasEdit.getText().toString().equals(""))
-//                ? "0" : binding.gasEdit.getText().toString()) + " " + gasSpin);
-//        editor.putString(houStr, ((binding.houseEdit.getText().toString().equals(""))
-//                ? "0" : binding.houseEdit.getText().toString()) + " " + houSpin);
-//        editor.putString(broStr, ((binding.broadbandEdit.getText().toString().equals(""))
-//                ? "0" : binding.broadbandEdit.getText().toString()) + " " + broSpin);
-//        editor.putString(tvLStr, ((binding.tvEdit.getText().toString().equals(""))
-//                ? "0" : binding.tvEdit.getText().toString()) + " " + tvLSpin);
-//        editor.putString(wasStr, ((binding.wasteEdit.getText().toString().equals(""))
-//                ? "0" : binding.wasteEdit.getText().toString()) + " " + wasSpin);
-//        editor.putString(groStr, ((binding.foodEdit.getText().toString().equals(""))
-//                ? "0" : binding.foodEdit.getText().toString()) + " " + groSpin);
-//        editor.putString(petStr, ((binding.petsEdit.getText().toString().equals(""))
-//                ? "0" : binding.petsEdit.getText().toString()) + " " + petSpin);
-//        editor.putString(proStr, ((binding.propertyTaxEdit.getText().toString().equals(""))
-//                ? "0" : binding.propertyTaxEdit.getText().toString()) + " " + proSpin);
-//        editor.apply();
+            Log.i("Key ", keyStrings.get(i));
+            Log.i("Expenses value ", expensesEdits.get(i));
+            Log.i("Selected ", selected.get(i));
+            Log.d("     ", "\n");
+        }
+        editor.apply();
     }
 
     @Override

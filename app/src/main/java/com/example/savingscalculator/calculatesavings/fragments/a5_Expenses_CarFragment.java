@@ -1,5 +1,9 @@
 package com.example.savingscalculator.calculatesavings.fragments;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -42,6 +46,11 @@ public class a5_Expenses_CarFragment extends Fragment {
                 R.array.timeframe_array, android.R.layout.simple_spinner_item);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserIncome", MODE_PRIVATE);
+        String highScore = sharedPreferences.getString(getString(R.string.rent), "");
+
+
 
 //        binding.spinnerExpenseStep41.setSelection(adapter.getPosition("Weekly"));
 //        binding.spinnerExpenseStep42.setSelection(adapter.getPosition("Weekly"));

@@ -67,7 +67,7 @@
 
     <string name="bills_amp_home_expenses"><![CDATA[Bills & Home expenses]]></string>
     <string name="broadband">Broadband</string>
-    <string name="rent">Rent/mortgage payments</string>
+    <string name="rent">Rent payments</string>
     <string name="electricity">Electricity</string>
     <string name="food">Groceries</string>
     <string name="gas">Gas / Oil</string>
