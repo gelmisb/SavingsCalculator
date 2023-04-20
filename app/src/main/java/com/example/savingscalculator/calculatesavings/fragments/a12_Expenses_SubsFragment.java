@@ -1,5 +1,6 @@
 package com.example.savingscalculator.calculatesavings.fragments;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -21,6 +22,8 @@ import com.example.savingscalculator.databinding.FragmentA12ExpensesSubsBinding;
 public class a12_Expenses_SubsFragment extends Fragment {
 
     private FragmentA12ExpensesSubsBinding binding;
+    private final Resources res = getResources();
+
 
     @Override
     public View onCreateView(
@@ -81,4 +84,4 @@ public class a12_Expenses_SubsFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-}
+}// 87

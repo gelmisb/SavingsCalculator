@@ -1,5 +1,6 @@
 package com.example.savingscalculator.calculatesavings.fragments;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,11 +12,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.example.savingscalculator.R;
+import com.example.savingscalculator.calculatesavings.CollectText;
 import com.example.savingscalculator.calculatesavings.Income;
 import com.example.savingscalculator.databinding.FragmentA10ExpensesLeisureBinding;
 import com.example.savingscalculator.databinding.FragmentFourthBinding;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +30,8 @@ import com.example.savingscalculator.databinding.FragmentFourthBinding;
 public class a10_Expenses_LeisureFragment extends Fragment {
 
     private FragmentA10ExpensesLeisureBinding binding;
+    private final Resources res = getResources();
+
 
     @Override
     public View onCreateView(
@@ -38,44 +45,17 @@ public class a10_Expenses_LeisureFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        float totalIncome = ((Income) getActivity().getApplicationContext()).getTotalIncome();
+        ArrayList<Spinner> spinners = new ArrayList<>();
+        ArrayList<String> expensesEdits = new ArrayList<>();
 
-        Log.i("Total income: ", String.valueOf(totalIncome));
+//        setSpinners(spinners);
 
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity().getApplicationContext(),
-                R.array.timeframe_array, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//
-//        binding.spinnerExpenseStep41.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep42.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep43.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep44.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep45.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep46.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep47.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep48.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep49.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep410.setSelection(adapter.getPosition("Weekly"));
-//
-//        binding.spinnerExpenseStep41.setAdapter(adapter);
-//        binding.spinnerExpenseStep42.setAdapter(adapter);
-//        binding.spinnerExpenseStep43.setAdapter(adapter);
-//        binding.spinnerExpenseStep44.setAdapter(adapter);
-//        binding.spinnerExpenseStep45.setAdapter(adapter);
-//        binding.spinnerExpenseStep46.setAdapter(adapter);
-//        binding.spinnerExpenseStep47.setAdapter(adapter);
-//        binding.spinnerExpenseStep48.setAdapter(adapter);
-//        binding.spinnerExpenseStep49.setAdapter(adapter);
-//        binding.spinnerExpenseStep410.setAdapter(adapter);
-
-        binding.nextBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(a10_Expenses_LeisureFragment.this)
-                        .navigate(R.id.action_a10_to_a11);
-            }
+        binding.nextBtn.setOnClickListener(view1 -> {
+            CollectText light = new CollectText(getActivity());
+            light.getExpensesFromEdit(expensesEdits);
+//            cacheSelected(spinners, expensesEdits);
+            NavHostFragment.findNavController(a10_Expenses_LeisureFragment.this)
+                    .navigate(R.id.action_a10_to_a11);
         });
 
     }

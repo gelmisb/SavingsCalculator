@@ -1,5 +1,9 @@
 package com.example.savingscalculator.calculatesavings.fragments;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,16 +15,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.example.savingscalculator.R;
+import com.example.savingscalculator.calculatesavings.CollectText;
 import com.example.savingscalculator.calculatesavings.Income;
 import com.example.savingscalculator.databinding.FragmentA9ExpensesEducationBinding;
 import com.example.savingscalculator.databinding.FragmentFourthBinding;
+
+import java.util.ArrayList;
 
 
 public class a9_Expenses_EducationFragment extends Fragment {
 
     private FragmentA9ExpensesEducationBinding binding;
+    private final Resources res = getResources();
+
 
     @Override
     public View onCreateView(
@@ -34,46 +44,60 @@ public class a9_Expenses_EducationFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        float totalIncome = ((Income) getActivity().getApplicationContext()).getTotalIncome();
+        ArrayList<Spinner> spinners = new ArrayList<>();
+        ArrayList<String> expensesEdits = new ArrayList<>();
 
-        Log.i("Total income: ", String.valueOf(totalIncome));
+        setSpinners(spinners);
 
-        // Create an ArrayAdapter using the string array and a default spinner layout
+        binding.nextBtn.setOnClickListener(view1 -> {
+            CollectText light = new CollectText(getActivity());
+            light.getExpensesFromEdit(expensesEdits);
+            cacheSelected(spinners, expensesEdits);
+            NavHostFragment.findNavController(a9_Expenses_EducationFragment.this)
+                    .navigate(R.id.action_a9_to_a10);
+        });
+    }
+
+    public void setSpinners(ArrayList<Spinner> spinners){
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity().getApplicationContext(),
                 R.array.timeframe_array, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//
-//        binding.spinnerExpenseStep41.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep42.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep43.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep44.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep45.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep46.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep47.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep48.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep49.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep410.setSelection(adapter.getPosition("Weekly"));
-//
-//        binding.spinnerExpenseStep41.setAdapter(adapter);
-//        binding.spinnerExpenseStep42.setAdapter(adapter);
-//        binding.spinnerExpenseStep43.setAdapter(adapter);
-//        binding.spinnerExpenseStep44.setAdapter(adapter);
-//        binding.spinnerExpenseStep45.setAdapter(adapter);
-//        binding.spinnerExpenseStep46.setAdapter(adapter);
-//        binding.spinnerExpenseStep47.setAdapter(adapter);
-//        binding.spinnerExpenseStep48.setAdapter(adapter);
-//        binding.spinnerExpenseStep49.setAdapter(adapter);
-//        binding.spinnerExpenseStep410.setAdapter(adapter);
 
-        binding.nextBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(a9_Expenses_EducationFragment.this)
-                        .navigate(R.id.action_a9_to_a10);
-            }
-        });
+        spinners.add(binding.spinnerExpenseStep91);
+        spinners.add(binding.spinnerExpenseStep92);
+        spinners.add(binding.spinnerExpenseStep93);
+        spinners.add(binding.spinnerExpenseStep94);
+        spinners.add(binding.spinnerExpenseStep95);
 
+        for (int i = 0; i < spinners.size(); i++) {
+            spinners.get(i).setSelection(adapter.getPosition(getResources().getString(R.string.weekly)));
+            spinners.get(i).setAdapter(adapter);
+        }
+    }
+
+    public void cacheSelected(ArrayList<Spinner> spinners, ArrayList<String> expensesEdits){
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserIncome", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Resources res = getResources();
+
+        ArrayList<String> selected = new ArrayList<>();
+
+        for (int i = 0; i < spinners.size(); i++) {
+            String temp = spinners.get(i).getSelectedItem().toString();
+            selected.add(temp);
+        }
+
+        ArrayList<String> keyStrings = new ArrayList<>();
+        keyStrings.add(res.getString(R.string.edu_tuition));
+        keyStrings.add(res.getString(R.string.edu_fees));
+        keyStrings.add(res.getString(R.string.edu_books));
+        keyStrings.add(res.getString(R.string.edu_equip));
+        keyStrings.add(res.getString(R.string.edu_clothes));
+
+        for (int i = 0; i < expensesEdits.size(); i++) {
+            editor.putString(keyStrings.get(i), expensesEdits.get(i) + " " + selected.get(i));
+        }
+        editor.apply();
     }
 
     @Override
@@ -81,4 +105,4 @@ public class a9_Expenses_EducationFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-}
+}//108
