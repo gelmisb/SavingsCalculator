@@ -33,8 +33,6 @@ public class CacheData {
 
         for (int i = 0; i < expensesEdits.size(); i++) {
             editor.putString(keyStrings.get(i), expensesEdits.get(i) + " " + selected.get(i));
-            Log.i("123123123asdasdasdasdasdasdasd ", keyStrings.get(i) + " " + expensesEdits.get(i));
-
         }
 
 

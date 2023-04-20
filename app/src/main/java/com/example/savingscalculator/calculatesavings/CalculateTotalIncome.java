@@ -20,7 +20,7 @@ public class CalculateTotalIncome {
            this.activity = activity;
     }
 
-    public void getIncome(){
+    public float getIncome(){
         // Getting cached files
         SharedPreferences sharedPreferences = activity.getSharedPreferences("UserIncome", MODE_PRIVATE);
 
@@ -36,31 +36,54 @@ public class CalculateTotalIncome {
         incomeStr.add(pwages);
         incomeStr.add(cbp);
         incomeStr.add(income_main);
-        Log.i("Income 4 ", income_main);
         incomeStr.add(other);
 
-        calculateIncome(incomeStr);
+        return calculateIncome(incomeStr);
     }
 
-    private void calculateIncome(ArrayList<String> income){
+    private float calculateIncome(ArrayList<String> income){
 
         ArrayList<String> incomeListF = new ArrayList<String>();
         ArrayList<String> incomeListS = new ArrayList<String>();
+        ArrayList<Float> totalIncomeList = new ArrayList<Float>();
 
 
         for(int i =0; i< income.size(); i++) {
-            String incomeFloat = income.get(i).replaceAll("\\d+", "");
-            String incomeStr = income.get(i).replaceAll("\\b[^\\d\\W]+\\b", "");
+            String incomeStr = income.get(i).replaceAll("\\d+", "");
+            String incomeFloat = income.get(i).replaceAll("\\b[^\\d\\W]+\\b", "");
 
             incomeListF.add(incomeFloat);
             incomeListS.add(incomeStr);
 
-//            totalIncome += Float.parseFloat(income.get(i));
+            totalIncomeList.add(multiplyIncome(incomeFloat, incomeStr));
+        }
+        Log.i("_______ Income List final ________", totalIncomeList.toString());
+
+        float total = 0;
+
+        for (int j = 0 ; j < totalIncomeList.size(); j++) {
+            total += totalIncomeList.get(j);
         }
 
+        return total;
+    }
 
+    public float multiplyIncome(String nfloat, String nStr){
 
-        Log.i("Total String ", incomeListS + "");
-        Log.i("Total Float ", incomeListF + "");
+        float tempNum = Float.parseFloat(nfloat);
+        String tempStr = nStr.replaceAll("\\s", "");
+
+        switch (tempStr) {
+            case "Weekly":
+                tempNum = tempNum * 4;
+                break;
+            case "Quarterly":
+                tempNum = tempNum / 6;
+                break;
+            case "Yearly":
+                tempNum = tempNum / 12;
+                break;
+        }
+        return tempNum;
     }
 }
