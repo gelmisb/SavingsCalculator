@@ -77,7 +77,7 @@ public class a6_Expenses_MotorbikeFragment extends Fragment {
 
         binding.nextBtn.setOnClickListener(view1 -> {
             light.getExpensesFromEdit(expensesEdits);
-            cacheData.cacheSelected(spinners, keyStrings, expensesEdits);
+            cacheData.cacheSelected(spinners, keyStrings, expensesEdits, "UserExpensesMoto");
             NavHostFragment.findNavController(a6_Expenses_MotorbikeFragment.this)
                     .navigate(R.id.action_a6_to_a7);
         });

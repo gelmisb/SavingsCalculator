@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.savingscalculator.R;
+import com.example.savingscalculator.calculatesavings.CalculateTotalExpenses;
 import com.example.savingscalculator.calculatesavings.CalculateTotalIncome;
 import com.example.savingscalculator.databinding.FragmentA12ExpensesSubsBinding;
 import com.example.savingscalculator.databinding.FragmentA13FinalBinding;
@@ -21,14 +22,14 @@ public class a13_Final extends Fragment {
 
     private FragmentA13FinalBinding binding;
     private CalculateTotalIncome calculateTotalIncome;
+    private CalculateTotalExpenses calculateTotalExpenses;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         calculateTotalIncome = new CalculateTotalIncome(getActivity());
-
+        calculateTotalExpenses = new CalculateTotalExpenses(getActivity());
     }
 
 
@@ -37,11 +38,6 @@ public class a13_Final extends Fragment {
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 
-        TextView incomeTv = getActivity().findViewById(R.id.totalIncomeTV);
-//        incomeTv.setText(String.valueOf(calculateTotalIncome.getIncome()));
-        Log.i("asdasdasdasdasdasdasdasdasdasd", calculateTotalIncome.getIncome() + "");
-
-
         binding = FragmentA13FinalBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
@@ -49,6 +45,10 @@ public class a13_Final extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        TextView incomeTv = getActivity().findViewById(R.id.totalIncomeTV);
+        incomeTv.setText(String.valueOf(calculateTotalIncome.getIncome()));
+        calculateTotalExpenses.getIncome();
+
 
     }
 

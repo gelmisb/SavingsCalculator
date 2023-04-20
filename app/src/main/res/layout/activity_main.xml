@@ -7,21 +7,19 @@
     tools:context=".MainActivity">
 
 
-
-
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="170dp"
-        android:layout_height="165dp"
+        android:layout_width="269dp"
+        android:layout_height="226dp"
         android:layout_marginTop="100dp"
         android:layout_marginBottom="466dp"
+        android:background="@drawable/logo"
         android:contentDescription="@string/main_app_logo_for_greeting"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_save" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:layout_width="367dp"

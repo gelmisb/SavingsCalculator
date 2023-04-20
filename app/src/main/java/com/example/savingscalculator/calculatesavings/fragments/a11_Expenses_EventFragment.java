@@ -75,7 +75,7 @@ public class a11_Expenses_EventFragment extends Fragment {
 
         binding.nextBtn.setOnClickListener(view1 -> {
             light.getExpensesFromEdit(expensesEdits);
-            cacheData.cacheSelected(spinners, keyStrings, expensesEdits);
+            cacheData.cacheSelected(spinners, keyStrings, expensesEdits, "UserExpensesEvent");
             NavHostFragment.findNavController(a11_Expenses_EventFragment.this)
                     .navigate(R.id.action_a11_to_a12);
         });

@@ -20,8 +20,8 @@ public class CacheData {
         this.activity = activity;
     }
 
-    public void cacheSelected(ArrayList<Spinner> spinners, ArrayList<String> keyStrings, ArrayList<String> expensesEdits){
-        SharedPreferences sharedPreferences = activity.getSharedPreferences("UserIncome", MODE_PRIVATE);
+    public void cacheSelected(ArrayList<Spinner> spinners, ArrayList<String> keyStrings, ArrayList<String> expensesEdits, String type){
+        SharedPreferences sharedPreferences = activity.getSharedPreferences(type, MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
         ArrayList<String> selected = new ArrayList<>();

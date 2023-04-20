@@ -72,7 +72,7 @@ public class a1_IncomeFragment extends Fragment {
 
         binding.nextBtn.setOnClickListener(view1 -> {
             light.getExpensesFromEdit(expensesEdits);
-            cacheData.cacheSelected(spinners, keyStrings, expensesEdits);
+            cacheData.cacheSelected(spinners, keyStrings, expensesEdits, "UserIncome");
 
             NavHostFragment.findNavController(a1_IncomeFragment.this)
                     .navigate(R.id.action_FirstFragment_to_SecondFragment);

@@ -70,7 +70,7 @@ public class a3_Expenses_WorkFragment extends Fragment {
 
         binding.nextBtn.setOnClickListener(view1 -> {
             light.getExpensesFromEdit(expensesEdits);
-            cacheData.cacheSelected(spinners, keyStrings, expensesEdits);
+            cacheData.cacheSelected(spinners, keyStrings, expensesEdits, "UserExpensesWork");
             NavHostFragment.findNavController(a3_Expenses_WorkFragment.this)
                     .navigate(R.id.action_ThirdFragment_to_FourthFragment);
         });
