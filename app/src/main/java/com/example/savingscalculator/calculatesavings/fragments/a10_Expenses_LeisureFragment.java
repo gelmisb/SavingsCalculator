@@ -15,49 +15,66 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.example.savingscalculator.R;
+import com.example.savingscalculator.calculatesavings.CacheData;
 import com.example.savingscalculator.calculatesavings.CollectText;
 import com.example.savingscalculator.calculatesavings.Income;
+import com.example.savingscalculator.calculatesavings.SpinnersAdd;
 import com.example.savingscalculator.databinding.FragmentA10ExpensesLeisureBinding;
 import com.example.savingscalculator.databinding.FragmentFourthBinding;
 
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link a10_Expenses_LeisureFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class a10_Expenses_LeisureFragment extends Fragment {
 
     private FragmentA10ExpensesLeisureBinding binding;
     private final Resources res = getResources();
+    private ArrayList<Spinner> spinners;
+    private ArrayList<String> expensesEdits;
+    private ArrayList<String> keyStrings;
+    private final CollectText light = new CollectText(getActivity());
+    private final CacheData cacheData = new CacheData(getActivity());
 
 
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState
-    ) {
+            Bundle savedInstanceState) {
         binding = FragmentA10ExpensesLeisureBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
-
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ArrayList<Spinner> spinners = new ArrayList<>();
-        ArrayList<String> expensesEdits = new ArrayList<>();
+        spinners = new ArrayList<>();
+        expensesEdits = new ArrayList<>();
+        keyStrings = new ArrayList<>();
 
-//        setSpinners(spinners);
+        keyStrings.add(res.getString(R.string.leisure_member));
+        keyStrings.add(res.getString(R.string.leisure_out));
+        keyStrings.add(res.getString(R.string.leisure_cinema));
+        keyStrings.add(res.getString(R.string.leisure_festival));
+        keyStrings.add(res.getString(R.string.leisure_enter));
+        keyStrings.add(res.getString(R.string.leisure_alcohol));
+        keyStrings.add(res.getString(R.string.leisure_cigs));
+
+        spinners.add(binding.spinnerExpenseStep101);
+        spinners.add(binding.spinnerExpenseStep102);
+        spinners.add(binding.spinnerExpenseStep103);
+        spinners.add(binding.spinnerExpenseStep104);
+        spinners.add(binding.spinnerExpenseStep105);
+        spinners.add(binding.spinnerExpenseStep106);
+        spinners.add(binding.spinnerExpenseStep107);
+
+        SpinnersAdd spinnersAdd = new SpinnersAdd(getActivity(), spinners);
+        spinnersAdd.setSpinners(spinners);
 
         binding.nextBtn.setOnClickListener(view1 -> {
-            CollectText light = new CollectText(getActivity());
             light.getExpensesFromEdit(expensesEdits);
-//            cacheSelected(spinners, expensesEdits);
+            cacheData.cacheSelected(spinners, keyStrings, expensesEdits);
             NavHostFragment.findNavController(a10_Expenses_LeisureFragment.this)
                     .navigate(R.id.action_a10_to_a11);
         });
-
     }
 
     @Override

@@ -12,71 +12,70 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.example.savingscalculator.R;
+import com.example.savingscalculator.calculatesavings.CacheData;
+import com.example.savingscalculator.calculatesavings.CollectText;
 import com.example.savingscalculator.calculatesavings.Income;
+import com.example.savingscalculator.calculatesavings.SpinnersAdd;
 import com.example.savingscalculator.databinding.FragmentA11ExpensesEventBinding;
 import com.example.savingscalculator.databinding.FragmentFourthBinding;
+
+import java.util.ArrayList;
 
 
 public class a11_Expenses_EventFragment extends Fragment {
 
     private FragmentA11ExpensesEventBinding binding;
     private final Resources res = getResources();
-
+    private ArrayList<Spinner> spinners;
+    private ArrayList<String> expensesEdits;
+    private ArrayList<String> keyStrings;
+    private final CollectText light = new CollectText(getActivity());
+    private final CacheData cacheData = new CacheData(getActivity());
 
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState
-    ) {
+            Bundle savedInstanceState) {
         binding = FragmentA11ExpensesEventBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
-
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        float totalIncome = ((Income) getActivity().getApplicationContext()).getTotalIncome();
+        spinners = new ArrayList<>();
+        expensesEdits = new ArrayList<>();
+        keyStrings = new ArrayList<>();
 
-        Log.i("Total income: ", String.valueOf(totalIncome));
+        keyStrings.add(res.getString(R.string.event_birth));
+        keyStrings.add(res.getString(R.string.event_hol));
+        keyStrings.add(res.getString(R.string.event_house));
+        keyStrings.add(res.getString(R.string.event_fur));
+        keyStrings.add(res.getString(R.string.event_med));
+        keyStrings.add(res.getString(R.string.event_wed));
+        keyStrings.add(res.getString(R.string.event_clothes));
+        keyStrings.add(res.getString(R.string.event_hair));
 
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity().getApplicationContext(),
-                R.array.timeframe_array, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//
-//        binding.spinnerExpenseStep41.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep42.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep43.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep44.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep45.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep46.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep47.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep48.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep49.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep410.setSelection(adapter.getPosition("Weekly"));
-//
-//        binding.spinnerExpenseStep41.setAdapter(adapter);
-//        binding.spinnerExpenseStep42.setAdapter(adapter);
-//        binding.spinnerExpenseStep43.setAdapter(adapter);
-//        binding.spinnerExpenseStep44.setAdapter(adapter);
-//        binding.spinnerExpenseStep45.setAdapter(adapter);
-//        binding.spinnerExpenseStep46.setAdapter(adapter);
-//        binding.spinnerExpenseStep47.setAdapter(adapter);
-//        binding.spinnerExpenseStep48.setAdapter(adapter);
-//        binding.spinnerExpenseStep49.setAdapter(adapter);
-//        binding.spinnerExpenseStep410.setAdapter(adapter);
+        spinners.add(binding.spinnerExpenseStep111);
+        spinners.add(binding.spinnerExpenseStep112);
+        spinners.add(binding.spinnerExpenseStep113);
+        spinners.add(binding.spinnerExpenseStep114);
+        spinners.add(binding.spinnerExpenseStep115);
+        spinners.add(binding.spinnerExpenseStep116);
+        spinners.add(binding.spinnerExpenseStep117);
+        spinners.add(binding.spinnerExpenseStep118);
 
-        binding.nextBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(a11_Expenses_EventFragment.this)
-                        .navigate(R.id.action_a11_to_a12);
-            }
+        SpinnersAdd spinnersAdd = new SpinnersAdd(getActivity(), spinners);
+        spinnersAdd.setSpinners(spinners);
+
+        binding.nextBtn.setOnClickListener(view1 -> {
+            light.getExpensesFromEdit(expensesEdits);
+            cacheData.cacheSelected(spinners, keyStrings, expensesEdits);
+            NavHostFragment.findNavController(a11_Expenses_EventFragment.this)
+                    .navigate(R.id.action_a11_to_a12);
         });
-
     }
 
     @Override

@@ -25,6 +25,7 @@
     <string name="a10_LeisureFragment">Leisure Fragment</string>
     <string name="a11_EventFragment">Event Fragment</string>
     <string name="a12_SubsFragment">Subs Fragment</string>
+    <string name="a13_FinalFragment">Final Fragment</string>
 
     <string name="next">Next</string>
     <string name="previous">Previous</string>

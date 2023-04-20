@@ -233,12 +233,31 @@
             android:id="@+id/action_a12_to_a11"
             app:destination="@id/action_a12_to_a11" />
 
-        <!--        &lt;!&ndash; Next &ndash;&gt;-->
-        <!--        <action-->
-        <!--            android:id="@+id/action_a11_to_a"-->
-        <!--            app:destination="@id/a9_EducationFragment" />-->
+        <!-- Next -->
+        <action
+            android:id="@+id/action_a12_to_final"
+            app:destination="@id/a13_final" />
 
     </fragment>
 
+
+    <!-- Final -->
+    <fragment
+        android:id="@+id/a13_final"
+        android:name="com.example.savingscalculator.calculatesavings.fragments.a13_Final"
+        android:label="@string/a13_FinalFragment"
+        tools:layout="@layout/fragment_a13__final">
+
+        <!-- Back -->
+        <action
+            android:id="@+id/action_a12_to_a11"
+            app:destination="@id/action_a12_to_a11" />
+
+        <!-- Next -->
+        <action
+            android:id="@+id/action_a12_to_final"
+            app:destination="@id/a13_final" />
+
+    </fragment>
 
 </navigation>

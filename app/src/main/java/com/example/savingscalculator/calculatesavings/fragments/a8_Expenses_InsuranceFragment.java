@@ -18,8 +18,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.example.savingscalculator.R;
+import com.example.savingscalculator.calculatesavings.CacheData;
 import com.example.savingscalculator.calculatesavings.CollectText;
 import com.example.savingscalculator.calculatesavings.Income;
+import com.example.savingscalculator.calculatesavings.SpinnersAdd;
 import com.example.savingscalculator.databinding.FragmentA8ExpensesInsuranceBinding;
 import com.example.savingscalculator.databinding.FragmentFourthBinding;
 
@@ -30,6 +32,11 @@ public class a8_Expenses_InsuranceFragment extends Fragment {
 
     private FragmentA8ExpensesInsuranceBinding binding;
     private final Resources res = getResources();
+    private ArrayList<Spinner> spinners;
+    private ArrayList<String> expensesEdits;
+    private ArrayList<String> keyStrings;
+    private final CollectText light = new CollectText(getActivity());
+    private final CacheData cacheData = new CacheData(getActivity());
 
     @Override
     public View onCreateView(
@@ -43,25 +50,19 @@ public class a8_Expenses_InsuranceFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ArrayList<Spinner> spinners = new ArrayList<>();
-        ArrayList<String> expensesEdits = new ArrayList<>();
+        spinners = new ArrayList<>();
+        expensesEdits = new ArrayList<>();
+        keyStrings = new ArrayList<>();
 
-        setSpinners(spinners);
-
-        binding.nextBtn.setOnClickListener(view1 -> {
-            CollectText light = new CollectText(getActivity());
-            light.getExpensesFromEdit(expensesEdits);
-            cacheSelected(spinners, expensesEdits);
-            NavHostFragment.findNavController(a8_Expenses_InsuranceFragment.this)
-                    .navigate(R.id.action_a8_to_a9);
-        });
-    }
-
-
-    public void setSpinners(ArrayList<Spinner> spinners){
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity().getApplicationContext(),
-                R.array.timeframe_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        keyStrings.add(res.getString(R.string.insurance_car1));
+        keyStrings.add(res.getString(R.string.insurance_car2));
+        keyStrings.add(res.getString(R.string.insurance_motorbike1));
+        keyStrings.add(res.getString(R.string.insurance_motorbike2));
+        keyStrings.add(res.getString(R.string.insurance_health));
+        keyStrings.add(res.getString(R.string.insurance_travel));
+        keyStrings.add(res.getString(R.string.insurance_home));
+        keyStrings.add(res.getString(R.string.insurance_life));
+        keyStrings.add(res.getString(R.string.insurance_mortgage));
 
         spinners.add(binding.spinnerExpenseStep81);
         spinners.add(binding.spinnerExpenseStep82);
@@ -73,41 +74,16 @@ public class a8_Expenses_InsuranceFragment extends Fragment {
         spinners.add(binding.spinnerExpenseStep88);
         spinners.add(binding.spinnerExpenseStep89);
 
-        for (int i = 0; i < spinners.size(); i++) {
-            spinners.get(i).setSelection(adapter.getPosition(getResources().getString(R.string.weekly)));
-            spinners.get(i).setAdapter(adapter);
-        }
+        SpinnersAdd spinnersAdd = new SpinnersAdd(getActivity(), spinners);
+        spinnersAdd.setSpinners(spinners);
+
+        binding.nextBtn.setOnClickListener(view1 -> {
+            light.getExpensesFromEdit(expensesEdits);
+            cacheData.cacheSelected(spinners, keyStrings, expensesEdits);
+            NavHostFragment.findNavController(a8_Expenses_InsuranceFragment.this)
+                    .navigate(R.id.action_a8_to_a9);
+        });
     }
-
-    public void cacheSelected(ArrayList<Spinner> spinners, ArrayList<String> expensesEdits){
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("UserIncome", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        Resources res = getResources();
-
-        ArrayList<String> selected = new ArrayList<>();
-
-        for (int i = 0; i < spinners.size(); i++) {
-            String temp = spinners.get(i).getSelectedItem().toString();
-            selected.add(temp);
-        }
-
-        ArrayList<String> keyStrings = new ArrayList<>();
-        keyStrings.add(res.getString(R.string.insurance_car1));
-        keyStrings.add(res.getString(R.string.insurance_car2));
-        keyStrings.add(res.getString(R.string.insurance_motorbike1));
-        keyStrings.add(res.getString(R.string.insurance_motorbike2));
-        keyStrings.add(res.getString(R.string.insurance_health));
-        keyStrings.add(res.getString(R.string.insurance_travel));
-        keyStrings.add(res.getString(R.string.insurance_home));
-        keyStrings.add(res.getString(R.string.insurance_life));
-        keyStrings.add(res.getString(R.string.insurance_mortgage));
-
-        for (int i = 0; i < expensesEdits.size(); i++) {
-            editor.putString(keyStrings.get(i), expensesEdits.get(i) + " " + selected.get(i));
-        }
-        editor.apply();
-    }
-
 
     @Override
     public void onDestroyView() {

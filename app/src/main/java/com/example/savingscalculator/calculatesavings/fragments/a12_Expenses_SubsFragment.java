@@ -12,71 +12,80 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.example.savingscalculator.R;
+import com.example.savingscalculator.calculatesavings.CacheData;
+import com.example.savingscalculator.calculatesavings.CollectText;
 import com.example.savingscalculator.calculatesavings.Income;
+import com.example.savingscalculator.calculatesavings.SpinnersAdd;
 import com.example.savingscalculator.databinding.FragmentA11ExpensesEventBinding;
 import com.example.savingscalculator.databinding.FragmentA12ExpensesSubsBinding;
+
+import java.util.ArrayList;
 
 
 public class a12_Expenses_SubsFragment extends Fragment {
 
     private FragmentA12ExpensesSubsBinding binding;
     private final Resources res = getResources();
-
+    private ArrayList<Spinner> spinners;
+    private ArrayList<String> expensesEdits;
+    private ArrayList<String> keyStrings;
+    private final CollectText light = new CollectText(getActivity());
+    private final CacheData cacheData = new CacheData(getActivity());
 
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState
-    ) {
+            Bundle savedInstanceState) {
         binding = FragmentA12ExpensesSubsBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
-
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        float totalIncome = ((Income) getActivity().getApplicationContext()).getTotalIncome();
+        spinners = new ArrayList<>();
+        expensesEdits = new ArrayList<>();
+        keyStrings = new ArrayList<>();
 
-        Log.i("Total income: ", String.valueOf(totalIncome));
+        keyStrings.add(res.getString(R.string.subs_spot));
+        keyStrings.add(res.getString(R.string.subs_net));
+        keyStrings.add(res.getString(R.string.subs_hulu));
+        keyStrings.add(res.getString(R.string.subs_amazon));
+        keyStrings.add(res.getString(R.string.subs_disney));
+        keyStrings.add(res.getString(R.string.subs_prime));
+        keyStrings.add(res.getString(R.string.subs_apple));
+        keyStrings.add(res.getString(R.string.subs_pea));
+        keyStrings.add(res.getString(R.string.subs_crunch));
+        keyStrings.add(res.getString(R.string.subs_chew));
+        keyStrings.add(res.getString(R.string.subs_espn));
+        keyStrings.add(res.getString(R.string.subs_hbo));
+        keyStrings.add(res.getString(R.string.subs_other));
 
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity().getApplicationContext(),
-                R.array.timeframe_array, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//
-//        binding.spinnerExpenseStep41.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep42.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep43.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep44.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep45.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep46.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep47.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep48.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep49.setSelection(adapter.getPosition("Weekly"));
-//        binding.spinnerExpenseStep410.setSelection(adapter.getPosition("Weekly"));
-//
-//        binding.spinnerExpenseStep41.setAdapter(adapter);
-//        binding.spinnerExpenseStep42.setAdapter(adapter);
-//        binding.spinnerExpenseStep43.setAdapter(adapter);
-//        binding.spinnerExpenseStep44.setAdapter(adapter);
-//        binding.spinnerExpenseStep45.setAdapter(adapter);
-//        binding.spinnerExpenseStep46.setAdapter(adapter);
-//        binding.spinnerExpenseStep47.setAdapter(adapter);
-//        binding.spinnerExpenseStep48.setAdapter(adapter);
-//        binding.spinnerExpenseStep49.setAdapter(adapter);
-//        binding.spinnerExpenseStep410.setAdapter(adapter);
+        spinners.add(binding.spinnerExpenseStep121);
+        spinners.add(binding.spinnerExpenseStep122);
+        spinners.add(binding.spinnerExpenseStep123);
+        spinners.add(binding.spinnerExpenseStep124);
+        spinners.add(binding.spinnerExpenseStep125);
+        spinners.add(binding.spinnerExpenseStep126);
+        spinners.add(binding.spinnerExpenseStep127);
+        spinners.add(binding.spinnerExpenseStep128);
+        spinners.add(binding.spinnerExpenseStep129);
+        spinners.add(binding.spinnerExpenseStep1210);
+        spinners.add(binding.spinnerExpenseStep1211);
+        spinners.add(binding.spinnerExpenseStep1212);
+        spinners.add(binding.spinnerExpenseStep1213);
 
-//        binding.nextBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                NavHostFragment.findNavController(FourthFragment.this)
-//                        .navigate(R.id.action_FourthFragment_to_FifthFragment);
-//            }
-//        });
+        SpinnersAdd spinnersAdd = new SpinnersAdd(getActivity(), spinners);
+        spinnersAdd.setSpinners(spinners);
 
+        binding.nextBtn.setOnClickListener(view1 -> {
+            light.getExpensesFromEdit(expensesEdits);
+            cacheData.cacheSelected(spinners, keyStrings, expensesEdits);
+            NavHostFragment.findNavController(a12_Expenses_SubsFragment.this)
+                    .navigate(R.id.action_a12_to_final);
+        });
     }
 
     @Override
@@ -84,4 +93,4 @@ public class a12_Expenses_SubsFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-}// 87
+}

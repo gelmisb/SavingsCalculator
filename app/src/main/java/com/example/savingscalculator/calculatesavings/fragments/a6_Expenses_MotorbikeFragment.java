@@ -73,9 +73,7 @@ public class a6_Expenses_MotorbikeFragment extends Fragment {
         spinnersAdd.setSpinners(spinners);
 
         binding.nextBtn.setOnClickListener(view1 -> {
-            CollectText light = new CollectText(getActivity());
             light.getExpensesFromEdit(expensesEdits);
-            CacheData cacheData = new CacheData(getActivity());
             cacheData.cacheSelected(spinners, keyStrings, expensesEdits);
             NavHostFragment.findNavController(a6_Expenses_MotorbikeFragment.this)
                     .navigate(R.id.action_a6_to_a7);
