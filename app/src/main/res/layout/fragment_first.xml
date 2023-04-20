@@ -218,7 +218,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:labelFor="@+id/editMaintenance"
-                    android:text="@string/income_maintenance"
+                    android:text="@string/allowance"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                     android:textSize="16sp" />
             </TableRow>

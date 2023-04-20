@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.savingscalculator.R;
+import com.example.savingscalculator.calculatesavings.CalculateTotalIncome;
 import com.example.savingscalculator.databinding.FragmentA12ExpensesSubsBinding;
 import com.example.savingscalculator.databinding.FragmentA13FinalBinding;
 
@@ -17,12 +18,14 @@ import com.example.savingscalculator.databinding.FragmentA13FinalBinding;
 public class a13_Final extends Fragment {
 
     private FragmentA13FinalBinding binding;
+    private CalculateTotalIncome calculateTotalIncome;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        calculateTotalIncome = new CalculateTotalIncome(getActivity());
 
     }
 
@@ -31,6 +34,10 @@ public class a13_Final extends Fragment {
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
+
+        calculateTotalIncome.getIncome();
+
+
         binding = FragmentA13FinalBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }

@@ -41,7 +41,7 @@
     <string name="partner_s_wages_social_welfare">Partner\'s wages / social welfare</string>
     <string name="cbp">Child benefit payment</string>
     <string name="other_income">Other Income</string>
-    <string name="income_maintenance">Maintenance </string>
+    <string name="allowance">Allowance / Pocket Money.</string>
 
     <!-- Expenses activity - Loans -->
     <string name="title_activity_expenses">Expenses Activity</string>
@@ -176,5 +176,15 @@
     <string name="subs_espn">ESPN+</string>
     <string name="subs_hbo">HBO Max</string>
     <string name="subs_other">Other</string>
+
+
+    <!-- a13 frag -->
+    <string name="your_results">Your results</string>
+    <string name="main_str">Your results</string>
+    <string name="total_income">Total income</string>
+    <string name="total_expenses">Total expenses</string>
+    <string name="you_could_save">You could save</string>
+
+
 
 </resources>

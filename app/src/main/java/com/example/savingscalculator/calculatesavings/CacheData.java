@@ -5,6 +5,7 @@ import static android.content.Context.MODE_PRIVATE;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.util.Log;
 import android.widget.Spinner;
 
 import com.example.savingscalculator.R;
@@ -22,7 +23,6 @@ public class CacheData {
     public void cacheSelected(ArrayList<Spinner> spinners, ArrayList<String> keyStrings, ArrayList<String> expensesEdits){
         SharedPreferences sharedPreferences = activity.getSharedPreferences("UserIncome", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        Resources res = activity.getResources();
 
         ArrayList<String> selected = new ArrayList<>();
 
@@ -33,7 +33,10 @@ public class CacheData {
 
         for (int i = 0; i < expensesEdits.size(); i++) {
             editor.putString(keyStrings.get(i), expensesEdits.get(i) + " " + selected.get(i));
+            Log.i("123123123asdasdasdasdasdasdasd ", keyStrings.get(i) + " " + expensesEdits.get(i));
+
         }
+
 
         editor.apply();
     }

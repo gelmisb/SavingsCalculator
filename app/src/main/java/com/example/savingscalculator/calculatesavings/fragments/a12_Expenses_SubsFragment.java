@@ -28,12 +28,11 @@ import java.util.ArrayList;
 public class a12_Expenses_SubsFragment extends Fragment {
 
     private FragmentA12ExpensesSubsBinding binding;
-    private final Resources res = getResources();
     private ArrayList<Spinner> spinners;
     private ArrayList<String> expensesEdits;
     private ArrayList<String> keyStrings;
-    private final CollectText light = new CollectText(getActivity());
-    private final CacheData cacheData = new CacheData(getActivity());
+    private CollectText light ;
+    private CacheData cacheData ;
 
     @Override
     public View onCreateView(
@@ -45,6 +44,10 @@ public class a12_Expenses_SubsFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Resources res = getResources();
+        light = new CollectText(getActivity());
+        cacheData = new CacheData(getActivity());
+
         spinners = new ArrayList<>();
         expensesEdits = new ArrayList<>();
         keyStrings = new ArrayList<>();

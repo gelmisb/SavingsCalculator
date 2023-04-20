@@ -1,6 +1,7 @@
 package com.example.savingscalculator.calculatesavings;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -29,7 +30,6 @@ public class CollectText {
                     } else {
                         expensesEdits.add(((EditText)((LinearLayout) lew).getChildAt(1)).getText().toString());
                     }
-
                 }
             }
         }
