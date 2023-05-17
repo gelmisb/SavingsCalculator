@@ -33,8 +33,6 @@ public class CalculateTotalExpenses {
             String incomeStr = entry.getValue().toString().replaceAll("\\d+", "");
             String incomeFloat = entry.getValue().toString().replaceAll("\\b[^\\d\\W]+\\b", "");
 
-            System.out.println("STR: " + incomeStr);
-            System.out.println("FLOAT: " + incomeFloat);
 
             total.add(multiplyIncome(incomeStr, incomeFloat));
         }
@@ -46,8 +44,6 @@ public class CalculateTotalExpenses {
         for (int j = 0; j < total.size(); j++) {
             tempFloatsy += total.get(j);
         }
-
-        System.out.println("tempFloatsy: " + tempFloatsy);
 
         return tempFloatsy;
 

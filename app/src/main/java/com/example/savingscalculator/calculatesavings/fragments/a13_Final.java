@@ -1,5 +1,6 @@
 package com.example.savingscalculator.calculatesavings.fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,8 +15,16 @@ import android.widget.TextView;
 import com.example.savingscalculator.R;
 import com.example.savingscalculator.calculatesavings.CalculateTotalExpenses;
 import com.example.savingscalculator.calculatesavings.CalculateTotalIncome;
-import com.example.savingscalculator.databinding.FragmentA12ExpensesSubsBinding;
 import com.example.savingscalculator.databinding.FragmentA13FinalBinding;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.github.mikephil.charting.utils.ColorTemplate;
+
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 
 public class a13_Final extends Fragment {
@@ -35,9 +44,8 @@ public class a13_Final extends Fragment {
 
     @Override
     public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
+            @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-
         binding = FragmentA13FinalBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
@@ -45,10 +53,20 @@ public class a13_Final extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        String income = String.format("%.02f", calculateTotalIncome.getIncome());
+        String expenses = String.format("%.02f", calculateTotalExpenses.getExpenses());
+
+//        Log.i("Income before ",  income + "");
+//        income = Float.parseFloat(df.format(income));
+//        expenses = Float.parseFloat(df.format(expenses));
+//        Log.i("Income after ",  income + "");
+
         TextView incomeTV = getActivity().findViewById(R.id.totalIncomeTV);
         TextView expensesTV = getActivity().findViewById(R.id.totalExpensesTV);
-        incomeTV.setText(getString(R.string.year_calc, calculateTotalIncome.getIncome()));
-        expensesTV.setText(getString(R.string.year_calc, calculateTotalExpenses.getExpenses()));
+        incomeTV.setText(getString(R.string.year_calc, income));
+        expensesTV.setText(getString(R.string.year_calc, expenses));
+        setCharts();
     }
 
     @Override
@@ -56,4 +74,32 @@ public class a13_Final extends Fragment {
         super.onDestroyView();
         binding = null;
     }
+
+    public void setCharts() {
+        BarChart barChart = (BarChart) getActivity().findViewById(R.id.chart);
+
+        ArrayList<BarEntry> barEntries = new ArrayList<>(getBarEntries());
+
+        BarDataSet barDataSet = new BarDataSet(barEntries, "Budget");
+        barDataSet.setColors(new int[] { R.color.purple_700, R.color.red }, getActivity());
+
+        ArrayList<String> theDates = new ArrayList<>();
+        theDates.add("Income");
+        theDates.add("Expenses");
+
+        barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(theDates));
+        BarData theData = new BarData(barDataSet);
+        barChart.setData(theData);
+        barChart.setTouchEnabled(true);
+        barChart.setDragEnabled(true);
+        barChart.setScaleEnabled(true);
+        barChart.animateXY(1500, 1500);
+    }
+    public ArrayList<BarEntry> getBarEntries() {
+        ArrayList<BarEntry> barEntries = new ArrayList<>();
+        barEntries.add(new BarEntry(0f, calculateTotalIncome.getIncome()));
+        barEntries.add(new BarEntry(1f, calculateTotalExpenses.getExpenses()));
+        return barEntries;
+    }
+
 }

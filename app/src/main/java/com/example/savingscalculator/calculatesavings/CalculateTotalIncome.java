@@ -56,8 +56,6 @@ public class CalculateTotalIncome {
 
             totalIncomeList.add(multiplyIncome(incomeFloat, incomeStr));
         }
-        Log.i("_______ Income List final ________", totalIncomeList.toString());
-
         float total = 0;
 
         for (int j = 0 ; j < totalIncomeList.size(); j++) {
