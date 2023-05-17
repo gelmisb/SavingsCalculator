@@ -45,11 +45,10 @@ public class a13_Final extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        TextView incomeTv = getActivity().findViewById(R.id.totalIncomeTV);
-        incomeTv.setText(String.valueOf(calculateTotalIncome.getIncome()));
-        calculateTotalExpenses.getIncome();
-
-
+        TextView incomeTV = getActivity().findViewById(R.id.totalIncomeTV);
+        TextView expensesTV = getActivity().findViewById(R.id.totalExpensesTV);
+        incomeTV.setText(getString(R.string.year_calc, calculateTotalIncome.getIncome()));
+        expensesTV.setText(getString(R.string.year_calc, calculateTotalExpenses.getExpenses()));
     }
 
     @Override

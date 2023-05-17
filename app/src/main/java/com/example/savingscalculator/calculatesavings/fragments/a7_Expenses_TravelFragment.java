@@ -75,7 +75,7 @@ public class a7_Expenses_TravelFragment extends Fragment {
 
         binding.nextBtn.setOnClickListener(view1 -> {
             light.getExpensesFromEdit(expensesEdits);
-            cacheData.cacheSelected(spinners, keyStrings, expensesEdits, "UserExpensesTravel");
+            cacheData.cacheSelected(spinners, keyStrings, expensesEdits, "UserExpenses");
             NavHostFragment.findNavController(a7_Expenses_TravelFragment.this)
                     .navigate(R.id.action_a7_to_a8);
         });

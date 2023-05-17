@@ -72,7 +72,7 @@ public class a9_Expenses_EducationFragment extends Fragment {
 
         binding.nextBtn.setOnClickListener(view1 -> {
             light.getExpensesFromEdit(expensesEdits);
-            cacheData.cacheSelected(spinners, keyStrings, expensesEdits, "UserExpensesEdu");
+            cacheData.cacheSelected(spinners, keyStrings, expensesEdits, "UserExpenses");
             NavHostFragment.findNavController(a9_Expenses_EducationFragment.this)
                     .navigate(R.id.action_a9_to_a10);
         });

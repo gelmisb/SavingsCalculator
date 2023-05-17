@@ -82,7 +82,7 @@ public class a8_Expenses_InsuranceFragment extends Fragment {
 
         binding.nextBtn.setOnClickListener(view1 -> {
             light.getExpensesFromEdit(expensesEdits);
-            cacheData.cacheSelected(spinners, keyStrings, expensesEdits, "UserExpensesInsurance");
+            cacheData.cacheSelected(spinners, keyStrings, expensesEdits, "UserExpenses");
             NavHostFragment.findNavController(a8_Expenses_InsuranceFragment.this)
                     .navigate(R.id.action_a8_to_a9);
         });

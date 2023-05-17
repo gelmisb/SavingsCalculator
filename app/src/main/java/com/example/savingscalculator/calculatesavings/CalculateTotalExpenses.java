@@ -21,60 +21,15 @@ public class CalculateTotalExpenses {
         this.activity = activity;
     }
 
-    public float getIncome(){
+    public float getExpenses(){
         // Getting cached files
-        SharedPreferences userExpensesLoan = activity.getSharedPreferences("UserExpensesLoan", MODE_PRIVATE);
-        SharedPreferences userExpensesWork = activity.getSharedPreferences("UserExpensesWork", MODE_PRIVATE);
-        SharedPreferences userExpensesHome = activity.getSharedPreferences("UserExpensesHome", MODE_PRIVATE);
-        SharedPreferences userExpensesCar = activity.getSharedPreferences("UserExpensesCar", MODE_PRIVATE);
-        SharedPreferences userExpensesMoto = activity.getSharedPreferences("UserExpensesMoto", MODE_PRIVATE);
-        SharedPreferences userExpensesTravel = activity.getSharedPreferences("UserExpensesTravel", MODE_PRIVATE);
-        SharedPreferences userExpensesInsurance = activity.getSharedPreferences("UserExpensesInsurance", MODE_PRIVATE);
-        SharedPreferences userExpensesEdu = activity.getSharedPreferences("UserExpensesEdu", MODE_PRIVATE);
-        SharedPreferences userExpensesLeisure = activity.getSharedPreferences("UserExpensesLeisure", MODE_PRIVATE);
-        SharedPreferences userExpensesEvent = activity.getSharedPreferences("UserExpensesEvent", MODE_PRIVATE);
-        SharedPreferences userExpensesSubs = activity.getSharedPreferences("UserExpensesSubs", MODE_PRIVATE);
+        SharedPreferences userExpenses = activity.getSharedPreferences("UserExpenses", MODE_PRIVATE);
 
-        ArrayList<SharedPreferences> allShares = new ArrayList<>();
-        allShares.add(userExpensesLoan);
-        allShares.add(userExpensesWork);
-        allShares.add(userExpensesHome);
-        allShares.add(userExpensesCar);
-        allShares.add(userExpensesMoto);
-        allShares.add(userExpensesTravel);
-        allShares.add(userExpensesInsurance);
-        allShares.add(userExpensesEdu);
-        allShares.add(userExpensesLeisure);
-        allShares.add(userExpensesEvent);
-        allShares.add(userExpensesSubs);
-
-
-        for(int i=0; i< allShares.size(); i++) {
-
-        }
-
-//        String wages = sharedPreferences.getString(activity.getString(R.string.wages_social_welfare), "");
-//        String pwages = sharedPreferences.getString(activity.getString(R.string.partner_s_wages_social_welfare), "");
-//        String cbp = sharedPreferences.getString(activity.getString(R.string.cbp), "");
-//        String income_main = sharedPreferences.getString(activity.getString(R.string.allowance), "");
-//        String other = sharedPreferences.getString(activity.getString(R.string.other_income), "");
-
-
-        Map<String, ?> loanAll = userExpensesLoan.getAll();
-        Map<String, ?> workAll = userExpensesWork.getAll();
-        Map<String, ?> homeAll = userExpensesHome.getAll();
-        Map<String, ?> carAll = userExpensesCar.getAll();
-        Map<String, ?> motoAll = userExpensesMoto.getAll();
-        Map<String, ?> travelAll = userExpensesTravel.getAll();
-        Map<String, ?> insuranceAll = userExpensesInsurance.getAll();
-        Map<String, ?> eduAll = userExpensesEdu.getAll();
-        Map<String, ?> leisureAll = userExpensesLeisure.getAll();
-        Map<String, ?> eventAll = userExpensesEvent.getAll();
-        Map<String, ?> subsAll = userExpensesSubs.getAll();
+        Map<String, ?> getAll = userExpenses.getAll();
 
         ArrayList<Float> total = new ArrayList<Float>();
 
-        for (Map.Entry<String, ?> entry : loanAll.entrySet()) {
+        for (Map.Entry<String, ?> entry : getAll.entrySet()) {
             String incomeStr = entry.getValue().toString().replaceAll("\\d+", "");
             String incomeFloat = entry.getValue().toString().replaceAll("\\b[^\\d\\W]+\\b", "");
 
@@ -84,21 +39,78 @@ public class CalculateTotalExpenses {
             total.add(multiplyIncome(incomeStr, incomeFloat));
         }
 
+        System.out.println("All: " + total);
 
+        float tempFloatsy = 0;
 
+        for (int j = 0; j < total.size(); j++) {
+            tempFloatsy += total.get(j);
+        }
 
-//        Log.i("All ", allEntries + "");
+        System.out.println("tempFloatsy: " + tempFloatsy);
 
-//        ArrayList<String> incomeStr = new ArrayList<>();
+        return tempFloatsy;
+
+//        SharedPreferences userExpensesWork = activity.getSharedPreferences("UserExpensesWork", MODE_PRIVATE);
+//        SharedPreferences userExpensesHome = activity.getSharedPreferences("UserExpensesHome", MODE_PRIVATE);
+//        SharedPreferences userExpensesCar = activity.getSharedPreferences("UserExpensesCar", MODE_PRIVATE);
+//        SharedPreferences userExpensesMoto = activity.getSharedPreferences("UserExpensesMoto", MODE_PRIVATE);
+//        SharedPreferences userExpensesTravel = activity.getSharedPreferences("UserExpensesTravel", MODE_PRIVATE);
+//        SharedPreferences userExpensesInsurance = activity.getSharedPreferences("UserExpensesInsurance", MODE_PRIVATE);
+//        SharedPreferences userExpensesEdu = activity.getSharedPreferences("UserExpensesEdu", MODE_PRIVATE);
+//        SharedPreferences userExpensesLeisure = activity.getSharedPreferences("UserExpensesLeisure", MODE_PRIVATE);
+//        SharedPreferences userExpensesEvent = activity.getSharedPreferences("UserExpensesEvent", MODE_PRIVATE);
+//        SharedPreferences userExpensesSubs = activity.getSharedPreferences("UserExpensesSubs", MODE_PRIVATE);
 //
-//        incomeStr.add(wages);
-//        incomeStr.add(pwages);
-//        incomeStr.add(cbp);
-//        incomeStr.add(income_main);
-//        incomeStr.add(other);
+//        ArrayList<SharedPreferences> allShares = new ArrayList<>();
+//        allShares.add(userExpensesLoan);
+//        allShares.add(userExpensesWork);
+//        allShares.add(userExpensesHome);
+//        allShares.add(userExpensesCar);
+//        allShares.add(userExpensesMoto);
+//        allShares.add(userExpensesTravel);
+//        allShares.add(userExpensesInsurance);
+//        allShares.add(userExpensesEdu);
+//        allShares.add(userExpensesLeisure);
+//        allShares.add(userExpensesEvent);
+//        allShares.add(userExpensesSubs);
 
-//        return calculateIncome(allEntries);
-        return 0;
+//
+//        for(int i=0; i< allShares.size(); i++) {
+//
+//        }
+
+//        String wages = sharedPreferences.getString(activity.getString(R.string.wages_social_welfare), "");
+//        String pwages = sharedPreferences.getString(activity.getString(R.string.partner_s_wages_social_welfare), "");
+//        String cbp = sharedPreferences.getString(activity.getString(R.string.cbp), "");
+//        String income_main = sharedPreferences.getString(activity.getString(R.string.allowance), "");
+//        String other = sharedPreferences.getString(activity.getString(R.string.other_income), "");
+
+
+//        Map<String, ?> loanAll = userExpensesLoan.getAll();
+//        Map<String, ?> workAll = userExpensesWork.getAll();
+//        Map<String, ?> homeAll = userExpensesHome.getAll();
+//        Map<String, ?> carAll = userExpensesCar.getAll();
+//        Map<String, ?> motoAll = userExpensesMoto.getAll();
+//        Map<String, ?> travelAll = userExpensesTravel.getAll();
+//        Map<String, ?> insuranceAll = userExpensesInsurance.getAll();
+//        Map<String, ?> eduAll = userExpensesEdu.getAll();
+//        Map<String, ?> leisureAll = userExpensesLeisure.getAll();
+//        Map<String, ?> eventAll = userExpensesEvent.getAll();
+//        Map<String, ?> subsAll = userExpensesSubs.getAll();
+
+//        ArrayList<Float> total = new ArrayList<Float>();
+//
+//        for (Map.Entry<String, ?> entry : loanAll.entrySet()) {
+//            String incomeStr = entry.getValue().toString().replaceAll("\\d+", "");
+//            String incomeFloat = entry.getValue().toString().replaceAll("\\b[^\\d\\W]+\\b", "");
+//
+//            System.out.println("STR: " + incomeStr);
+//            System.out.println("FLOAT: " + incomeFloat);
+//
+//            total.add(multiplyIncome(incomeStr, incomeFloat));
+//        }
+
     }
 
     private float calculateIncome(Map<String, ?> allEntries){
@@ -135,9 +147,9 @@ public class CalculateTotalExpenses {
         return 0;
     }
 
-    public float multiplyIncome(String nfloat, String nStr){
+    public float multiplyIncome(String nStr, String nFloat){
 
-        float tempNum = Float.parseFloat(nfloat);
+        float tempNum = Float.parseFloat(nFloat);
         String tempStr = nStr.replaceAll("\\s", "");
 
         switch (tempStr) {
@@ -153,7 +165,4 @@ public class CalculateTotalExpenses {
         }
         return tempNum;
     }
-
-
-
 }

@@ -47,7 +47,6 @@ public class CalculateTotalIncome {
         ArrayList<String> incomeListS = new ArrayList<String>();
         ArrayList<Float> totalIncomeList = new ArrayList<Float>();
 
-
         for(int i =0; i< income.size(); i++) {
             String incomeStr = income.get(i).replaceAll("\\d+", "");
             String incomeFloat = income.get(i).replaceAll("\\b[^\\d\\W]+\\b", "");

@@ -185,6 +185,10 @@
     <string name="total_expenses">Total expenses</string>
     <string name="you_could_save">You could save</string>
 
+    <string name="year_calc">%1$d / year</string>
+
+
+
 
 
 </resources>

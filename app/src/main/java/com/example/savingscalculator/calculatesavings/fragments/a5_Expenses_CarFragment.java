@@ -77,7 +77,7 @@ public class a5_Expenses_CarFragment extends Fragment {
             CollectText light = new CollectText(getActivity());
             light.getExpensesFromEdit(expensesEdits);
             CacheData cacheData = new CacheData(getActivity());
-            cacheData.cacheSelected(spinners, keyStrings, expensesEdits, "UserExpensesCar");
+            cacheData.cacheSelected(spinners, keyStrings, expensesEdits, "UserExpenses");
             NavHostFragment.findNavController(a5_Expenses_CarFragment.this)
                     .navigate(R.id.action_a5_to_a6);
         });
