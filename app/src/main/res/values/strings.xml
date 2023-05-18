@@ -26,9 +26,12 @@
     <string name="a11_EventFragment">Event Fragment</string>
     <string name="a12_SubsFragment">Subs Fragment</string>
     <string name="a13_FinalFragment">Final Fragment</string>
+    <string name="a14_DetailsFragment">See details</string>
 
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="details">See details</string>
+    <string name="save">Save</string>
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
@@ -186,8 +189,10 @@
     <string name="you_could_save">You could save</string>
 
     <string name="year_calc">€%1$s / year</string>
+    <string name="a14_Details" />
 
-
+    <string name="total_income_saved">Total income</string>
+    <string name="total_expenses_saved">Total expenses</string>
 
 
 

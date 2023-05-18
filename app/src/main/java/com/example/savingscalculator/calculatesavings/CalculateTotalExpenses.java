@@ -4,6 +4,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.util.Log;
 
 import com.example.savingscalculator.R;
@@ -14,7 +15,7 @@ import java.util.Map;
 public class CalculateTotalExpenses {
 
     private Activity activity;
-    private float totalIncome;
+    private float totalExpenses;
 
 
     public CalculateTotalExpenses(Activity activity){
@@ -24,6 +25,8 @@ public class CalculateTotalExpenses {
     public float getExpenses(){
         // Getting cached files
         SharedPreferences userExpenses = activity.getSharedPreferences("UserExpenses", MODE_PRIVATE);
+        SharedPreferences.Editor editor = userExpenses.edit();
+        Resources res = activity.getResources();
 
         Map<String, ?> getAll = userExpenses.getAll();
 
@@ -32,18 +35,17 @@ public class CalculateTotalExpenses {
         for (Map.Entry<String, ?> entry : getAll.entrySet()) {
             String incomeStr = entry.getValue().toString().replaceAll("\\d+", "");
             String incomeFloat = entry.getValue().toString().replaceAll("\\b[^\\d\\W]+\\b", "");
-
-
             total.add(multiplyIncome(incomeStr, incomeFloat));
         }
-
-        System.out.println("All: " + total);
 
         float tempFloatsy = 0;
 
         for (int j = 0; j < total.size(); j++) {
             tempFloatsy += total.get(j);
         }
+
+        editor.putString(res.getString(R.string.total_expenses_saved), tempFloatsy + "");
+        editor.apply();
 
         return tempFloatsy;
 
@@ -109,7 +111,7 @@ public class CalculateTotalExpenses {
 
     }
 
-    private float calculateIncome(Map<String, ?> allEntries){
+    private float calculateExpenses(Map<String, ?> allEntries){
 
         ArrayList<String> incomeListF = new ArrayList<String>();
         ArrayList<String> incomeListS = new ArrayList<String>();

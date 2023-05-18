@@ -4,6 +4,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.util.Log;
 
 import com.example.savingscalculator.R;
@@ -23,6 +24,11 @@ public class CalculateTotalIncome {
     public float getIncome(){
         // Getting cached files
         SharedPreferences sharedPreferences = activity.getSharedPreferences("UserIncome", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        Resources res = activity.getResources();
+
+        ArrayList<String> incomeStr = new ArrayList<>();
+        float totalIncome = 0;
 
         String wages = sharedPreferences.getString(activity.getString(R.string.wages_social_welfare), "");
         String pwages = sharedPreferences.getString(activity.getString(R.string.partner_s_wages_social_welfare), "");
@@ -30,15 +36,18 @@ public class CalculateTotalIncome {
         String income_main = sharedPreferences.getString(activity.getString(R.string.allowance), "");
         String other = sharedPreferences.getString(activity.getString(R.string.other_income), "");
 
-        ArrayList<String> incomeStr = new ArrayList<>();
-
         incomeStr.add(wages);
         incomeStr.add(pwages);
         incomeStr.add(cbp);
         incomeStr.add(income_main);
         incomeStr.add(other);
 
-        return calculateIncome(incomeStr);
+        totalIncome = calculateIncome(incomeStr);
+
+        editor.putString(res.getString(R.string.total_income_saved), totalIncome + "");
+        editor.apply();
+
+        return totalIncome;
     }
 
     private float calculateIncome(ArrayList<String> income){

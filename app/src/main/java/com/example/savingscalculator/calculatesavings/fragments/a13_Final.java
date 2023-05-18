@@ -1,12 +1,11 @@
 package com.example.savingscalculator.calculatesavings.fragments;
 
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +20,7 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 
@@ -32,7 +29,6 @@ public class a13_Final extends Fragment {
     private FragmentA13FinalBinding binding;
     private CalculateTotalIncome calculateTotalIncome;
     private CalculateTotalExpenses calculateTotalExpenses;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,16 +53,18 @@ public class a13_Final extends Fragment {
         String income = String.format("%.02f", calculateTotalIncome.getIncome());
         String expenses = String.format("%.02f", calculateTotalExpenses.getExpenses());
 
-//        Log.i("Income before ",  income + "");
-//        income = Float.parseFloat(df.format(income));
-//        expenses = Float.parseFloat(df.format(expenses));
-//        Log.i("Income after ",  income + "");
-
         TextView incomeTV = getActivity().findViewById(R.id.totalIncomeTV);
         TextView expensesTV = getActivity().findViewById(R.id.totalExpensesTV);
+
         incomeTV.setText(getString(R.string.year_calc, income));
         expensesTV.setText(getString(R.string.year_calc, expenses));
+
         setCharts();
+
+        binding.detailsBtn.setOnClickListener(view1 -> {
+            NavHostFragment.findNavController(a13_Final.this)
+                    .navigate(R.id.action_final_to_a14);
+        });
     }
 
     @Override
@@ -83,18 +81,21 @@ public class a13_Final extends Fragment {
         BarDataSet barDataSet = new BarDataSet(barEntries, "Budget");
         barDataSet.setColors(new int[] { R.color.purple_700, R.color.red }, getActivity());
 
+        BarData theData = new BarData(barDataSet);
+
         ArrayList<String> theDates = new ArrayList<>();
+
         theDates.add("Income");
         theDates.add("Expenses");
 
         barChart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(theDates));
-        BarData theData = new BarData(barDataSet);
         barChart.setData(theData);
         barChart.setTouchEnabled(true);
         barChart.setDragEnabled(true);
         barChart.setScaleEnabled(true);
         barChart.animateXY(1500, 1500);
     }
+
     public ArrayList<BarEntry> getBarEntries() {
         ArrayList<BarEntry> barEntries = new ArrayList<>();
         barEntries.add(new BarEntry(0f, calculateTotalIncome.getIncome()));

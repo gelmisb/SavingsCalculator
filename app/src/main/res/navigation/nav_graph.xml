@@ -231,7 +231,7 @@
         <!-- Back -->
         <action
             android:id="@+id/action_a12_to_a11"
-            app:destination="@id/action_a12_to_a11" />
+            app:destination="@id/a11_EventFragment" />
 
         <!-- Next -->
         <action
@@ -247,6 +247,24 @@
         android:name="com.example.savingscalculator.calculatesavings.fragments.a13_Final"
         android:label="@string/a13_FinalFragment"
         tools:layout="@layout/fragment_a13__final">
+
+        <!-- Back -->
+        <action
+            android:id="@+id/action_final_to_a12"
+            app:destination="@id/a12_SubsFragment" />
+
+        <!-- Next -->
+        <action
+            android:id="@+id/action_final_to_a14"
+            app:destination="@id/a14_details" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/a14_details"
+        android:name="com.example.savingscalculator.calculatesavings.fragments.a14_Details"
+        android:label="@string/a14_Details"
+        tools:layout="@layout/fragment_a14__details">
 
         <!-- Back -->
         <action
