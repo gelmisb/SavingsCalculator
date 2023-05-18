@@ -85,7 +85,7 @@ public class a12_Expenses_SubsFragment extends Fragment {
 
         binding.nextBtn.setOnClickListener(view1 -> {
             light.getExpensesFromEdit(expensesEdits);
-            cacheData.cacheSelected(spinners, keyStrings, expensesEdits, "UserExpenses");
+            cacheData.cacheSelected(spinners, keyStrings, expensesEdits, "UserExpenses", "Subs");
             NavHostFragment.findNavController(a12_Expenses_SubsFragment.this)
                     .navigate(R.id.action_a12_to_final);
         });

@@ -74,7 +74,7 @@ public class a10_Expenses_LeisureFragment extends Fragment {
 
         binding.nextBtn.setOnClickListener(view1 -> {
             light.getExpensesFromEdit(expensesEdits);
-            cacheData.cacheSelected(spinners, keyStrings, expensesEdits, "UserExpenses");
+            cacheData.cacheSelected(spinners, keyStrings, expensesEdits, "UserExpenses", "Leisure");
             NavHostFragment.findNavController(a10_Expenses_LeisureFragment.this)
                     .navigate(R.id.action_a10_to_a11);
         });

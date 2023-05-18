@@ -84,7 +84,7 @@ public class a4_Expenses_HomeFragment extends Fragment {
 
         binding.nextBtn.setOnClickListener(view1 -> {
             light.getExpensesFromEdit(expensesEdits);
-            cacheData.cacheSelected(spinners, keyStrings, expensesEdits, "UserExpenses");
+            cacheData.cacheSelected(spinners, keyStrings, expensesEdits, "UserExpenses", "Home");
 
             NavHostFragment.findNavController(a4_Expenses_HomeFragment.this)
                     .navigate(R.id.action_FourthFragment_to_a5);

@@ -74,7 +74,7 @@ public class a2_Expenses_LoanFragment extends Fragment {
 
         binding.nextBtn.setOnClickListener(view1 -> {
             light.getExpensesFromEdit(expensesEdits);
-            cacheData.cacheSelected(spinners, keyStrings, expensesEdits, "UserExpenses");
+            cacheData.cacheSelected(spinners, keyStrings, expensesEdits, "UserExpenses", "Loan");
 
             NavHostFragment.findNavController(a2_Expenses_LoanFragment.this)
                     .navigate(R.id.action_SecondFragment_to_ThirdFragment);

@@ -20,9 +20,12 @@ public class CacheData {
         this.activity = activity;
     }
 
-    public void cacheSelected(ArrayList<Spinner> spinners, ArrayList<String> keyStrings, ArrayList<String> expensesEdits, String type){
+    public void cacheSelected(ArrayList<Spinner> spinners, ArrayList<String> keyStrings, ArrayList<String> expensesEdits, String type, String cat){
         SharedPreferences sharedPreferences = activity.getSharedPreferences(type, MODE_PRIVATE);
+        SharedPreferences subCategorySharedPreferences = activity.getSharedPreferences(cat, MODE_PRIVATE);
+
         SharedPreferences.Editor editor = sharedPreferences.edit();
+        SharedPreferences.Editor editorForCat = subCategorySharedPreferences.edit();
 
         ArrayList<String> selected = new ArrayList<>();
 
@@ -33,9 +36,10 @@ public class CacheData {
 
         for (int i = 0; i < expensesEdits.size(); i++) {
             editor.putString(keyStrings.get(i), expensesEdits.get(i) + " " + selected.get(i));
+            editorForCat.putString(keyStrings.get(i), expensesEdits.get(i) + " " + selected.get(i));
         }
 
-
         editor.apply();
+        editorForCat.apply();
     }
 }
