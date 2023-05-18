@@ -3,6 +3,7 @@ package com.example.savingscalculator.calculatesavings.fragments;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -62,9 +63,13 @@ public class a14_Details extends Fragment {
 
         SharedPreferences sharedPreferencesIncome = getActivity().getSharedPreferences("UserIncome", MODE_PRIVATE);
         String total_income = sharedPreferencesIncome.getString(getActivity().getString(R.string.total_income_saved), "");
+//        currentIncomeTV.setText();
+        Log.i("Total income", total_income);
 
-        SharedPreferences sharedPreferencesExpenses = getActivity().getSharedPreferences("UserExpenses", MODE_PRIVATE);
+
+        SharedPreferences sharedPreferencesExpenses = getActivity().getSharedPreferences("UserTotalExpenses", MODE_PRIVATE);
         String total_expenses = sharedPreferencesExpenses.getString(getActivity().getString(R.string.total_expenses_saved), "");
+        Log.i("Total expenses", total_expenses);
 
         Map<String, Float> topValues = getMaxValues();
         System.out.println("Key: " + topValues);
@@ -72,70 +77,98 @@ public class a14_Details extends Fragment {
 
 
     public Map<String, Float> getMaxValues() {
-        SharedPreferences userExpensesLoan = getActivity().getSharedPreferences("Loan", MODE_PRIVATE);
-        SharedPreferences userExpensesWork = getActivity().getSharedPreferences("Work", MODE_PRIVATE);
-        SharedPreferences userExpensesHome = getActivity().getSharedPreferences("Home", MODE_PRIVATE);
-        SharedPreferences userExpensesCar = getActivity().getSharedPreferences("Car", MODE_PRIVATE);
-        SharedPreferences userExpensesMoto = getActivity().getSharedPreferences("Motorbike", MODE_PRIVATE);
-        SharedPreferences userExpensesTravel = getActivity().getSharedPreferences("Travel", MODE_PRIVATE);
-        SharedPreferences userExpensesInsurance = getActivity().getSharedPreferences("Insurance", MODE_PRIVATE);
-        SharedPreferences userExpensesEdu = getActivity().getSharedPreferences("Education", MODE_PRIVATE);
-        SharedPreferences userExpensesLeisure = getActivity().getSharedPreferences("Leisure", MODE_PRIVATE);
-        SharedPreferences userExpensesEvent = getActivity().getSharedPreferences("Event", MODE_PRIVATE);
-        SharedPreferences userExpensesSubs = getActivity().getSharedPreferences("Subs", MODE_PRIVATE);
+//        SharedPreferences userExpensesLoan = getActivity().getSharedPreferences("Loan", MODE_PRIVATE);
+//        SharedPreferences userExpensesWork = getActivity().getSharedPreferences("Work", MODE_PRIVATE);
+//        SharedPreferences userExpensesHome = getActivity().getSharedPreferences("Home", MODE_PRIVATE);
+//        SharedPreferences userExpensesCar = getActivity().getSharedPreferences("Car", MODE_PRIVATE);
+//        SharedPreferences userExpensesMoto = getActivity().getSharedPreferences("Motorbike", MODE_PRIVATE);
+//        SharedPreferences userExpensesTravel = getActivity().getSharedPreferences("Travel", MODE_PRIVATE);
+//        SharedPreferences userExpensesInsurance = getActivity().getSharedPreferences("Insurance", MODE_PRIVATE);
+//        SharedPreferences userExpensesEdu = getActivity().getSharedPreferences("Education", MODE_PRIVATE);
+//        SharedPreferences userExpensesLeisure = getActivity().getSharedPreferences("Leisure", MODE_PRIVATE);
+//        SharedPreferences userExpensesEvent = getActivity().getSharedPreferences("Event", MODE_PRIVATE);
+//        SharedPreferences userExpensesSubs = getActivity().getSharedPreferences("Subs", MODE_PRIVATE);
+//
+//        Map<String, ?> loanAll = userExpensesLoan.getAll();
+//        Map<String, ?> workAll = userExpensesWork.getAll();
+//        Map<String, ?> homeAll = userExpensesHome.getAll();
+//        Map<String, ?> carAll = userExpensesCar.getAll();
+//        Map<String, ?> motoAll = userExpensesMoto.getAll();
+//        Map<String, ?> travelAll = userExpensesTravel.getAll();
+//        Map<String, ?> insuranceAll = userExpensesInsurance.getAll();
+//        Map<String, ?> eduAll = userExpensesEdu.getAll();
+//        Map<String, ?> leisureAll = userExpensesLeisure.getAll();
+//        Map<String, ?> eventAll = userExpensesEvent.getAll();
+//        Map<String, ?> subsAll = userExpensesSubs.getAll();
+//
+//        Map<String, Map<String, ?>> all = new HashMap<>();
+//        all.put("loanAll", loanAll);
+//        all.put("workAll", workAll);
+//        all.put("homeAll", homeAll);
+//        all.put("carAll", carAll);
+//        all.put("motoAll", motoAll);
+//        all.put("travelAll", travelAll);
+//        all.put("insuranceAll", insuranceAll);
+//        all.put("eduAll", eduAll);
+//        all.put("leisureAll", leisureAll);
+//        all.put("eventAll", eventAll);
+//        all.put("subsAll", subsAll);
 
-        Map<String, ?> loanAll = userExpensesLoan.getAll();
-        Map<String, ?> workAll = userExpensesWork.getAll();
-        Map<String, ?> homeAll = userExpensesHome.getAll();
-        Map<String, ?> carAll = userExpensesCar.getAll();
-        Map<String, ?> motoAll = userExpensesMoto.getAll();
-        Map<String, ?> travelAll = userExpensesTravel.getAll();
-        Map<String, ?> insuranceAll = userExpensesInsurance.getAll();
-        Map<String, ?> eduAll = userExpensesEdu.getAll();
-        Map<String, ?> leisureAll = userExpensesLeisure.getAll();
-        Map<String, ?> eventAll = userExpensesEvent.getAll();
-        Map<String, ?> subsAll = userExpensesSubs.getAll();
+        SharedPreferences userExpenses = getActivity().getSharedPreferences("UserExpenses", MODE_PRIVATE);
+        Resources res = getActivity().getResources();
 
-        Map<String, Map<String, ?>> all = new HashMap<>();
-        all.put("loanAll", loanAll);
-        all.put("workAll", workAll);
-        all.put("homeAll", homeAll);
-        all.put("carAll", carAll);
-        all.put("motoAll", motoAll);
-        all.put("travelAll", travelAll);
-        all.put("insuranceAll", insuranceAll);
-        all.put("eduAll", eduAll);
-        all.put("leisureAll", leisureAll);
-        all.put("eventAll", eventAll);
-        all.put("subsAll", subsAll);
+        Map<String, ?> getAll = userExpenses.getAll();
 
-//        TreeMap<Float, String> topValues = new TreeMap<>(Collections.reverseOrder());
         TreeMap<Float, String> topValues = new TreeMap<>();
         TreeMap<Float, String> bottomValues = new TreeMap<>();
 
-        for (Map.Entry<String, Map<String, ?>> route : all.entrySet()) {
-            for (Map.Entry<String, ?> entry : route.getValue().entrySet()) {
-                String keyString = entry.getKey();
-                String incomeStr = entry.getValue().toString().replaceAll("\\d+", "");
+        for (Map.Entry<String, ?> entry : getAll.entrySet()) {
+            String keyString = entry.getKey();
+            String incomeStr = entry.getValue().toString().replaceAll("\\d+", "");
 
-                String valueString = entry.getValue().toString().replaceAll("\\b[^\\d\\W]+\\b", "");
-                float value = multiplyIncome(valueString, incomeStr);
-                Log.i("value ",  value + "");
+            String valueString = entry.getValue().toString().replaceAll("\\b[^\\d\\W]+\\b", "");
+            Log.i("value ",keyString + " " + incomeStr + " " + valueString + "");
 
-                topValues.put(value, keyString);
-                bottomValues.put(value, keyString);
-            }
+            float value = multiplyIncome(valueString, incomeStr);
+            Log.i("value 2",keyString + " " + incomeStr + " " + value + "");
+
+            topValues.put(value, keyString);
+            bottomValues.put(value, keyString);
+
+            Log.i("topValues",topValues + " " );
+            Log.i("bottomValues",bottomValues + " " );
+
         }
 
-        System.out.println("Smallest Value:");
+//        for (Map.Entry<String, Map<String, ?>> route : all.entrySet()) {
+//            for (Map.Entry<String, ?> entry : route.getValue().entrySet()) {
+//                String keyString = entry.getKey();
+//                String incomeStr = entry.getValue().toString().replaceAll("\\d+", "");
+//
+//                String valueString = entry.getValue().toString().replaceAll("\\b[^\\d\\W]+\\b", "");
+//                float value = multiplyIncome(valueString, incomeStr);
+//                Log.i("value ",  value + "");
+//
+//                topValues.put(value, keyString);
+//                bottomValues.put(value, keyString);
+//            }
+//        }
+
 
         Map.Entry<Float, String> smallestEntry = bottomValues.firstEntry();
 
-        System.out.println("Key: " + smallestEntry.getValue() + ", Value: " + smallestEntry.getKey());
+        Log.i("Small value", smallestEntry +" ");
+
+        Map.Entry<Float, String> biggestEntry = topValues.lastEntry();
+        Log.i("Big value", biggestEntry +" ");
+
+
+//        Log.i("Small value", smallestEntry.getValue() + " " + smallestEntry.getKey());
+
+//        System.out.println("Key: " + smallestEntry.getValue() + ", Value: " + smallestEntry.getKey());
 
         leastSpentTV.setText(getString(R.string.least_spent_formatted, smallestEntry.getValue(), smallestEntry.getKey()));
 
-        Map.Entry<Float, String> biggestEntry = topValues.firstEntry();
 
         mostSpentTV.setText(getString(R.string.most_spent_formatted, biggestEntry.getValue(), biggestEntry.getKey()));
 
