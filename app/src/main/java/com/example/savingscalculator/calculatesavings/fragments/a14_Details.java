@@ -3,9 +3,7 @@ package com.example.savingscalculator.calculatesavings.fragments;
 import static android.content.Context.MODE_PRIVATE;
 
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +11,23 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.savingscalculator.R;
+import com.example.savingscalculator.calculatesavings.CategoryAdapter;
 import com.example.savingscalculator.databinding.FragmentA14DetailsBinding;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 
 import java.text.DecimalFormat;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -31,9 +40,10 @@ public class a14_Details extends Fragment {
     private TextView currentIncomeTV;
     private TextView currentExpensesTV;
     private TextView spentOverTV;
-
     private TextView top5Val;
     private DecimalFormat decimalFormat;
+    private BarChart chart;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,7 +55,21 @@ public class a14_Details extends Fragment {
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         binding = FragmentA14DetailsBinding.inflate(inflater, container, false);
+        RecyclerView recyclerView = binding.top5RecyclerView;
 
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(layoutManager);
+
+        List<String> categories = new ArrayList<>();
+        categories.add("Category 1");
+        categories.add("Category 2");
+        categories.add("Category 3");
+
+        // Create the adapter
+        CategoryAdapter adapter = new CategoryAdapter(categories);
+
+        // Set the adapter on the RecyclerView
+        recyclerView.setAdapter(adapter);
 
 //        1. Top expense
 //        2. Top 5 expenses
@@ -53,8 +77,63 @@ public class a14_Details extends Fragment {
 //        4. Graph
 //        5. Export or save details
 
+        chart = binding.getRoot().findViewById(R.id.chart);
+        setupChart();
+
+
         return binding.getRoot();
     }
+
+    private void setupChart() {
+        chart.setDrawBarShadow(false);
+        chart.setDrawValueAboveBar(true);
+        chart.getDescription().setEnabled(false);
+
+        // Customize chart appearance as desired
+        chart.getAxisLeft().setAxisMinimum(0f); // Set the minimum value on the y-axis to 0
+
+        // Prepare data for the chart
+        BarData barData = generateBarData();
+
+        // Set the data to the chart
+        chart.setData(barData);
+
+        // Refresh the chart
+        chart.invalidate();
+    }
+
+    private BarData generateBarData() {
+        ArrayList<BarEntry> entries = new ArrayList<>();
+
+        // Add income and expense values for each category
+        entries.add(new BarEntry(0f, getIncomeValue("Category 1")));
+        entries.add(new BarEntry(1f, getExpenseValue("Category 1")));
+        entries.add(new BarEntry(2f, getIncomeValue("Category 2")));
+        entries.add(new BarEntry(3f, getExpenseValue("Category 2")));
+        entries.add(new BarEntry(4f, getIncomeValue("Category 3")));
+        entries.add(new BarEntry(5f, getExpenseValue("Category 3")));
+        // ... Add entries for other categories
+
+        BarDataSet dataSet = new BarDataSet(entries, "Income vs Expenses");
+
+        ArrayList<IBarDataSet> dataSets = new ArrayList<>();
+        dataSets.add(dataSet);
+
+        return new BarData(dataSets);
+    }
+
+    private float getIncomeValue(String category) {
+        // Retrieve the income value for the given category from SharedPreferences or any other source
+        // Replace the dummy value with your actual implementation
+        return 100f;
+    }
+
+    private float getExpenseValue(String category) {
+        // Retrieve the expense value for the given category from SharedPreferences or any other source
+        // Replace the dummy value with your actual implementation
+        return 75f;
+    }
+
 
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
@@ -85,9 +164,17 @@ public class a14_Details extends Fragment {
 
         spentOverTV.setText(getString(R.string.val, expOverInc));
 
+//        Map<String, Float> topValues = getMaxValues();
+//        System.out.println("Key: " + topValues);
+//        top5Val.setText(topValues.toString());
+
         Map<String, Float> topValues = getMaxValues();
-        System.out.println("Key: " + topValues);
-        top5Val.setText(topValues.toString());
+        StringBuilder topValuesText = new StringBuilder();
+        for (Map.Entry<String, Float> entry : topValues.entrySet()) {
+            topValuesText.append(entry.getKey()).append(": ").append(decimalFormat.format(entry.getValue())).append("\n");
+        }
+        top5Val.setText(topValuesText.toString());
+
 
     }
 
@@ -102,6 +189,206 @@ public class a14_Details extends Fragment {
 
 
     public Map<String, Float> getMaxValues() {
+        SharedPreferences userExpenses = getActivity().getSharedPreferences("UserExpenses", MODE_PRIVATE);
+        Map<String, ?> getAll = userExpenses.getAll();
+
+        TreeMap<Float, List<String>> sortedValues = new TreeMap<>(Collections.reverseOrder());
+
+        for (Map.Entry<String, ?> entry : getAll.entrySet()) {
+            String keyString = entry.getKey();
+            String incomeStr = entry.getValue().toString().replaceAll("[^\\d.]", "");
+            float value = multiplyIncome(keyString, incomeStr);
+
+            List<String> categories = sortedValues.getOrDefault(value, new ArrayList<>());
+            categories.add(keyString);
+            sortedValues.put(value, categories);
+        }
+
+        Map<String, Float> topValues = new LinkedHashMap<>();
+        int count = 0;
+
+        for (Map.Entry<Float, List<String>> entry : sortedValues.entrySet()) {
+            if (count >= 5) {
+                break;
+            }
+
+            List<String> categories = entry.getValue();
+            for (String category : categories) {
+                topValues.put(category, entry.getKey());
+                count++;
+
+                if (count >= 5) {
+                    break;
+                }
+            }
+        }
+
+        Map.Entry<Float, List<String>> smallestEntry = sortedValues.lastEntry();
+        Map.Entry<Float, List<String>> biggestEntry = sortedValues.firstEntry();
+
+        String smallestVal = decimalFormat.format(smallestEntry.getKey());
+        String biggestVal = decimalFormat.format(biggestEntry.getKey());
+
+        String smallFormattedValue = smallestEntry.getValue().toString().replaceAll("\\[|\\]", "");
+        String bigFormattedValue = biggestEntry.getValue().toString().replaceAll("\\[|\\]", "");
+
+        leastSpentTV.setText(getString(R.string.val1, smallFormattedValue, smallestVal));
+        mostSpentTV.setText(getString(R.string.val1,  bigFormattedValue, biggestVal));
+
+        return getTopValues(sortedValues);
+    }
+
+
+//
+//    public Map<String, Float> getMaxValues() {
+//        SharedPreferences userExpenses = getActivity().getSharedPreferences("UserExpenses", MODE_PRIVATE);
+//        Map<String, ?> getAll = userExpenses.getAll();
+//
+//        TreeMap<Float, String> sortedValues = new TreeMap<>(Collections.reverseOrder());
+//
+//        for (Map.Entry<String, ?> entry : getAll.entrySet()) {
+//            String keyString = entry.getKey();
+//            String incomeStr = entry.getValue().toString().replaceAll("[^\\d.]", "");
+//            float value = multiplyIncome(keyString, incomeStr);
+//
+//            sortedValues.put(value, keyString);
+//        }
+//
+//        Map<String, Float> topValues = new LinkedHashMap<>();
+//        int count = 0;
+//
+//        for (Map.Entry<Float, String> entry : sortedValues.entrySet()) {
+//            if (count >= 5) {
+//                break;
+//            }
+//
+//            topValues.put(entry.getValue(), entry.getKey());
+//            count++;
+//        }
+//
+//        return topValues;
+//    }
+
+
+
+
+//
+//    public List<Map.Entry<String, Float>> getMaxValues() {
+//
+//
+//        SharedPreferences userExpenses = getActivity().getSharedPreferences("UserExpenses", MODE_PRIVATE);
+//        Resources res = getActivity().getResources();
+//
+//        Map<String, ?> getAll = userExpenses.getAll();
+//
+//        TreeMap<String, Float> topValues = new TreeMap<>();
+//        TreeMap<String, Float> bottomValues = new TreeMap<>();
+//
+//        for (Map.Entry<String, ?> entry : getAll.entrySet()) {
+//            String keyString = entry.getKey();
+//            String incomeStr = entry.getValue().toString().replaceAll("\\d+", "");
+//
+//            String valueString = entry.getValue().toString().replaceAll("\\b[^\\d\\W]+\\b", "");
+//            Log.i("value ",keyString + " " + incomeStr + " " + valueString + "");
+//
+//            float value = multiplyIncome(incomeStr, valueString);
+//            Log.i("value 2",keyString + " " + incomeStr + " " + value + "");
+//
+//            topValues.put(keyString, value);
+//            bottomValues.put(keyString, value);
+//        }
+//
+//        Map.Entry<String, Float> smallestEntry = bottomValues.lastEntry();
+//
+//        Log.i("Small value", smallestEntry +" ");
+//
+//        Map.Entry<String, Float> biggestEntry = topValues.firstEntry();
+//        Log.i("Big value", biggestEntry +" ");
+//
+//
+//
+//        String smallestVal = decimalFormat.format(smallestEntry.getValue());
+//        String biggestVal = decimalFormat.format(biggestEntry.getValue());
+//
+//        leastSpentTV.setText(getString(R.string.val1, smallestVal, smallestEntry.getValue()));
+//
+//        mostSpentTV.setText(getString(R.string.val1, biggestVal, biggestEntry.getValue()));
+//
+//        return getTopValues(topValues);
+//    }
+
+
+    public Map<String, Float> getTopValues(TreeMap<Float, List<String>> sortedValues) {
+        Map<String, Float> tops = new LinkedHashMap<>();
+
+        System.out.println("\nTop 5 Maximum Values:");
+        int count = 0;
+        for (Map.Entry<Float, List<String>> entry : sortedValues.entrySet()) {
+            List<String> categories = entry.getValue();
+            for (String category : categories) {
+                if (count >= 5) {
+                    break;
+                }
+                tops.put(category, entry.getKey());
+                System.out.println("Key: " + entry.getKey() + ", Value: " + category);
+                count++;
+            }
+            if (count >= 5) {
+                break;
+            }
+        }
+
+        return tops;
+    }
+
+
+//    public List<Map.Entry<String, Float>> getTopValues(TreeMap<String, Float> topValues){
+//        List<Map.Entry<String, Float>> tops = new ArrayList<>();
+//
+//        System.out.println("\nTop 5 Maximum Values:");
+//        int count = 0;
+//        for (Map.Entry<String, Float> entry : topValues.descendingMap().entrySet()) {
+//            if (count >= 5) {
+//                break;
+//            }
+//            tops.add(entry);
+//            System.out.println("Key: " + entry.getValue() + ", Value: " + entry.getKey());
+//            count++;
+//        }
+//
+//        return tops;
+//    }
+
+    public float multiplyIncome(String nStr, String nFloat){
+
+        float tempNum = Float.parseFloat(nFloat);
+        String tempStr = nStr.replaceAll("\\s", "");
+        switch (tempStr) {
+            case "Weekly":
+                tempNum = tempNum * 4;
+                break;
+            case "Quarterly":
+                tempNum = tempNum / 6;
+                break;
+            case "Yearly":
+                tempNum = tempNum / 12;
+                break;
+        }
+        return tempNum;
+    }
+
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+
+//    {Business loan=0 Weekly, Car / motorbike loan=123 Weekly, Mortgage=0 Weekly, Holiday loan=0 Weekly, Personal loan=0 Weekly, Education / Tuition loan=0 Weekly, Credit card loan=0 Weekly}
+
+
+}
+
 //        SharedPreferences userExpensesLoan = getActivity().getSharedPreferences("Loan", MODE_PRIVATE);
 //        SharedPreferences userExpensesWork = getActivity().getSharedPreferences("Work", MODE_PRIVATE);
 //        SharedPreferences userExpensesHome = getActivity().getSharedPreferences("Home", MODE_PRIVATE);
@@ -138,89 +425,3 @@ public class a14_Details extends Fragment {
 //        all.put("leisureAll", leisureAll);
 //        all.put("eventAll", eventAll);
 //        all.put("subsAll", subsAll);
-
-        SharedPreferences userExpenses = getActivity().getSharedPreferences("UserExpenses", MODE_PRIVATE);
-        Resources res = getActivity().getResources();
-
-        Map<String, ?> getAll = userExpenses.getAll();
-
-        TreeMap<String, Float> topValues = new TreeMap<>();
-        TreeMap<String, Float> bottomValues = new TreeMap<>();
-
-        for (Map.Entry<String, ?> entry : getAll.entrySet()) {
-            String keyString = entry.getKey();
-            String incomeStr = entry.getValue().toString().replaceAll("\\d+", "");
-
-            String valueString = entry.getValue().toString().replaceAll("\\b[^\\d\\W]+\\b", "");
-            Log.i("value ",keyString + " " + incomeStr + " " + valueString + "");
-
-            float value = multiplyIncome(valueString, incomeStr);
-            Log.i("value 2",keyString + " " + incomeStr + " " + value + "");
-
-            topValues.put(keyString, value);
-            bottomValues.put(keyString, value);
-        }
-
-        Map.Entry<String, Float> smallestEntry = bottomValues.lastEntry();
-
-        Log.i("Small value", smallestEntry +" ");
-
-        Map.Entry<String, Float> biggestEntry = topValues.firstEntry();
-        Log.i("Big value", biggestEntry +" ");
-
-        String smallestVal = decimalFormat.format(smallestEntry.getValue());
-        String biggestVal = decimalFormat.format(biggestEntry.getValue());
-
-        leastSpentTV.setText(getString(R.string.val1, smallestVal, smallestEntry.getValue()));
-
-        mostSpentTV.setText(getString(R.string.val1, biggestVal, biggestEntry.getValue()));
-
-        return getTopValues(topValues);
-    }
-
-    public Map<String, Float> getTopValues(TreeMap<String, Float> topValues){
-        Map<String, Float> tops = new HashMap<>();
-
-        System.out.println("\nTop 5 Maximum Values:");
-        int count = 0;
-        for (Map.Entry<String, Float> entry : topValues.descendingMap().entrySet()) {
-            if (count >= 5) {
-                break;
-            }
-            tops.put(entry.getKey(), entry.getValue());
-            System.out.println("Key: " + entry.getValue() + ", Value: " + entry.getKey());
-            count++;
-        }
-
-        return tops;
-    }
-
-    public float multiplyIncome(String nfloat, String nStr){
-
-        float tempNum = Float.parseFloat(nfloat);
-        String tempStr = nStr.replaceAll("\\s", "");
-        switch (tempStr) {
-            case "Weekly":
-                tempNum = tempNum * 4;
-                break;
-            case "Quarterly":
-                tempNum = tempNum / 6;
-                break;
-            case "Yearly":
-                tempNum = tempNum / 12;
-                break;
-        }
-        return tempNum;
-    }
-
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
-    }
-
-//    {Business loan=0 Weekly, Car / motorbike loan=123 Weekly, Mortgage=0 Weekly, Holiday loan=0 Weekly, Personal loan=0 Weekly, Education / Tuition loan=0 Weekly, Credit card loan=0 Weekly}
-
-
-}
