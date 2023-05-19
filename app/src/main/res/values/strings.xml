@@ -197,12 +197,21 @@
     <string name="total_income_saved">Total income</string>
     <string name="total_expenses_saved">Total expenses</string>
 
+    <string name="total_expenses_saved_formatted">Your total income is: %1$s</string>
+    <string name="total_income_saved_formatted">Your total expenses are: %1$s</string>
+    <string name="total_income_over_expenses_formatted">You spent over %1$s of your income</string>
 
-    <string name="least_spent_formatted">Least you have spent on %1$s: €%2$f</string>
-    <string name="most_spent_formatted">Most you have spent on %1$s: €%2$f</string>
+    <string name="least_spent_formatted">Least you have spent on %1$s: €%2$s</string>
+    <string name="most_spent_formatted">Most you have spent on %1$s: €%2$s</string>
+    <string name="you_currently_spend">You currently spend:</string>
+    <string name="spent_over_of_your_income">% spent over of your income:</string>
+    <string name="most_finance_spent_on">Most finance spent on:</string>
+    <string name="least_you_have_spent_on">Least you have spent on:</string>
+    <string name="your_current_income_is">Your current income is:</string>
 
-
-
+    <string name="val">€%1$s / year</string>
+    <string name="val1">%1$s €%2$s / year</string>
+    <string name="top_5_categories_spent_on">Top 5 categories spent on:</string>
 
 
 </resources>

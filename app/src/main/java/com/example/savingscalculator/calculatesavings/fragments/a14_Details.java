@@ -17,8 +17,7 @@ import androidx.fragment.app.Fragment;
 import com.example.savingscalculator.R;
 import com.example.savingscalculator.databinding.FragmentA14DetailsBinding;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -27,8 +26,14 @@ import java.util.TreeMap;
 public class a14_Details extends Fragment {
 
     private FragmentA14DetailsBinding binding;
-    TextView mostSpentTV;
-    TextView leastSpentTV;
+    private TextView mostSpentTV;
+    private TextView leastSpentTV;
+    private TextView currentIncomeTV;
+    private TextView currentExpensesTV;
+    private TextView spentOverTV;
+
+    private TextView top5Val;
+    private DecimalFormat decimalFormat;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,25 +59,45 @@ public class a14_Details extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        decimalFormat = new DecimalFormat("#0.0");
 
+        currentIncomeTV = getActivity().findViewById(R.id.your_current_income_Val);
+        currentExpensesTV = getActivity().findViewById(R.id.your_current_expenses_Val);
 
-        TextView currentIncomeTV = getActivity().findViewById(R.id.your_current_income_TV);
-        TextView currentExpensesTV = getActivity().findViewById(R.id.your_current_expenses_TV);
-        mostSpentTV = getActivity().findViewById(R.id.most_spent_TV);
-        leastSpentTV = getActivity().findViewById(R.id.least_spent_TV);
+        spentOverTV = getActivity().findViewById(R.id.you_spent_over_Val);
+
+        mostSpentTV = getActivity().findViewById(R.id.most_spent_Val);
+        leastSpentTV = getActivity().findViewById(R.id.least_spent_Val);
+        top5Val = getActivity().findViewById(R.id.top_5_Val);
 
         SharedPreferences sharedPreferencesIncome = getActivity().getSharedPreferences("UserIncome", MODE_PRIVATE);
         String total_income = sharedPreferencesIncome.getString(getActivity().getString(R.string.total_income_saved), "");
-//        currentIncomeTV.setText();
-        Log.i("Total income", total_income);
-
+        total_income = decimalFormat.format(Float.parseFloat(total_income));
+        currentIncomeTV.setText(getString(R.string.val, total_income));
 
         SharedPreferences sharedPreferencesExpenses = getActivity().getSharedPreferences("UserTotalExpenses", MODE_PRIVATE);
         String total_expenses = sharedPreferencesExpenses.getString(getActivity().getString(R.string.total_expenses_saved), "");
-        Log.i("Total expenses", total_expenses);
+        total_expenses = decimalFormat.format(Float.parseFloat(total_expenses));
+        currentExpensesTV.setText(getString(R.string.val, total_expenses));
+
+        String expOverInc = "";
+        expOverInc = decimalFormat.format(getExpensesOverIncome(total_income, total_expenses));
+
+        spentOverTV.setText(getString(R.string.val, expOverInc));
 
         Map<String, Float> topValues = getMaxValues();
         System.out.println("Key: " + topValues);
+        top5Val.setText(topValues.toString());
+
+    }
+
+    public float getExpensesOverIncome(String income, String expenses) {
+
+        float diff = 0;
+
+        diff = (Float.parseFloat(expenses) / Float.parseFloat(income)) * 100;
+
+        return diff ;
     }
 
 
@@ -154,7 +179,6 @@ public class a14_Details extends Fragment {
 //            }
 //        }
 
-
         Map.Entry<Float, String> smallestEntry = bottomValues.firstEntry();
 
         Log.i("Small value", smallestEntry +" ");
@@ -162,28 +186,30 @@ public class a14_Details extends Fragment {
         Map.Entry<Float, String> biggestEntry = topValues.lastEntry();
         Log.i("Big value", biggestEntry +" ");
 
+        String smallestVal = decimalFormat.format(smallestEntry.getKey());
+        String biggestVal = decimalFormat.format(biggestEntry.getKey());
 
-//        Log.i("Small value", smallestEntry.getValue() + " " + smallestEntry.getKey());
+        leastSpentTV.setText(getString(R.string.val1, smallestEntry.getValue(), smallestVal));
 
-//        System.out.println("Key: " + smallestEntry.getValue() + ", Value: " + smallestEntry.getKey());
+        mostSpentTV.setText(getString(R.string.val1, biggestEntry.getValue(), biggestVal));
 
-        leastSpentTV.setText(getString(R.string.least_spent_formatted, smallestEntry.getValue(), smallestEntry.getKey()));
+        return getTopValues(topValues);
+    }
 
-
-        mostSpentTV.setText(getString(R.string.most_spent_formatted, biggestEntry.getValue(), biggestEntry.getKey()));
-
+    public Map<String, Float> getTopValues(TreeMap<Float, String> topValues){
         Map<String, Float> tops = new HashMap<>();
 
-//        System.out.println("\nTop 5 Maximum Values:");
-//        int count = 0;
-//        for (Map.Entry<Float, String> entry : topValues.descendingMap().entrySet()) {
-//            if (count >= 5) {
-//                break;
-//            }
-//            tops.put(entry.getValue(), entry.getKey());
-//            System.out.println("Key: " + entry.getValue() + ", Value: " + entry.getKey());
-//            count++;
-//        }
+        System.out.println("\nTop 5 Maximum Values:");
+        Log.i("Flooaaats", topValues.toString());
+        int count = 0;
+        for (Map.Entry<Float, String> entry : topValues.descendingMap().entrySet()) {
+            if (count >= 5) {
+                break;
+            }
+            tops.put(entry.getValue(), entry.getKey());
+            System.out.println("Key: " + entry.getValue() + ", Value: " + entry.getKey());
+            count++;
+        }
 
         return tops;
     }

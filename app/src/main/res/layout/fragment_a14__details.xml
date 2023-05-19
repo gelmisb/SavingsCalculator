@@ -69,12 +69,20 @@
                         android:id="@+id/your_current_income_TV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Your current income is: " />
+                        android:layout_weight="2"
+                        android:text="@string/your_current_income_is" />
+
+                    <TextView
+                        android:id="@+id/your_current_income_Val"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textAlignment="textEnd" />
 
                 </TableRow>
 
                 <TableRow
-                    android:layout_width="fill_parent"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:stretchColumns="3">
 
@@ -82,33 +90,54 @@
                         android:id="@+id/your_current_expenses_TV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="You currently spend" />
+                        android:layout_weight="2"
+                        android:text="@string/you_currently_spend" />
 
+                    <TextView
+                        android:id="@+id/your_current_expenses_Val"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textAlignment="textEnd" />
                 </TableRow>
 
                 <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:stretchColumns="3">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
                     <TextView
                         android:id="@+id/you_spent_over_TV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="You spent over % of your income" />
+                        android:layout_weight="2"
+                        android:text="@string/spent_over_of_your_income" />
+
+                    <TextView
+                        android:id="@+id/you_spent_over_Val"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textAlignment="textEnd" />
 
                 </TableRow>
 
                 <TableRow
-                    android:layout_width="fill_parent"
-                    android:layout_height="match_parent"
-                    android:stretchColumns="3">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
                     <TextView
                         android:id="@+id/most_spent_TV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Most finance spent on" />
+                        android:layout_weight="2"
+                        android:text="@string/most_finance_spent_on" />
+
+                    <TextView
+                        android:id="@+id/most_spent_Val"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textAlignment="textEnd" />
 
                 </TableRow>
 
@@ -121,7 +150,36 @@
                         android:id="@+id/least_spent_TV"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Least you have spent on" />
+                        android:layout_weight="2"
+                        android:text="@string/least_you_have_spent_on" />
+
+                    <TextView
+                        android:id="@+id/least_spent_Val"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textAlignment="textEnd" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="fill_parent"
+                    android:layout_height="match_parent"
+                    android:stretchColumns="3">
+
+                    <TextView
+                        android:id="@+id/top_5_TV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:text="@string/top_5_categories_spent_on" />
+
+                    <TextView
+                        android:id="@+id/top_5_Val"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textAlignment="textEnd" />
 
                 </TableRow>
 
