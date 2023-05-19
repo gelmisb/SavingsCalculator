@@ -144,8 +144,8 @@ public class a14_Details extends Fragment {
 
         Map<String, ?> getAll = userExpenses.getAll();
 
-        TreeMap<Float, String> topValues = new TreeMap<>();
-        TreeMap<Float, String> bottomValues = new TreeMap<>();
+        TreeMap<String, Float> topValues = new TreeMap<>();
+        TreeMap<String, Float> bottomValues = new TreeMap<>();
 
         for (Map.Entry<String, ?> entry : getAll.entrySet()) {
             String keyString = entry.getKey();
@@ -157,56 +157,37 @@ public class a14_Details extends Fragment {
             float value = multiplyIncome(valueString, incomeStr);
             Log.i("value 2",keyString + " " + incomeStr + " " + value + "");
 
-            topValues.put(value, keyString);
-            bottomValues.put(value, keyString);
-
-            Log.i("topValues",topValues + " " );
-            Log.i("bottomValues",bottomValues + " " );
-
+            topValues.put(keyString, value);
+            bottomValues.put(keyString, value);
         }
 
-//        for (Map.Entry<String, Map<String, ?>> route : all.entrySet()) {
-//            for (Map.Entry<String, ?> entry : route.getValue().entrySet()) {
-//                String keyString = entry.getKey();
-//                String incomeStr = entry.getValue().toString().replaceAll("\\d+", "");
-//
-//                String valueString = entry.getValue().toString().replaceAll("\\b[^\\d\\W]+\\b", "");
-//                float value = multiplyIncome(valueString, incomeStr);
-//                Log.i("value ",  value + "");
-//
-//                topValues.put(value, keyString);
-//                bottomValues.put(value, keyString);
-//            }
-//        }
-
-        Map.Entry<Float, String> smallestEntry = bottomValues.firstEntry();
+        Map.Entry<String, Float> smallestEntry = bottomValues.lastEntry();
 
         Log.i("Small value", smallestEntry +" ");
 
-        Map.Entry<Float, String> biggestEntry = topValues.lastEntry();
+        Map.Entry<String, Float> biggestEntry = topValues.firstEntry();
         Log.i("Big value", biggestEntry +" ");
 
-        String smallestVal = decimalFormat.format(smallestEntry.getKey());
-        String biggestVal = decimalFormat.format(biggestEntry.getKey());
+        String smallestVal = decimalFormat.format(smallestEntry.getValue());
+        String biggestVal = decimalFormat.format(biggestEntry.getValue());
 
-        leastSpentTV.setText(getString(R.string.val1, smallestEntry.getValue(), smallestVal));
+        leastSpentTV.setText(getString(R.string.val1, smallestVal, smallestEntry.getValue()));
 
-        mostSpentTV.setText(getString(R.string.val1, biggestEntry.getValue(), biggestVal));
+        mostSpentTV.setText(getString(R.string.val1, biggestVal, biggestEntry.getValue()));
 
         return getTopValues(topValues);
     }
 
-    public Map<String, Float> getTopValues(TreeMap<Float, String> topValues){
+    public Map<String, Float> getTopValues(TreeMap<String, Float> topValues){
         Map<String, Float> tops = new HashMap<>();
 
         System.out.println("\nTop 5 Maximum Values:");
-        Log.i("Flooaaats", topValues.toString());
         int count = 0;
-        for (Map.Entry<Float, String> entry : topValues.descendingMap().entrySet()) {
+        for (Map.Entry<String, Float> entry : topValues.descendingMap().entrySet()) {
             if (count >= 5) {
                 break;
             }
-            tops.put(entry.getValue(), entry.getKey());
+            tops.put(entry.getKey(), entry.getValue());
             System.out.println("Key: " + entry.getValue() + ", Value: " + entry.getKey());
             count++;
         }

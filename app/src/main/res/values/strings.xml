@@ -210,7 +210,7 @@
     <string name="your_current_income_is">Your current income is:</string>
 
     <string name="val">€%1$s / year</string>
-    <string name="val1">%1$s €%2$s / year</string>
+    <string name="val1">%1$s €%2$f / year</string>
     <string name="top_5_categories_spent_on">Top 5 categories spent on:</string>
 
 
