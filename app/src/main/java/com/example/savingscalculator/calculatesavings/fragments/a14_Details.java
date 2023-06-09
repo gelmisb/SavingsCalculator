@@ -4,6 +4,7 @@ import static android.content.Context.MODE_PRIVATE;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,21 +12,26 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.savingscalculator.R;
 import com.example.savingscalculator.calculatesavings.CategoryAdapter;
+import com.example.savingscalculator.calculatesavings.VerticalLabelFormatter;
 import com.example.savingscalculator.databinding.FragmentA14DetailsBinding;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,6 +50,10 @@ public class a14_Details extends Fragment {
     private DecimalFormat decimalFormat;
     private BarChart chart;
 
+    private RecyclerView recyclerView;
+
+    private Map<String, Float> topValues;
+    private List<String> top5ValForChart;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,83 +65,12 @@ public class a14_Details extends Fragment {
             @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         binding = FragmentA14DetailsBinding.inflate(inflater, container, false);
-        RecyclerView recyclerView = binding.top5RecyclerView;
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(layoutManager);
-
-        List<String> categories = new ArrayList<>();
-        categories.add("Category 1");
-        categories.add("Category 2");
-        categories.add("Category 3");
-
-        // Create the adapter
-        CategoryAdapter adapter = new CategoryAdapter(categories);
-
-        // Set the adapter on the RecyclerView
-        recyclerView.setAdapter(adapter);
-
-//        1. Top expense
-//        2. Top 5 expenses
-//        3. Click on every top expense to check what was spent most
-//        4. Graph
-//        5. Export or save details
-
-        chart = binding.getRoot().findViewById(R.id.chart);
-        setupChart();
-
+//        recyclerView = binding.top5RecyclerView;
+//
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+//        recyclerView.setLayoutManager(layoutManager);
 
         return binding.getRoot();
-    }
-
-    private void setupChart() {
-        chart.setDrawBarShadow(false);
-        chart.setDrawValueAboveBar(true);
-        chart.getDescription().setEnabled(false);
-
-        // Customize chart appearance as desired
-        chart.getAxisLeft().setAxisMinimum(0f); // Set the minimum value on the y-axis to 0
-
-        // Prepare data for the chart
-        BarData barData = generateBarData();
-
-        // Set the data to the chart
-        chart.setData(barData);
-
-        // Refresh the chart
-        chart.invalidate();
-    }
-
-    private BarData generateBarData() {
-        ArrayList<BarEntry> entries = new ArrayList<>();
-
-        // Add income and expense values for each category
-        entries.add(new BarEntry(0f, getIncomeValue("Category 1")));
-        entries.add(new BarEntry(1f, getExpenseValue("Category 1")));
-        entries.add(new BarEntry(2f, getIncomeValue("Category 2")));
-        entries.add(new BarEntry(3f, getExpenseValue("Category 2")));
-        entries.add(new BarEntry(4f, getIncomeValue("Category 3")));
-        entries.add(new BarEntry(5f, getExpenseValue("Category 3")));
-        // ... Add entries for other categories
-
-        BarDataSet dataSet = new BarDataSet(entries, "Income vs Expenses");
-
-        ArrayList<IBarDataSet> dataSets = new ArrayList<>();
-        dataSets.add(dataSet);
-
-        return new BarData(dataSets);
-    }
-
-    private float getIncomeValue(String category) {
-        // Retrieve the income value for the given category from SharedPreferences or any other source
-        // Replace the dummy value with your actual implementation
-        return 100f;
-    }
-
-    private float getExpenseValue(String category) {
-        // Retrieve the expense value for the given category from SharedPreferences or any other source
-        // Replace the dummy value with your actual implementation
-        return 75f;
     }
 
 
@@ -164,18 +103,44 @@ public class a14_Details extends Fragment {
 
         spentOverTV.setText(getString(R.string.val, expOverInc));
 
-//        Map<String, Float> topValues = getMaxValues();
-//        System.out.println("Key: " + topValues);
-//        top5Val.setText(topValues.toString());
-
-        Map<String, Float> topValues = getMaxValues();
+        topValues = getMaxValues();
+        top5ValForChart = new ArrayList<>();
         StringBuilder topValuesText = new StringBuilder();
         for (Map.Entry<String, Float> entry : topValues.entrySet()) {
             topValuesText.append(entry.getKey()).append(": ").append(decimalFormat.format(entry.getValue())).append("\n");
+            top5ValForChart.add(entry.getKey());
         }
         top5Val.setText(topValuesText.toString());
 
 
+
+        // Setting up a chart
+        List<String> categories = getCategories();
+
+        // Create the adapter
+        CategoryAdapter adapter = new CategoryAdapter(categories);
+
+        // Set the adapter on the RecyclerView
+//        recyclerView.setAdapter(adapter);
+
+        chart = binding.getRoot().findViewById(R.id.chart);
+
+        setupChart(top5ValForChart);
+    }
+
+    public List<String> getCategories(){
+        SharedPreferences userExpenses = getActivity().getSharedPreferences("UserExpenses", MODE_PRIVATE);
+        Map<String, ?> getAll = userExpenses.getAll();
+        List<String> cats = new ArrayList<>();
+
+        for (Map.Entry<String, ?> entry : getAll.entrySet()) {
+            String keyString = entry.getKey();
+            String incomeStr = entry.getValue().toString().replaceAll("[^\\d.]", "");
+            float value = multiplyIncome(keyString, incomeStr);
+            if(value > 0)
+                cats.add(keyString);
+        }
+        return cats;
     }
 
     public float getExpensesOverIncome(String income, String expenses) {
@@ -187,6 +152,95 @@ public class a14_Details extends Fragment {
         return diff ;
     }
 
+    private void setupChart(List<String> categories) {
+        chart.setDrawBarShadow(false);
+        chart.setDrawValueAboveBar(true);
+        chart.getDescription().setEnabled(false);
+
+        // Customize chart appearance as desired
+        chart.getAxisLeft().setAxisMinimum(0f); // Set the minimum value on the y-axis to 0
+
+        // Prepare data for the chart
+        BarData barData = generateBarData(categories);
+
+        // Set the data to the chart
+        chart.setData(barData);
+
+        XAxis xAxis = chart.getXAxis();
+        xAxis.setEnabled(true);
+//        xAxis.setCenterAxisLabels(true);
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM_INSIDE);
+        xAxis.setDrawLabels(true);
+        xAxis.setLabelRotationAngle(270);
+//        xAxis.setValueFormatter(new VerticalLabelFormatter(categories));
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(categories));
+
+//        xAxis.setGranularityEnabled(true); // Enable granularity control
+//        xAxis.setGranularity(1f); // Set granularity to 1 to avoid label duplication
+        xAxis.setLabelCount(categories.size()); // Set the custom label count
+
+        // Hide unnecessary chart elements
+        chart.getAxisRight().setEnabled(false);
+        chart.getAxisLeft().setEnabled(false);
+        chart.getXAxis().setDrawGridLines(false);
+
+        // Refresh the chart
+        chart.invalidate();
+    }
+
+
+    private BarData generateBarData(List<String> categories) {
+        ArrayList<BarEntry> entries = new ArrayList<>();
+
+        // Add income and expense values for each category
+
+        for (int i = 0; i< categories.size(); i++) {
+            entries.add(new BarEntry((float) i, (int) getExpenseValue(categories.get(i))));
+            Log.i("Entry", categories.get(i) + "  " + getExpenseValue(categories.get(i)));
+        }
+//
+//        entries.add(new BarEntry(1f, 1));
+//        entries.add(new BarEntry(2f, 1));
+//        entries.add(new BarEntry(3f, 1));
+//        entries.add(new BarEntry(4f, 1));
+//        entries.add(new BarEntry(5f, 1));
+        // ... Add entries for other categories
+
+        BarDataSet dataSet = new BarDataSet(entries, "Income vs Expenses");
+
+        ArrayList<IBarDataSet> dataSets = new ArrayList<>();
+        dataSets.add(dataSet);
+
+        return new BarData(dataSets);
+    }
+
+//    private float getIncomeValue(String category) {
+//        // Retrieve the income value for the given category from SharedPreferences or any other source
+//        // Replace the dummy value with your actual implementation
+//        return 100f;
+//    }
+
+    private float getExpenseValue(String category) {
+        SharedPreferences userExpenses = getActivity().getSharedPreferences("UserExpenses", MODE_PRIVATE);
+        Map<String, ?> getAll = userExpenses.getAll();
+        float catsValue = 0;
+
+        for (Map.Entry<String, ?> entry : getAll.entrySet()) {
+            String keyString = entry.getKey();
+            String incomeStr = entry.getValue().toString().replaceAll("[^\\d.]", "");
+            float value = multiplyIncome(keyString, incomeStr);
+
+            if(category.equals(keyString)){
+//                if(value > 0) {
+                catsValue = value;
+                Log.i("catsValue", category + " " + catsValue);
+//                }
+            }
+//            Log.i("Value", catsValue + " " + keyString);
+        }
+
+        return catsValue;
+    }
 
     public Map<String, Float> getMaxValues() {
         SharedPreferences userExpenses = getActivity().getSharedPreferences("UserExpenses", MODE_PRIVATE);
@@ -211,12 +265,10 @@ public class a14_Details extends Fragment {
             if (count >= 5) {
                 break;
             }
-
             List<String> categories = entry.getValue();
             for (String category : categories) {
                 topValues.put(category, entry.getKey());
                 count++;
-
                 if (count >= 5) {
                     break;
                 }
@@ -321,7 +373,6 @@ public class a14_Details extends Fragment {
     public Map<String, Float> getTopValues(TreeMap<Float, List<String>> sortedValues) {
         Map<String, Float> tops = new LinkedHashMap<>();
 
-        System.out.println("\nTop 5 Maximum Values:");
         int count = 0;
         for (Map.Entry<Float, List<String>> entry : sortedValues.entrySet()) {
             List<String> categories = entry.getValue();
@@ -330,7 +381,6 @@ public class a14_Details extends Fragment {
                     break;
                 }
                 tops.put(category, entry.getKey());
-                System.out.println("Key: " + entry.getKey() + ", Value: " + category);
                 count++;
             }
             if (count >= 5) {

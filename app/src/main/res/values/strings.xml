@@ -187,12 +187,17 @@
     <string name="total_income">Total income</string>
     <string name="total_expenses">Total expenses</string>
     <string name="you_could_save">You could save</string>
+    <string name="income_vs_expenses" >Income Vs. Expenses</string>
 
     <string name="year_calc">€%1$s / year</string>
+    <string name="savings_str">€%1$s</string>
 
+    <string name="losing_savings">Income is lower than your spending</string>
+    <string name="winning_savings">You could be saving</string>
 
 
     <string name="a14_Details" />
+    <string name="detailed">Detailed Expenditure</string>
 
     <string name="total_income_saved">Total income</string>
     <string name="total_expenses_saved">Total expenses</string>

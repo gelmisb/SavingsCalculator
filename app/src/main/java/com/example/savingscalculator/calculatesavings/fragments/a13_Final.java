@@ -1,5 +1,6 @@
 package com.example.savingscalculator.calculatesavings.fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -55,9 +56,24 @@ public class a13_Final extends Fragment {
 
         TextView incomeTV = getActivity().findViewById(R.id.totalIncomeTV);
         TextView expensesTV = getActivity().findViewById(R.id.totalExpensesTV);
+        TextView saveText = getActivity().findViewById(R.id.totalSaveText);
+        TextView saveTV = getActivity().findViewById(R.id.totalSaveTV);
 
         incomeTV.setText(getString(R.string.year_calc, income));
         expensesTV.setText(getString(R.string.year_calc, expenses));
+
+        float diff = Float.parseFloat(income) - Float.parseFloat(expenses);
+
+        String diffStr = String.format("%.02f", diff);
+        saveTV.setText(getString(R.string.savings_str, diffStr));
+
+        if(diff <= 0) {
+            saveText.setText(getString(R.string.losing_savings));
+            saveText.setTextColor(Color.parseColor("#B00020"));
+        } else {
+            saveText.setText(getString(R.string.winning_savings));
+            saveText.setTextColor(Color.parseColor("#2A980B"));
+        }
 
         setCharts();
 

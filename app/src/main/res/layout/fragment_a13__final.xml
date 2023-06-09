@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:maxLines="1"
-                android:text="@string/subs_costs"
+                android:text="@string/income_vs_expenses"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textSize="28sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -112,7 +112,7 @@
                     android:stretchColumns="3">
 
                     <TextView
-                        android:id="@+id/textView9"
+                        android:id="@+id/totalSaveText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/you_could_save"
